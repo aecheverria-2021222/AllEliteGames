@@ -1,0 +1,132 @@
+body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+main {
+  max-width: 1200px;
+  margin-left: calc(60% - 500px); /* Desplaza hacia la derecha */
+  margin-right: auto;
+  padding: 20px;
+}
+
+/* Estilos para los títulos */
+.titulo h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-right: calc(65% - 500px);
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-size: 1.8em;
+    color: #ffffff;
+    margin-top: 30px;
+    border-bottom: 2px solid #444;
+    padding-bottom: 10px;
+}
+
+h3 span {
+    color: #13C9F2;
+    margin-right: 10px;
+}
+
+h4 {
+    font-size: 1.5em;
+    color: #ffffff;
+    margin-top: 25px;
+    border-left: 4px solid #13C9F2;
+    padding-left: 10px;
+}
+
+/* Contenedores */
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.home img {
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(19, 201, 242, 0.4);
+}
+
+.principal-conteiner,
+.secundary-conteiner,
+.third-conteiner {
+    background-color: #1a1a1a;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 20px;
+   
+}
+
+/* Estilos para párrafos */
+p {
+    font-size: 1.1em;
+    margin: 15px 0;
+    text-align: justify;
+}
+
+/* Efectos hover para interactividad */
+.principal-conteiner:hover,
+.secundary-conteiner:hover,
+.third-conteiner:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 6px 12px rgba(19, 201, 242, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .titulo h1 {
+        font-size: 2em;
+    }
+    
+    h3 {
+        font-size: 1.5em;
+    }
+    
+    .principal-conteiner,
+    .secundary-conteiner,
+    .third-conteiner {
+        padding: 15px;
+    }
+}   
+
+.navbar {
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+  width: 250px;   /* O el ancho que prefieras */
+  position: fixed; /* Para que se mantenga en su lugar */
+  top: 0;
+  left: 0;
+  background-color: #00aaff; /* Celeste, por ejemplo */
+  display: flex;
+  flex-direction: column;
+}
+
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-right: 1.5rem;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #f0f8ff; /* tono más claro al pasar el mouse */
+}
