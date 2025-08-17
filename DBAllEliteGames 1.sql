@@ -8,14 +8,14 @@ Create table Clientes(
     nombresCliente varchar (200) not null,
     correoCliente varchar(150) not null,/*Se Agrego*/
     direccionCliente varchar(150) not null,
+    estado varchar(15) not null,
 	primary key PK_CodigoCliente (codigoCliente)
 );
 
 Create table Empleado(
 	codigoEmpleado int not null auto_increment,
     DPIEmpleado varchar(13) not null,
-    nombreEmpleado varchar(200) not null,
-    apellidoEmpleado varchar(200) not null,
+    nombresEmpleado varchar(200) not null,
     telefonoEmpleado varchar(8) not null,
     correoEmpleado varchar (150) not null,
     estado varchar(15) not null,
@@ -152,25 +152,24 @@ Create table Devoluciones(
 	constraint FK_Devoluciones_Ventas foreign key (codigoVenta)
 		references Ventas(codigoVenta)
 );
-select * from empleado;
+
 Delimiter $$
 	create procedure sp_agregarEmpleado(
 		in  DPIEmpleado varchar(13),
-        in nombreEmpleado varchar(200),
-        in apellidoEmpleado varchar (200),
+        in nombresEmpleado varchar(200),
         in telefonoEmpleado varchar(8),
         in correoEmpleado varchar(150),
         in estado varchar(15),
         in usuario varchar (30),
         in contrasena varchar(50))
         Begin
-			Insert into Empleado (DPIEmpleado, nombreEmpleado, apellidoEmpleado, telefonoEmpleado, correoEmpleado, estado, usuario, contrasena)
-            values (DPIEmpleado, nombreEmpleado, apellidoEmpleado, telefonoEmpleado, correoEmpleado, estado, usuario, contrasena);
+			Insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, correoEmpleado, estado, usuario, contrasena)
+            values (DPIEmpleado, nombresEmpleado, telefonoEmpleado, correoEmpleado, estado, usuario, contrasena);
         End$$
 Delimiter ;
  
  describe Empleado;
  
- call sp_agregarEmpleado('3216549871236','jose',' gonzalez','32165478','jgonzalez@gmail.com','activo','jgonzalez','123');
+ call sp_agregarEmpleado('3216549871236','Jose Gonzalez','32165478','jgonzalez@gmail.com','activo','jgonzalez','123');
 
  select * from Empleado where usuario = "jgonzalez" and contrasena = "123";
