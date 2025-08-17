@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">         
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#" target="myFrame">Entidad 1</a>
+                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#">Entidad 1</a>
                     </li>
                     <li class="nav-item">
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#" target="myFrame">Entidad 2</a>
@@ -61,14 +61,14 @@
 
 
                     <div class="principal-conteiner" >
-                        <h3><span>1</span>Misión</h3>
+                        <h3>Misión</h3>
                         <p>La misión de AllEliteGames es ofrecer diversión y
                             entretenimiento de manera accesible y cómoda,
                             llevando la experiencia del consumidor a un nuevo 
                             nivel mediante un servicio excepcional y un
                             compromiso constante con la calidad en cada entrega.
                         </p>
-                        <h3><span>2</span>Visión</h3>
+                        <h3>Visión</h3>
                         <p>La misión de AllEliteGames es transformar el acceso 
                             al entretenimiento digital ofreciendo videojuegos, 
                             consolas y servicios personalizados que se adaptan a

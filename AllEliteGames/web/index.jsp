@@ -14,7 +14,6 @@
         <link rel="shortcut icon" href="img/AllEliteGames.png" type="image/x-icon">
         <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
         <link rel="stylesheet" href="<c:url value='/resources/style.css' />">
-        
     </head>
     <body>
         <div class="container mt-4 col-lg-4">
@@ -34,7 +33,7 @@
                             <label><strong>Contraseña:</strong></label>
                             <Input type="password" name="txtPass" class="form-control" placeholder="********">
                         </div>
-                        <input type="submit" name="accion" value="Login" class="btn btn-primary btn-block">
+                        <input type="submit" name="accion" value="Ingresar" class="btn btn-primary btn-block">
                     </form>
                 </div>
             </div>
