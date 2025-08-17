@@ -23,9 +23,10 @@ public class EmpleadoDAO {
         ps.setString(2, contrasena);
         rs = ps.executeQuery(); 
         while (rs.next()) {
-            empleado.setCodigoEmpleado(rs.getInt("CodigoEmpleado"));
+            empleado.setCodigoEmpleado(rs.getInt("codigoEmpleado"));
             empleado.setUsuario(rs.getString("usuario"));
             empleado.setContrasena(rs.getString("contrasena")); 
+            empleado.setNombresEmpleado(rs.getString("nombresEmpleado"));
         }
     } catch (Exception e) {
         e.printStackTrace();
