@@ -20,20 +20,58 @@
             <div class="collapse navbar-collapse" id="navbarNav">         
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#">Entidad 1</a>
+                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#">Inicio</a>
                     </li>
-                    <li class="nav-item">
-                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#" target="myFrame">Entidad 2</a>
+                    
+                    <!-- CLIENTES -->
+                    <li class="nav-item dropdown">
+                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Clientes</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Clientes</a></li>
+                            <li><a class="dropdown-item" href="#">Suscripciones</a></li>
+                            <li><a class="dropdown-item" href="#">Membresias</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#" target="myFrame">Entidad 3</a>
+                    
+                    <!-- EMPLEADOS -->
+                    <li class="nav-item dropdown">
+                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Empleados</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Empleados</a></li>
+                            <li><a class="dropdown-item" href="#">Tiendas</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#" target="myFrame">Entidad 4</a>
+                    
+                    <!-- GENEROS -->
+                    <li class="nav-item dropdown">
+                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Generos</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Generos</a></li>
+                            <li><a class="dropdown-item" href="#">Videojuegos</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#" target="myFrame">Entidad 5</a>
+                    
+                    <!-- PROVEEDORES -->
+                    <li class="nav-item dropdown">
+                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Proveedores</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Proveedores</a></li>
+                            <li><a class="dropdown-item" href="#">Videojuegos</a></li>
+                            <li><a class="dropdown-item" href="#">Consolas</a></li>
+                            <li><a class="dropdown-item" href="#">Suscripciones</a></li>
+                        </ul>
                     </li>
+                    
+                    <!-- VENTAS -->
+                    <li class="nav-item dropdown">
+                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Ventas</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Ventas</a></li>
+                            <li><a class="dropdown-item" href="#">Metodos de Pago</a></li>
+                            <li><a class="dropdown-item" href="#">Devoluciones</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </div>
             <div class="dropdown">
@@ -45,7 +83,7 @@
                         <img src="img/ImagenUsuarios.png" alt="60" width="60">
                     </a>
                     <a class="dropdown-item">${usuario.getUsuario()}</a>
-                    <a class="dropdown-item">usuario@gmail.com</a>
+                    <a class="dropdown-item">${usuario.getCorreoEmpleado()}</a>
                     <div class="dropdown-divider"></div>
                     <form action="Validar" method="POST">
                         <button name="accion" name="Salir" class="dropdown-item">Salir </button>
@@ -128,5 +166,6 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>

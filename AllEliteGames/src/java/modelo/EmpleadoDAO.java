@@ -27,6 +27,7 @@ public class EmpleadoDAO {
             empleado.setUsuario(rs.getString("usuario"));
             empleado.setContrasena(rs.getString("contrasena")); 
             empleado.setNombresEmpleado(rs.getString("nombresEmpleado"));
+            empleado.setCorreoEmpleado(rs.getString("correoEmpleado"));
         }
     } catch (Exception e) {
         e.printStackTrace();
