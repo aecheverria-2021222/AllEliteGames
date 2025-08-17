@@ -1,0 +1,78 @@
+[33mcommit f8304ccece36b64464c2d73079b5b82bf8e73594[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mjgonzalez-2024374[m[33m, [m[1;31morigin/jgonzalez-2024374[m[33m)[m
+Merge: 8dc67d3 014aa7d
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Sat Aug 16 20:56:26 2025 -0600
+
+    Merge branch 'jgonzalez-2024374' of https://github.com/aecheverria-2021222/AllEliteGames into jgonzalez-2024374
+
+[33mcommit 8dc67d3b43bc3e028881d3f3fd0a1a53c39fb095[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Sat Aug 16 20:52:25 2025 -0600
+
+    add:Integración de la conexión a la base de datos en el proyecto AllEliteGames
+
+[33mcommit b6cbfb6880b365c5de92819215ab86e9062b4549[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Sat Aug 16 20:19:40 2025 -0600
+
+    feat:Se edito el navbar del archivo inicio
+
+[33mcommit bb9d82e8bdb51690425d1f0e1d02d8b089131260[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Sat Aug 16 12:38:59 2025 -0600
+
+    add:Se Agrego el navbar y se coloco la misión, visión, historia y descripcion de la empresa
+
+[33mcommit 014aa7d3e51273b6a5f547465d99968745faf1fd[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Sat Aug 16 20:19:40 2025 -0600
+
+    feat:Se edito el navbar del archivo inicio
+
+[33mcommit 59c68d3a7d487a997d3d11b602ee50c643accad6[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Sat Aug 16 12:38:59 2025 -0600
+
+    Se Agrego el navbar y se coloco la misión, visión, historia y descripcion de la empresa
+
+[33mcommit 33bc63a743aa3c2317f60d2422d3810dd8a6a3c4[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Fri Aug 15 23:19:52 2025 -0600
+
+    add:Se agrego archivo Principal
+
+[33mcommit d0d4a9c7070749e509df9812c72711a59b85c4ca[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Fri Aug 15 23:06:23 2025 -0600
+
+    add:Se agrego la base del login y se agrego un style.css para el diseño
+
+[33mcommit 47d81a9f3fc68a2f5c5dbda5dafd1f2968220eae[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Fri Aug 15 22:55:14 2025 -0600
+
+    add:Se agrego archivo index.jsp
+
+[33mcommit 1181e178441a445d43c6c21a40cfbbd6c63c9924[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Tue Jul 29 19:46:32 2025 -0600
+
+    add: Agregar historia de usuario genero en archivo Actividad-ProyectoJavaEE.docx
+
+[33mcommit 16f6377330446e57323646620d44ac3f8233ae0c[m
+Author: jgonzalez-2024374 <jgonzalez-2024374@kinal.edu.gt>
+Date:   Tue Jul 29 19:41:48 2025 -0600
+
+    add: Agregar nombre Jose Rodrigo González Vásquez y puesto Programador en archivo Actividad-ProyectoJavaEE.docx
+
+[33mcommit a82836d687a42c5ab61c75b7621166ca490c520b[m
+Author: aecheverria-2021222 <aecheverria-2021222@kinal.edu.gt>
+Date:   Tue Jul 29 18:44:50 2025 -0600
+
+    add: Agregar archivo Actividad-ProyectoJavaEE.docx
+
+[33mcommit 7481a2a0795e48c058cabd7b2605f04c4d9e626f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: aecheverria-2021222 <aecheverria-2021222@kinal.edu.gt>
+Date:   Tue Jul 29 18:41:41 2025 -0600
+
+    Initial commit
