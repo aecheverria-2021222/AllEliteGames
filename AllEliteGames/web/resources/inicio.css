@@ -102,3 +102,50 @@ p {
         padding: 15px;
     }
 }   
+
+footer{
+    background-color: #1a1a1a;
+    padding: 60px 0 30px 0;
+    margin: auto;
+    overflow: hidden;
+}
+
+.contenedor-footer{
+    display: flex;
+    width: 90%;
+    justify-content: space-evenly;
+    margin: auto;
+    padding-bottom: 1%;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 30px;
+}
+
+.content-footer{
+    text-align: center;
+}
+
+.content-footer h4{
+    color:white;
+    border-bottom: 3px solid #f906579d;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.content-footer p{
+    color:#c2baba;
+}
+
+.titulo-final{
+    text-align: center;
+    color:white;
+}
+
+.contenedor-sobre-productos{
+    display:flex;
+    justify-content: space-around;
+}
+
+.contenedor-textos{
+    margin-bottom: 20px;
+}
+

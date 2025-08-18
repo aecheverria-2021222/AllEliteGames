@@ -4,7 +4,6 @@ public class Empleado {
     private int codigoEmpleado; 
     private String DPIEmpleado ;
     private String nombresEmpleado; 
-    private String apellidoEmpleado;
     private String telefonoEmpleado;
     private String correoEmpleado;
     private String estado;
@@ -14,11 +13,10 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(int codigoEmpleado, String DPIEmpleado, String nombresEmpleado, String apellidoEmpleado, String telefonoEmpleado, String correoEmpleado, String estado, String usuario, String contrasena) {
+    public Empleado(int codigoEmpleado, String DPIEmpleado, String nombresEmpleado,String telefonoEmpleado, String correoEmpleado, String estado, String usuario, String contrasena) {
         this.codigoEmpleado = codigoEmpleado;
         this.DPIEmpleado = DPIEmpleado;
         this.nombresEmpleado = nombresEmpleado;
-        this.apellidoEmpleado = apellidoEmpleado;
         this.telefonoEmpleado = telefonoEmpleado;
         this.correoEmpleado = correoEmpleado;
         this.estado = estado;
@@ -46,16 +44,8 @@ public class Empleado {
         return nombresEmpleado;
     }
 
-    public void setNombreEmpleado(String nombreEmpleado) {
-        this.nombresEmpleado = nombreEmpleado;
-    }
-
-    public String getApellidoEmpleado() {
-        return apellidoEmpleado;
-    }
-
-    public void setApellidoEmpleado(String apellidoEmpleado) {
-        this.apellidoEmpleado = apellidoEmpleado;
+    public void setNombresEmpleado(String nombresEmpleado) {
+        this.nombresEmpleado = nombresEmpleado;
     }
 
     public String getTelefonoEmpleado() {
