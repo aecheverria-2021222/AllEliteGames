@@ -65,7 +65,7 @@ Create table Videojuegos(
     codigoGenero int not null,
     codigoProveedor int not null,
     primary key PK_codigoVideojuego (codigoVideojuego),
-    constraint FK_Videojuegos_Generos foreign key (codigoGenero) references Generos(codigoGenero),
+    constraint FK_Videojuegos_Genero foreign key (codigoGenero) references Genero(codigoGenero),
     constraint FK_Videojuegos_Proveedores foreign key (codigoProveedor) references Proveedores(codigoProveedor)
 );
 
@@ -169,10 +169,10 @@ Delimiter $$
 Delimiter ;
  
  describe Empleado;
- select * from Generos;
+ select * from Genero;
  
  call sp_agregarEmpleado('3216549871236','Jose Gonzalez','32165478','jgonzalez@gmail.com','activo','jgonzalez','123');
-Insert into Generos (genero, edadRecomendable, popularidad, publicoObjetivo)values('Acción','E','10%','niños');
+Insert into Genero (genero, edadRecomendable, popularidad, publicoObjetivo)values('Acción','E','10%','niños');
 
-select * from Generos;
+select * from Genero;
  select * from Empleado where usuario = "jgonzalez" and contrasena = "123";
