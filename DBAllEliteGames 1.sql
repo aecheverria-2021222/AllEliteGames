@@ -24,7 +24,7 @@ Create table Empleado(
     primary key PK_codigoEmpleado (codigoEmpleado) 
 );
 
-Create table Generos(
+Create table Genero(
 	codigoGenero int not null auto_increment,
     genero varchar(100) not null,
     edadRecomendable varchar(10) not null,
@@ -169,8 +169,10 @@ Delimiter $$
 Delimiter ;
  
  describe Empleado;
- select * from Genero;
+ select * from Generos;
  
  call sp_agregarEmpleado('3216549871236','Jose Gonzalez','32165478','jgonzalez@gmail.com','activo','jgonzalez','123');
+Insert into Generos (genero, edadRecomendable, popularidad, publicoObjetivo)values('Acción','E','10%','niños');
 
+select * from Generos;
  select * from Empleado where usuario = "jgonzalez" and contrasena = "123";
