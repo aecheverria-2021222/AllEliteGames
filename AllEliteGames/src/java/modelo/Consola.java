@@ -9,18 +9,20 @@ public class Consola {
     private int stockConsola;
     private String marca;
     private Date fechaLanzamiento;
+    private String estado;
     private int codigoProveedor;
 
     public Consola() {
     }
 
-    public Consola(int codigoConsola, String nombreConsola, Double precioConsola, int stockConsola, String marca, Date fechaLanzamiento, int codigoProveedor) {
+    public Consola(int codigoConsola, String nombreConsola, Double precioConsola, int stockConsola, String marca, Date fechaLanzamiento, String estado, int codigoProveedor) {
         this.codigoConsola = codigoConsola;
         this.nombreConsola = nombreConsola;
         this.precioConsola = precioConsola;
         this.stockConsola = stockConsola;
         this.marca = marca;
         this.fechaLanzamiento = fechaLanzamiento;
+        this.estado = estado;
         this.codigoProveedor = codigoProveedor;
     }
 
@@ -70,6 +72,14 @@ public class Consola {
 
     public void setFechaLanzamiento(Date fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public int getCodigoProveedor() {
