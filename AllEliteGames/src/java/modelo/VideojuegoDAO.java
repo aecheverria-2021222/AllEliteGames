@@ -16,7 +16,7 @@ public class VideojuegoDAO {
     // METODOS DEL CRUD
     // LISTAR
     public List listar(){
-        String sql = "select * from videojuego";
+        String sql = "select * from videojuegos";
         List<Videojuego> listaVideojuego = new ArrayList<>();
         try{
             con = cn.Conexion();
@@ -41,7 +41,7 @@ public class VideojuegoDAO {
     }
     //AGREGAR
     public int agregar(Videojuego vid){
-        String sql = "Insert into Videojuego (nombreVideojuego, precioVideojugo, stockVideojuego, desarrollador, codigoGenero, codigoProveedor, estado) values (?,?,?,?,?,?,?)";
+        String sql = "Insert into videojuegos (nombreVideojuego, precioVideojugo, stockVideojuego, desarrollador, codigoGenero, codigoProveedor, estado) values (?,?,?,?,?,?,?)";
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -63,7 +63,7 @@ public class VideojuegoDAO {
     public Videojuego listarCodigoVideojuego(int cd){
         //Instanciar un objeto de tipo empleado
         Videojuego vid = new Videojuego();
-        String sql = "select * from Videojuego where Videojuego = "+cd;
+        String sql = "select * from videojuegos where Videojuego = "+cd;
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -85,7 +85,7 @@ public class VideojuegoDAO {
     }
     //ACTUALIZAR - funcion
     public int actualizar(Videojuego vid){
-        String sql = "Update Videojuego set nombresVideojuego = ?, precioVideojuego = ?, stockVideojuego = ?, desarrollador = ?, codigoGenero = ?, codigoProveedor = ?, estado = ? where codigoVideojuego = ?";
+        String sql = "Update videojuegos set nombresVideojuego = ?, precioVideojuego = ?, stockVideojuego = ?, desarrollador = ?, codigoGenero = ?, codigoProveedor = ?, estado = ? where codigoVideojuego = ?";
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -104,7 +104,7 @@ public class VideojuegoDAO {
 
     //ELIMINAR - metodo
     public void eliminar(int id){
-        String sql = "Delete from videojuego where codigoVideojuego = "+id;
+        String sql = "Delete from videojuegos where codigoVideojuego = "+id;
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
