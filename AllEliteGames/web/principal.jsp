@@ -71,7 +71,10 @@
                             <li><a class="dropdown-item" href="#">Metodos de Pago</a></li>
                             <li><a class="dropdown-item" href="#">Devoluciones</a></li>
                         </ul>
-                    </li>                    
+                    </li> 
+                    <li class="nav-item">
+                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="Controlador?menu=Genero" target="myFrame">Genero</a>
+                    </li>
                 </ul>
             </div>
             <div class="d-flex align-items-center">
