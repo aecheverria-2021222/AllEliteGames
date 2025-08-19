@@ -1,0 +1,9 @@
+body {
+  background-color: #000000; /* negro absoluto */
+  color: #0dcaf0; /* texto blanco para buen contraste */
+}   
+
+.table-white tbody {
+    background-color: white;
+    color: black; /* opcional, para asegurar contraste */
+}
