@@ -79,13 +79,18 @@ label {
 /* Tabla gamer */
 .table {
     color: #ffffff;
+     border-collapse: separate; /* evita que se fusionen los bordes */
+    border-spacing: 0;        /* elimina el espacio entre celdas */
 }
+
+
 
 .table thead {
     background: #c2baba;
     color: #1a1a1a;
     text-transform: uppercase;
     letter-spacing: 1px;
+    
 }
 
 .table tbody tr {
@@ -127,4 +132,20 @@ label {
 
 .btn-lg {
     margin-right: 12px; /* separa botones */
+}
+
+.table thead.bg-info th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.table thead.bg-info th:last-child {
+    border-top-right-radius: 12px;
+}
+
+.table thead th {
+    border-bottom: none !important;
+}
+
+.table tbody td {
+    border-top: none !important;
 }
