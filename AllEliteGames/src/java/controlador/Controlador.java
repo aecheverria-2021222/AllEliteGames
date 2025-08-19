@@ -6,20 +6,26 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Empleado;
 import modelo.EmpleadoDAO;
+import modelo.Genero;
+import modelo.GeneroDAO;
 
 /**
  *
  * @author gonze
  */
 public class Controlador extends HttpServlet {
+
     Empleado empleado = new Empleado();
     EmpleadoDAO empleadoDao = new EmpleadoDAO();
+    Genero genero = new Genero();
+    GeneroDAO generoDao = new GeneroDAO();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,13 +38,32 @@ public class Controlador extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String menu = request.getParameter("menu");
+        String menu = request.getParameter("menu");
         String accion = request.getParameter("accion");
-        if(menu.equals("Principal")){
+        if (menu != null && menu.equals("Principal")) {
             request.getRequestDispatcher("principal.jsp").forward(request, response);
+        } else if (menu != null && menu.equals("Clientes")) {
+            request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+        } else if (menu != null && menu.equals("Empleado")) {
+            request.getRequestDispatcher("Empleado.jsp").forward(request, response);
+        } else if (menu != null && menu.equals("genero")) {
+                switch (accion) {
+                    case "Listar":
+                        List listaGeneros = generoDao.listar();
+                        request.setAttribute("generos", listaGeneros);
+                        break;
+                    case "Agregar":
+                        String genero = request.getParameter("txtGenero");
+                        String edadRecomendable = request.getParameter("txtEdadRecomendable");
+                        String popularidad = request.getParameter("txtPopularidad");
+                        String publicoObjetivo = request.getParameter("txtPublicoObjetivo");
+                        
+                        break;
+                }
+            }
+            request.getRequestDispatcher("Genero.jsp").forward(request, response);
         }
-
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
