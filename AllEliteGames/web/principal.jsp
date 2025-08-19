@@ -47,7 +47,7 @@
                     <li class="nav-item dropdown">
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Generos</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="Controlador?menu=Genero" target="myFrame">Generos</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Genero&accion=Listar" target="myFrame">Generos</a></li>
                             <li><a class="dropdown-item" href="#">Videojuegos</a></li>
                         </ul>
                     </li>
@@ -72,9 +72,6 @@
                             <li><a class="dropdown-item" href="#">Devoluciones</a></li>
                         </ul>
                     </li> 
-                    <li class="nav-item">
-                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="Controlador?menu=Genero&accion=Listar" target="myFrame">Genero</a>
-                    </li>
                 </ul>
             </div>
             <div class="d-flex align-items-center">

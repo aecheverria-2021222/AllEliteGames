@@ -1,9 +1,130 @@
+/* 🎮 Estilo Gamer */
 body {
-  background-color: #000000; /* negro absoluto */
-  color: #0dcaf0; /* texto blanco para buen contraste */
-}   
+    background-color: #000000; /* Fondo general oscuro */
+    font-family: 'Orbitron', sans-serif; /* Fuente estilo gamer (Google Fonts) */
+    color: #ffffff;
+}
 
-.table-white tbody {
-    background-color: white;
-    color: black; /* opcional, para asegurar contraste */
+/* Contenedor centrado */
+.container-fluid {
+    padding: 20px;
+}
+
+/* Tarjetas (formulario y tabla) */
+.card {
+    background: #1f1f1f;
+    border: 2px solid #c2baba;
+    border-radius: 12px;
+    box-shadow: 0 0 25px #c2baba;
+    color: #ffffff;
+}
+
+/* Labels */
+label {
+    color: #c2baba;
+    font-weight: bold;
+}
+
+/* Inputs */
+.form-control-lg {
+    background-color: #1a1a1a;
+    border: 2px solid #c2baba;
+    color: #ffffff;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-control-lg:focus {
+    background-color: #1f1f1f;
+    border-color: #ffffff;
+    box-shadow: 0 0 15px #c2baba;
+    color: #ffffff;
+}
+
+/* Botones */
+.btn-lg {
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Botón Agregar */
+.btn-info {
+    background: #c2baba;
+    border: none;
+    color: #1a1a1a;
+}
+
+.btn-info:hover {
+    background: #ffffff;
+    color: #1a1a1a;
+    box-shadow: 0 0 15px #c2baba;
+}
+
+/* Botón Actualizar */
+.btn-success {
+    background: #ffffff;
+    border: none;
+    color: #1a1a1a;
+}
+
+.btn-success:hover {
+    background: #c2baba;
+    color: #1a1a1a;
+    box-shadow: 0 0 15px #c2baba;
+}
+
+/* Tabla gamer */
+.table {
+    color: #ffffff;
+}
+
+.table thead {
+    background: #c2baba;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.table tbody tr {
+    background: #1f1f1f;
+    transition: background 0.3s ease-in-out;
+}
+
+.table tbody tr:hover {
+    background: #c2baba;
+    color: #1a1a1a;
+}
+
+/* Botones de acciones dentro de la tabla */
+.table .btn-warning {
+    background: transparent;
+    border: 2px solid #c2baba;
+    color: #c2baba;
+    transition: 0.3s;
+}
+
+.table .btn-warning:hover {
+    background: #c2baba;
+    color: #1a1a1a;
+    box-shadow: 0 0 10px #c2baba;
+}
+
+.table .btn-danger {
+    background: #c2baba;
+    border: none;
+    color: #1a1a1a;
+    transition: 0.3s;
+}
+
+.table .btn-danger:hover {
+    background: #ffffff;
+    color: #1a1a1a;
+    box-shadow: 0 0 10px #c2baba;
+}
+
+.btn-lg {
+    margin-right: 12px; /* separa botones */
 }
