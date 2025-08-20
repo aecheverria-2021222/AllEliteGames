@@ -86,7 +86,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">
-                        <img src="img/ImagenUsuarios.png" alt="60" width="60">
+                        <img src="${usuario.getRutaImagen()}" alt="60" width="60">
                     </a>
                     <a class="dropdown-item">${usuario.getUsuario()}</a>
                     <a class="dropdown-item">${usuario.getCorreoEmpleado()}</a>
