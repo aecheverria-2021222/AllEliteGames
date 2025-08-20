@@ -46,15 +46,15 @@
                                 </div>
                                 <div class="form-group">
                                         <label><strong>Codigo Proveedor:</strong></label>
-                                        <select name="txtCodigoEmpleado" class="form-control"
+                                        <select name="txtCodigoProveedor" class="form-control" required
                                                 <c:if test="${consola != null && consola.codigoProveedor != 0}">disabled</c:if>>
                                             <option value="" disabled <c:if test="${consola == null}">selected</c:if>>
-                                                    -- Seleccione un proveedor --
+                                                    Seleccione un proveedor
                                                 </option>
                                             <c:forEach var="p" items="${proveedores}">
                                                 <option value="${p.codigoProveedor}"
                                                         <c:if test="${consola != null && consola.codigoProveedor == p.codigoProveedor}">selected</c:if>>
-                                                    ${p.codigoProveedor} - ${p.nombre}
+                                                    ${p.codigoProveedor} - ${p.nombresProveedor}
                                                 </option>
                                             </c:forEach>
                                         </select>
