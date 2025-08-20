@@ -25,8 +25,8 @@ public class GeneroDAO {
 
     //Listar
     public List listar() {
-        String sql = "select * from Genero";
-        List<Genero> listaGenero = new ArrayList<>();
+        String sql = "select * from Generos";
+        List<Genero> listarGenero = new ArrayList<>();
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -34,20 +34,22 @@ public class GeneroDAO {
             while (rs.next()) {
                 Genero gen = new Genero();
                 gen.setCodigoGenero(rs.getInt(1));
-                gen.setEdadRecomendable(rs.getString(2));
-                gen.setPopularidad(rs.getString(3));
-                gen.setPublicoObjetivo(rs.getString(4));
-                listaGenero.add(gen);
+                gen.setGenero(rs.getString(2));
+                gen.setEdadRecomendable(rs.getString(3));
+                gen.setPopularidad(rs.getString(4));
+                gen.setPublicoObjetivo(rs.getString(5));
+                gen.setEstado(rs.getString(6));
+                listarGenero.add(gen);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listaGenero;
+        return listarGenero;
     }
     
     //Agregar
     public int agregar(Genero gen){
-        String sql = "insert into Genero (genero, edadRecomendable, popularidad, publicoObjetivo)values(?,?,?,?)";
+        String sql = "insert into Genero (genero, edadRecomendable, popularidad, publicoObjetivo, estado)values(?,?,?,?,?)";
         try{
             con =cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -76,6 +78,7 @@ public class GeneroDAO {
                 gen.setEdadRecomendable(rs.getString(3));
                 gen.setPopularidad(rs.getString(4));
                 gen.setPublicoObjetivo(rs.getString(5));
+                gen.setEstado(rs.getString(6));
                 }
         }catch(Exception e){
             e.printStackTrace();
@@ -93,7 +96,8 @@ public class GeneroDAO {
             ps.setString(2, gen.getEdadRecomendable());
             ps.setString(3, gen.getPopularidad());
             ps.setString(4, gen.getPublicoObjetivo());
-            ps.executeUpdate();
+            ps.setString(5, gen.getEstado());
+            ps.executeUpdate(); 
         }catch(Exception e){    
             e.printStackTrace();
         }

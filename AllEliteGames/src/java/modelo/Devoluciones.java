@@ -2,7 +2,7 @@ package modelo;
 
 import java.util.Date;
 
-public class Devolucion {
+public class Devoluciones {
     private int codigoDevolucion;
     private Date fechaSolicitud;
     private Date fechaDevolucion;
@@ -10,10 +10,10 @@ public class Devolucion {
     private String estado;
     private int codigoVenta;
 
-    public Devolucion() {
+    public Devoluciones() {
     }
 
-    public Devolucion(int codigoDevolucion, Date fechaSolicitud, Date fechaDevolucion, String motivo, String estado, int codigoVenta) {
+    public Devoluciones(int codigoDevolucion, Date fechaSolicitud, Date fechaDevolucion, String motivo, String estado, int codigoVenta) {
         this.codigoDevolucion = codigoDevolucion;
         this.fechaSolicitud = fechaSolicitud;
         this.fechaDevolucion = fechaDevolucion;
