@@ -6,11 +6,14 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Consola;
+import modelo.ConsolaDAO;
 import modelo.Empleado;
 import modelo.EmpleadoDAO;
 import modelo.Genero;
@@ -34,9 +37,12 @@ public class Controlador extends HttpServlet {
     VideojuegoDAO videojuegoDao = new VideojuegoDAO();
     Suscripcion suscripcion = new Suscripcion();
     SuscripcionDAO suscripcionDao = new SuscripcionDAO();
+    Consola consola = new Consola();
+    ConsolaDAO consolaDao = new ConsolaDAO();
     int codVideojuego;
     int codEmpleado;
     int codSuscripcion;
+    int codConsola;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -245,6 +251,61 @@ public class Controlador extends HttpServlet {
             }//switch de acciones del CRUD de Suscripciones
             request.getRequestDispatcher("Suscripcion.jsp").forward(request, response);
         }//else if Suscripcion.
+        else if (menu.equals("Consolas")){
+            switch(accion){
+                case "Listar":
+                    List listaConsolas = consolaDao.listar();
+                    request.setAttribute("consolas", listaConsolas);
+                    break;
+                case "Agregar":
+                    String nombreConsola = request.getParameter("txtNombreConsola");
+                    Double precioConsola = Double.parseDouble(request.getParameter("txtPrecioConsola"));
+                    int stockConsola = Integer.parseInt(request.getParameter("txtStockConsola"));
+                    String marca = request.getParameter("txtMarca");
+                    Date fechaLanzamiento = java.sql.Date.valueOf(request.getParameter("dtFechaLanzamiento"));
+                    String estado = request.getParameter("cmbEstado");
+                    int codigoProveedor = Integer.parseInt(request.getParameter("txtCodigoProveedor"));
+                    consola.setNombreConsola(nombreConsola);
+                    consola.setPrecioConsola(precioConsola);
+                    consola.setStockConsola(stockConsola);
+                    consola.setMarca(marca);
+                    consola.setFechaLanzamiento(fechaLanzamiento);
+                    consola.setEstado(estado);
+                    consola.setCodigoProveedor(codigoProveedor);
+                    consolaDao.agregar(consola);
+                    request.getRequestDispatcher("Controlador?menu=Consolas&accion=Listar").forward(request, response);
+                    break;
+                case "Editar":
+                    codConsola = Integer.parseInt(request.getParameter("codigoConsola"));
+                    Consola c = consolaDao.listarCodigoConsola(codConsola);
+                    request.setAttribute("consola", c);
+                    request.getRequestDispatcher("Controlador?menu=Consolas&accion=Listar").forward(request, response);
+                    break;
+                case "Actualizar":
+                    String nombreCon = request.getParameter("txtNombreConsola");
+                    Double precioCon = Double.parseDouble(request.getParameter("txtPrecioConsola"));
+                    int stockCon = Integer.parseInt(request.getParameter("txtStockConsola"));
+                    String marCon = request.getParameter("txtMarca");
+                    Date fechaLanCon = java.sql.Date.valueOf(request.getParameter("dtFechaLanzamiento"));
+                    String estCon = request.getParameter("cmbEstado");
+                    consola.setNombreConsola(nombreCon);
+                    consola.setPrecioConsola(precioCon);
+                    consola.setStockConsola(stockCon);
+                    consola.setMarca(marCon);
+                    consola.setFechaLanzamiento(fechaLanCon);
+                    consola.setEstado(estCon);
+                    consola.setCodigoConsola(codConsola);
+                    consolaDao.actualizar(consola);
+                    request.getRequestDispatcher("Controlador?menu=Consolas&accion=Listar").forward(request, response);
+                    break;
+                case "Eliminar":
+                    codConsola = Integer.parseInt(request.getParameter("codigoConsola"));
+                    consolaDao.eliminar(codConsola);
+                    request.getRequestDispatcher("Controlador?menu=Consolas&accion=Listar").forward(request, response);
+                    break;
+            }//switch de acciones del CRUD de Consolas
+            request.getRequestDispatcher("Consolas.jsp").forward(request, response);
+        }//else if Consolas
             
     }
 
