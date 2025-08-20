@@ -88,7 +88,8 @@
                                             <td>${suscripcion.getCodigoVideojuego()}</td>
                                             <td>
                                                 <div class="d-flex flex-column align-items-center gap-2">
-                                                    <a class="btn btn-warning btn-lg mb-2"href="Controlador?menu=Suscripcion&accion=Editar&codigoSuscripcion=${suscripcion.getCodigoSuscripcion()}">Editar</a>   
+                                                    <a class="btn btn-warning btn-lg mb-2"href="Controlador?menu=Suscripcion&accion=Editar&codigoSuscripcion=${suscripcion.getCodigoSuscripcion()}">Editar</a> 
+                                                    <a class="btn btn-danger btn-lg mb-2" href="Controlador?menu=Suscripcion&accion=Eliminar&codigoSuscripcion=${suscripcion.getCodigoSuscripcion()}" onclick="return confirm('¿Está seguro de eliminar esta suscripción?');">Eliminar</a>
                                                 </div>
                                             </td>
                                         </tr>
