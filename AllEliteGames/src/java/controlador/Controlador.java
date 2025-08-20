@@ -15,6 +15,8 @@ import modelo.Empleado;
 import modelo.EmpleadoDAO;
 import modelo.Genero;
 import modelo.GeneroDAO;
+import modelo.Videojuego;
+import modelo.VideojuegoDAO;
 
 /**
  *
@@ -26,6 +28,9 @@ public class Controlador extends HttpServlet {
     EmpleadoDAO empleadoDao = new EmpleadoDAO();
     Genero genero = new Genero();
     GeneroDAO generoDao = new GeneroDAO();
+    Videojuego videojuego = new Videojuego();
+    VideojuegoDAO videojuegoDao = new VideojuegoDAO();
+    int codVideojuego;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,23 +52,72 @@ public class Controlador extends HttpServlet {
         } else if (menu != null && menu.equals("Empleado")) {
             request.getRequestDispatcher("Empleado.jsp").forward(request, response);
         } else if (menu != null && menu.equals("genero")) {
-                switch (accion) {
-                    case "Listar":
-                        List listaGeneros = generoDao.listar();
-                        request.setAttribute("generos", listaGeneros);
-                        break;
-                    case "Agregar":
-                        String genero = request.getParameter("txtGenero");
-                        String edadRecomendable = request.getParameter("txtEdadRecomendable");
-                        String popularidad = request.getParameter("txtPopularidad");
-                        String publicoObjetivo = request.getParameter("txtPublicoObjetivo");
-                        
-                        break;
-                }
+            switch (accion) {
+                case "Listar":
+                    List listaGeneros = generoDao.listar();
+                    request.setAttribute("generos", listaGeneros);
+                    break;
+                case "Agregar":
+                    String genero = request.getParameter("txtGenero");
+                    String edadRecomendable = request.getParameter("txtEdadRecomendable");
+                    String popularidad = request.getParameter("txtPopularidad");
+                    String publicoObjetivo = request.getParameter("txtPublicoObjetivo");
+                    String Estado = request.getParameter("txtEstado");
+                    break;
+               
             }
-            request.getRequestDispatcher("Genero.jsp").forward(request, response);
+        request.getRequestDispatcher("Genero.jsp").forward(request, response);
+        
+        }else if (menu.equals("Videojuego")){
+            
+        switch(accion){
+                case "Listar":
+                    List listaVideojuego = videojuegoDao.listar();
+                    request.setAttribute("videojuego", listaVideojuego);
+                    break;
+                case "Agregar":
+                    String nombres = request.getParameter("txtNombreVideojuego");
+                    Double precio = Double.valueOf(request.getParameter("txtPrecioVideojuego"));
+                    int stock = Integer.parseInt(request.getParameter("txtStockVideojuego"));
+                    String des = request.getParameter("txtDesarrollador");
+                    String est = request.getParameter("txtEstado");
+                    videojuego.setNombreVideojuego(nombres);
+                    videojuego.setPrecioVideojuego(precio);
+                    videojuego.setStockVideojuego(stock);
+                    videojuego.setDesarrollador(des);
+                    videojuego.setEstado(est);
+                    videojuegoDao.agregar(videojuego);
+                    request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);
+                    break;                    
+                case "Editar":
+                     codVideojuego = Integer.parseInt(request.getParameter("codigoVideojuego"));
+                     Videojuego v = videojuegoDao.listarCodigoVideojuego(codVideojuego);
+                     request.setAttribute("videojuego", v);
+                     request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);
+                    break;
+                 case "Actualizar":
+                     String nombreVid = request.getParameter("txtNombreVideojuego");
+                     Double precioVid = Double.valueOf(request.getParameter("txtPrecioVideojuego"));
+                     int stockVid = Integer.parseInt(request.getParameter("txtStockVideojuego"));
+                     String desaVid = request.getParameter("txtDesarrollador");
+                     String estaVid = request.getParameter("txtEstado");
+                    videojuego.setNombreVideojuego(nombreVid);
+                    videojuego.setPrecioVideojuego(precioVid);
+                    videojuego.setStockVideojuego(stockVid);
+                    videojuego.setDesarrollador(desaVid);
+                    videojuego.setEstado(estaVid);
+                    videojuegoDao.agregar(videojuego);
+                    request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);
+                     break;
+                 case "Eliminar":
+                     codVideojuego = Integer.parseInt(request.getParameter("codigoVideojuego"));
+                     videojuegoDao.eliminar(codVideojuego);
+                     request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);                   
+            }
+
         }
-    
+            request.getRequestDispatcher("Videojuego.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
