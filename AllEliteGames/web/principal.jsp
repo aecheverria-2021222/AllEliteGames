@@ -58,7 +58,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Proveedores</a></li>
                             <li><a class="dropdown-item" href="Controlador?menu=Videojuego&accion=Listar">Videojuegos</a></li>
-                            <li><a class="dropdown-item" href="#">Consolas</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Consolas&accion=Listar">Consolas</a></li>
                             <li><a class="dropdown-item" href="Controlador?menu=Suscripcion&accion=Listar">Suscripciones</a></li>
                         </ul>
                     </li>
