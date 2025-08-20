@@ -16,12 +16,13 @@ public class Tiendas {
     private String correoTienda;
     private String horarioApertura;
     private String horarioCierre;
+    private String estado;
     private int codigoEmpleado;
 
     public Tiendas() {
     }
 
-    public Tiendas(int codigoTienda, int numeroTienda, String direccion, String telefonoTienda, String correoTienda, String horarioApertura, String horarioCierre, int codigoEmpleado) {
+    public Tiendas(int codigoTienda, int numeroTienda, String direccion, String telefonoTienda, String correoTienda, String horarioApertura, String horarioCierre, String estado, int codigoEmpleado) {
         this.codigoTienda = codigoTienda;
         this.numeroTienda = numeroTienda;
         this.direccion = direccion;
@@ -29,6 +30,7 @@ public class Tiendas {
         this.correoTienda = correoTienda;
         this.horarioApertura = horarioApertura;
         this.horarioCierre = horarioCierre;
+        this.estado = estado;
         this.codigoEmpleado = codigoEmpleado;
     }
 
@@ -88,6 +90,14 @@ public class Tiendas {
         this.horarioCierre = horarioCierre;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public int getCodigoEmpleado() {
         return codigoEmpleado;
     }
@@ -97,6 +107,4 @@ public class Tiendas {
     }
 
    
-    
-    
 }

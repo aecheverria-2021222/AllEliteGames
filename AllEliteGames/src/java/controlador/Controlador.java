@@ -12,14 +12,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Cliente;
+import modelo.ClienteDAO;
 import modelo.Consola;
 import modelo.ConsolaDAO;
+import modelo.Devoluciones;
+import modelo.DevolucionesDAO;
 import modelo.Empleado;
 import modelo.EmpleadoDAO;
 import modelo.Genero;
 import modelo.GeneroDAO;
 import modelo.Suscripcion;
 import modelo.SuscripcionDAO;
+import modelo.Tiendas;
+import modelo.TiendasDAO;
 import modelo.Videojuego;
 import modelo.VideojuegoDAO;
 
@@ -33,16 +39,26 @@ public class Controlador extends HttpServlet {
     EmpleadoDAO empleadoDao = new EmpleadoDAO();
     Genero genero = new Genero();
     GeneroDAO generoDao = new GeneroDAO();
+    Tiendas tienda = new Tiendas();
+    TiendasDAO tiendasDAO = new TiendasDAO();
     Videojuego videojuego = new Videojuego();
     VideojuegoDAO videojuegoDao = new VideojuegoDAO();
     Suscripcion suscripcion = new Suscripcion();
     SuscripcionDAO suscripcionDao = new SuscripcionDAO();
     Consola consola = new Consola();
     ConsolaDAO consolaDao = new ConsolaDAO();
+    Cliente cliente = new Cliente();
+    ClienteDAO clienteDao = new ClienteDAO();
+    Devoluciones devolucion = new Devoluciones();
+    DevolucionesDAO devolucionDao = new DevolucionesDAO();
+    int codDevolucion;
     int codVideojuego;
     int codEmpleado;
     int codSuscripcion;
     int codConsola;
+    int codCliente;
+    int codTienda;
+    int codGenero;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -57,10 +73,88 @@ public class Controlador extends HttpServlet {
             throws ServletException, IOException {
         String menu = request.getParameter("menu");
         String accion = request.getParameter("accion");
-        if (menu != null && menu.equals("Principal")) {
+        if (menu.equals("Principal")) {
             request.getRequestDispatcher("principal.jsp").forward(request, response);
-        } else if (menu != null && menu.equals("Clientes")) {
-            request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+        } else if (menu.equals("Cliente")) {
+            switch (accion) {
+                case "Listar":
+                    List listaClientes = clienteDao.listar();
+                    request.setAttribute("clientes", listaClientes);
+
+                    break;
+                case "Agregar":
+                    String DPI = request.getParameter("txtDPICliente");
+                    String nombres = request.getParameter("txtNombresCliente");
+                    String correo = request.getParameter("txtCorreoCliente");
+                    String direccion = request.getParameter("txtDireccionCliente");
+                    String est = request.getParameter("cmbEstado");
+                    
+                    if(DPI.isEmpty()|| nombres.isEmpty() || correo.isEmpty() || direccion.isEmpty() || est.isEmpty()){
+                            
+                        request.setAttribute("vacio", "No se pueden dejar campos vacíos. Inténtelo de nuevo.");
+                        request.setAttribute("clientes", clienteDao.listar());
+                        request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+                        return;
+                    }else if(DPI.trim().length()>5 || nombres.trim().length()>200 || correo.trim().length()>150 || direccion.trim().length()>150 || est.trim().length()>15){
+                        request.setAttribute("lleno", "Número de caracteres superado en un campo. Inténtelo de nuevo.");
+                        request.setAttribute("clientes", clienteDao.listar());
+                        request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+                        return;
+                    }
+                    
+                    cliente.setDPICliente(DPI);
+                    cliente.setNombresCliente(nombres);
+                    cliente.setCorreoCliente(correo);
+                    cliente.setDireccionCliente(direccion);
+                    cliente.setEstado(est);
+                    clienteDao.agregar(cliente);
+                    request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                    break;
+                case "Editar":
+                    codCliente = Integer.parseInt(request.getParameter("codigoCliente"));
+                    Cliente c = clienteDao.listarCodigoCliente(codCliente);
+                    request.setAttribute("cliente", c);
+                    request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                    break;
+                case "Actualizar":
+                    String DPICli = request.getParameter("txtDPICliente");
+                    String nombreCli = request.getParameter("txtNombresCliente");
+                    String correoCli = request.getParameter("txtCorreoCliente");
+                    String direccionCli = request.getParameter("txtDireccionCliente");
+                    String estCli = request.getParameter("cmbEstado");
+                    
+                    if(DPICli.isEmpty()|| nombreCli.isEmpty() || correoCli.isEmpty() || direccionCli.isEmpty() || estCli.isEmpty()){
+                            
+                        request.setAttribute("vacio", "No se pueden dejar campos vacíos. Inténtelo de nuevo.");
+                        request.setAttribute("clientes", clienteDao.listar());
+                        request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+                        return;
+                    } else if(DPICli.trim().length()>5 || nombreCli.trim().length()>200 || correoCli.trim().length()>150 || direccionCli.trim().length()>150 || estCli.trim().length()>15){
+                        request.setAttribute("lleno", "Número de caracteres superado en un campo. Inténtelo de nuevo.");
+                        request.setAttribute("clientes", clienteDao.listar());
+                        request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+                        return;
+                    }
+
+                    
+                    cliente.setDPICliente(DPICli);
+                    cliente.setNombresCliente(nombreCli);
+                    cliente.setCorreoCliente(correoCli);
+                    cliente.setDireccionCliente(direccionCli);
+                    cliente.setEstado(estCli);
+                    cliente.setCodigoCliente(codCliente);
+                    clienteDao.actualizar(cliente);
+                    
+                    request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                    break;
+                case "Eliminar":
+                    codCliente = Integer.parseInt(request.getParameter("codigoCliente"));
+                    clienteDao.eliminar(codCliente);
+                    request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                    break;
+            }
+
+            request.getRequestDispatcher("Cliente.jsp").forward(request, response);
         }else if (menu.equals("Empleado")){
             switch(accion){
                 case "Listar":
@@ -119,18 +213,127 @@ public class Controlador extends HttpServlet {
                 case "Listar":
                     List listaGeneros = generoDao.listar();
                     request.setAttribute("generos", listaGeneros);
-                    break;
+                    request.getRequestDispatcher("Genero.jsp").forward(request, response);
+                    return;
+
                 case "Agregar":
-                    String genero = request.getParameter("txtGenero");
-                    String edadRecomendable = request.getParameter("txtEdadRecomendable");
+                    String nombreGenero = request.getParameter("txtGenero");
+                    String edad = request.getParameter("txtEdadRecomendable");
                     String popularidad = request.getParameter("txtPopularidad");
-                    String publicoObjetivo = request.getParameter("txtPublicoObjetivo");
-                    String Estado = request.getParameter("txtEstado");
-                    break;
-               
+                    String publico = request.getParameter("txtPublicoObjetivo");
+                    String estado = request.getParameter("txtEstado");
+
+                    genero.setGenero(nombreGenero);
+                    genero.setEdadRecomendable(edad);
+                    genero.setPopularidad(popularidad);
+                    genero.setPublicoObjetivo(publico);
+                    genero.setEstado(estado);
+
+                    generoDao.agregar(genero);
+                    request.getRequestDispatcher("Controlador?menu=Genero&accion=Listar").forward(request, response);
+                    return;
+
+                case "Editar":
+                    codGenero = Integer.parseInt(request.getParameter("codigoGenero"));
+                    Genero g = generoDao.listarCodigoGenero(codGenero);
+                    request.setAttribute("genero", g);
+                    request.getRequestDispatcher("Controlador?menu=Genero&accion=Listar").forward(request, response);
+                    return;
+
+                case "Actualizar":
+                    String nombreGen = request.getParameter("txtGenero");
+                    String edadRec = request.getParameter("txtEdadRecomendable");
+                    String popu = request.getParameter("txtPopularidad");
+                    String publicoObj = request.getParameter("txtPublicoObjetivo");
+                    String estadoGen = request.getParameter("txtEstado");
+
+                    genero.setGenero(nombreGen);
+                    genero.setEdadRecomendable(edadRec);
+                    genero.setPopularidad(popu);
+                    genero.setPublicoObjetivo(publicoObj);
+                    genero.setEstado(estadoGen);
+
+                    generoDao.actualizar(genero);
+                    request.getRequestDispatcher("Controlador?menu=Genero&accion=Listar").forward(request, response);
+                    return;
+
+                case "Eliminar":
+                    codGenero = Integer.parseInt(request.getParameter("codigoGenero"));
+                    generoDao.eliminar(codGenero);
+                    request.getRequestDispatcher("Controlador?menu=Genero&accion=Listar").forward(request, response);
+                    return;   
             }
         request.getRequestDispatcher("Genero.jsp").forward(request, response);
         
+        }else if(menu.equals("Tiendas")){
+            switch(accion){
+                case "Listar":
+                    List listaTiendas = tiendasDAO.listar();
+                    request.setAttribute("tiendas", listaTiendas);
+                    break;
+                    
+                case "Agregar":
+                    int numTienda = Integer.parseInt(request.getParameter("txtNumeroTienda"));
+                    String direcc = request.getParameter("txtDireccion");
+                    String teleTienda = request.getParameter("txtTelefonoTienda");
+                    String correTienda = request.getParameter("txtCorreoTienda");
+                    String horarAper = request.getParameter("txtHorarioApertura");
+                    String horarCerr = request.getParameter("txtHorarioCierre");
+                    String est = request.getParameter("txtEstado");
+                    int codEmp = Integer.parseInt(request.getParameter("txtCodigoEmpleado"));
+                    
+                    tienda.setNumeroTienda(numTienda);
+                    tienda.setDireccion(direcc);
+                    tienda.setTelefonoTienda(teleTienda);
+                    tienda.setCorreoTienda(correTienda);
+                    tienda.setHorarioApertura(horarAper);
+                    tienda.setHorarioCierre(horarCerr);
+                    tienda.setEstado(est);
+                    tienda.setCodigoEmpleado(codEmp);
+                    
+                    tiendasDAO.agregar(tienda);
+                    request.getRequestDispatcher("ControladorTiendas?menu=Tiendas&accion=Listar").forward(request, response);
+                    break;
+                    
+                case "Editar":
+                    codTienda = Integer.parseInt(request.getParameter("codigoTienda"));
+                    Tiendas t = tiendasDAO.listarCodigoTienda(codTienda);
+                    request.setAttribute("tienda", t);
+                    request.getRequestDispatcher("ControladorTiendas?menu=Tiendas&accion=Listar").forward(request, response);
+                    break;
+                   
+                case "Actualizar":
+                    int numeTienda = Integer.parseInt(request.getParameter("txtNumeroTienda"));
+                    String direcci = request.getParameter("txtDireccion");
+                    String telefTienda = request.getParameter("txtTelefonoTienda");
+                    String corrTienda = request.getParameter("txtCorreoTienda");
+                    String horaAper = request.getParameter("txtHorarioApertura");
+                    String horaCerr = request.getParameter("txtHorarioCierre"); // corregido
+                    String estad = request.getParameter("txtEstado");
+                    int codEmplea = Integer.parseInt(request.getParameter("txtCodigoEmpleado"));
+                    
+                    tienda.setNumeroTienda(numeTienda);
+                    tienda.setDireccion(direcci);
+                    tienda.setTelefonoTienda(telefTienda);
+                    tienda.setCorreoTienda(corrTienda);
+                    tienda.setHorarioApertura(horaAper);
+                    tienda.setHorarioCierre(horaCerr);
+                    tienda.setEstado(estad);
+                    tienda.setCodigoEmpleado(codEmplea);
+                    tienda.setCodigoTienda(codTienda);
+                    
+                    tiendasDAO.actualizar(tienda);
+                    request.getRequestDispatcher("ControladorTiendas?menu=Tiendas&accion=Listar").forward(request, response);
+                    break;
+                    
+                case "Eliminar":
+                    codTienda = Integer.parseInt(request.getParameter("codigoTienda"));
+                    tiendasDAO.eliminar(codTienda);
+                    request.getRequestDispatcher("ControladorTiendas?menu=Tiendas&accion=Listar").forward(request, response);
+            }
+            
+            request.getRequestDispatcher("Tiendas.jsp").forward(request, response);
+            
         }else if (menu.equals("Videojuego")){
             
         switch(accion){
@@ -305,7 +508,71 @@ public class Controlador extends HttpServlet {
                     break;
             }//switch de acciones del CRUD de Consolas
             request.getRequestDispatcher("Consolas.jsp").forward(request, response);
-        }//else if Consolas
+        } else if (menu.equals("Devolucion")) {
+            switch (accion) {
+                case "Listar":
+                    List listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+
+                case "Agregar":
+                    String fechaSol = request.getParameter("dtFechaSolicitud");
+                    String fechaDev = request.getParameter("dtFechaDevolucion");
+                    String moti = request.getParameter("txtMotivo");
+                    String est = request.getParameter("txtEstado");
+                    String codVent = request.getParameter("txtCodigoVenta");
+
+                    if (fechaSol.isEmpty() || fechaDev.isEmpty() || moti.isEmpty() || est.isEmpty() || codVent.isEmpty()) {
+                        request.setAttribute("ERROR", "No se pueden dejar campos vacíos.");
+                    } else {
+                        devolucion.setFechaSolicitud(java.sql.Date.valueOf(fechaSol));
+                        devolucion.setFechaDevolucion(java.sql.Date.valueOf(fechaDev));
+                        devolucion.setMotivo(moti);
+                        devolucion.setEstado(est);
+                        devolucion.setCodigoVenta(Integer.parseInt(codVent));
+                        devolucionDao.agregar(devolucion);
+                    }
+                    listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+
+                case "Editar":
+                    codDevolucion = Integer.parseInt(request.getParameter("codigoDevolucion"));
+                    Devoluciones de = devolucionDao.buscar(codDevolucion);
+                    request.setAttribute("devolucion", de);
+                    listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+
+                case "Actualizar":
+                    String fechaSoli = request.getParameter("dtFechaSolicitud");
+                    String fecDevo = request.getParameter("dtFechaDevolucion");
+                    String motiv = request.getParameter("txtMotivo");
+                    String esta = request.getParameter("txtEstado");
+
+                    if (fechaSoli.isEmpty() || fecDevo.isEmpty() || motiv.isEmpty() || esta.isEmpty()) {
+                        request.setAttribute("ERROR", "No se pueden dejar campos vacíos.");
+                    } else {
+                        devolucion.setFechaSolicitud(java.sql.Date.valueOf(fechaSoli));
+                        devolucion.setFechaDevolucion(java.sql.Date.valueOf(fecDevo));
+                        devolucion.setMotivo(motiv);
+                        devolucion.setEstado(esta);
+                        devolucion.setCodigoDevolucion(codDevolucion);
+                        devolucionDao.actualizar(devolucion);
+                    }
+                    listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+
+                case "Eliminar":
+                    codDevolucion = Integer.parseInt(request.getParameter("codigoDevolucion"));
+                    devolucionDao.eliminar(codDevolucion);
+                    listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+            }
+            request.getRequestDispatcher("Devoluciones.jsp").forward(request, response);
+        }
             
     }
 
