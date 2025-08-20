@@ -28,7 +28,7 @@
                     <li class="nav-item dropdown">
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Clientes</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Clientes</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Cliente&accion=Listar"target="myFrame">Clientes</a></li>
                             <li><a class="dropdown-item" href="#">Suscripciones</a></li>
                             <li><a class="dropdown-item" href="#">Membresias</a></li>
                         </ul>

@@ -9,7 +9,7 @@ import java.util.List;
 
 
 public class ClienteDAO {
-    Conexion cn = new Conexion();
+Conexion cn = new Conexion();
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
@@ -137,5 +137,5 @@ public class ClienteDAO {
             e.printStackTrace();
         }
     }
-}
     
+}
