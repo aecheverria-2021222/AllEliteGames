@@ -57,26 +57,26 @@
                             <table class="table table-hover table-lg fs-5 mb-0">
                                 <thead class="bg-info text-white">
                                     <tr>
-                                        <th>CÓDIGO</th>
-                                        <th>GÉNERO</th>
-                                        <th>EDAD RECOMENDABLE</th>
-                                        <th>POPULARIDAD</th>
-                                        <th>PÚBLICO OBJETIVO</th>
-                                        <th>ESTADO</th>
-                                        <th>ACCIONES</th>
+                                        <th style="text-align: center; vertical-align: middle;">CÓDIGO</th>
+                                        <th style="text-align: center; vertical-align: middle;">GÉNERO</th>
+                                        <th style="text-align: center; vertical-align: middle;">EDAD RECOMENDABLE</th>
+                                        <th style="text-align: center; vertical-align: middle;">POPULARIDAD</th>
+                                        <th style="text-align: center; vertical-align: middle;">PÚBLICO OBJETIVO</th>
+                                        <th style="text-align: center; vertical-align: middle;">ESTADO</th>
+                                        <th style="text-align: center; vertical-align: middle;">ACCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach var="genero" items="${generos}">
                                         <tr>
-                                            <td>${genero.getCodigoGenero()}</td>
-                                            <td>${genero.getGenero()}</td>
-                                            <td>${genero.getEdadRecomendable()}</td>
-                                            <td>${genero.getPopularidad()}</td>
-                                            <td>${genero.getPublicoObjetivo()}</td>
-                                            <td>${genero.getEstado()}</td>
+                                            <td style="text-align: center; vertical-align: middle;">${genero.getCodigoGenero()}</td>
+                                            <td style="text-align: center; vertical-align: middle;">${genero.getGenero()}</td>
+                                            <td style="text-align: center; vertical-align: middle;">${genero.getEdadRecomendable()}</td>
+                                            <td style="text-align: center; vertical-align: middle;">${genero.getPopularidad()}</td>
+                                            <td style="text-align: center; vertical-align: middle;">${genero.getPublicoObjetivo()}</td>
+                                            <td style="text-align: center; vertical-align: middle;">${genero.getEstado()}</td>
                                             <td>
-                                                <div class="d-flex flex-column align-items-center gap-2">
+                                                <div class="d-flex flex-column align-items-center gap-2" >
                                                     <a class="btn btn-warning btn-lg mb-2" href="Controlador?menu=Genero&accion=Editar&codigoGenero=${genero.codigoGenero}">Editar</a>   
                                                 </div>
                                             </td>

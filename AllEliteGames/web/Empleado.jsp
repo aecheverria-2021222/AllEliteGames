@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="<c:url value='/resources/general.css' />">
     </head>
     <body>
-        <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 70vh; margin-top: 0;">
+        <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 85vh; margin-top: 0;">
             <div class="row w-100 align-items-stretch" style="max-width: 1600px;"> 
                 <!-- Columna izquierda: formulario -->
                 <div class="col-md-4">
@@ -56,24 +56,24 @@
                             <table class="table table-hover table-lg fs-5 mb-0">
                                 <thead class="bg-info text-white">
                                     <tr>
-                                    <th>CODIGO</th>
-                                    <th>DPI</th>
-                                    <th>NOMBRES</th>
-                                    <th>TELEFONO</th>
-                                    <th>ESTADO</th>
-                                    <th>USUARIO</th>
-                                    <th>ACCIONES</th>
+                                    <th style="text-align: center; vertical-align: middle;">CODIGO</th>
+                                    <th style="text-align: center; vertical-align: middle;">DPI</th>
+                                    <th style="text-align: center; vertical-align: middle;">NOMBRES</th>
+                                    <th style="text-align: center; vertical-align: middle;">TELEFONO</th>
+                                    <th style="text-align: center; vertical-align: middle;">ESTADO</th>
+                                    <th style="text-align: center; vertical-align: middle;">USUARIO</th>
+                                    <th style="text-align: center; vertical-align: middle;">ACCIONES</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <c:forEach var="empleado" items="${empleados}">
                                     <tr>
-                                        <td>${empleado.getCodigoEmpleado()}</td>
-                                        <td>${empleado.getDPIEmpleado()}</td>
-                                        <td>${empleado.getNombresEmpleado()}</td>
-                                        <td>${empleado.getTelefonoEmpleado()}</td>
-                                        <td>${empleado.getEstado()}</td>
-                                        <td>${empleado.getUsuario()}</td>
+                                        <td style="text-align: center; vertical-align: middle;">${empleado.getCodigoEmpleado()}</td>
+                                        <td style="text-align: center; vertical-align: middle;">${empleado.getDPIEmpleado()}</td>
+                                        <td style="text-align: center; vertical-align: middle;">${empleado.getNombresEmpleado()}</td>
+                                        <td style="text-align: center; vertical-align: middle;">${empleado.getTelefonoEmpleado()}</td>
+                                        <td style="text-align: center; vertical-align: middle;">${empleado.getEstado()}</td>
+                                        <td style="text-align: center; vertical-align: middle;">${empleado.getUsuario()}</td>
                                         <td>
                                             <div class="d-flex flex-column align-items-center gap-2">
                                                 <a class="btn btn-warning btn-lg mb-2"href="Controlador?menu=Empleado&accion=Editar&codigoEmpleado=${empleado.getCodigoEmpleado()}">Editar</a>   

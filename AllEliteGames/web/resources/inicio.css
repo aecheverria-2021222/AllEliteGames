@@ -1,6 +1,7 @@
 body {
   background-color: #000000; /* negro absoluto */
   color: white; /* texto blanco para buen contraste */
+  width: 100%;
 }
 
 main {

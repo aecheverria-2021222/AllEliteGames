@@ -22,6 +22,8 @@ import modelo.Empleado;
 import modelo.EmpleadoDAO;
 import modelo.Genero;
 import modelo.GeneroDAO;
+import modelo.Proveedor;
+import modelo.ProveedorDao;
 import modelo.Suscripcion;
 import modelo.SuscripcionDAO;
 import modelo.Tiendas;
@@ -51,6 +53,8 @@ public class Controlador extends HttpServlet {
     ClienteDAO clienteDao = new ClienteDAO();
     Devoluciones devolucion = new Devoluciones();
     DevolucionesDAO devolucionDao = new DevolucionesDAO();
+    Proveedor proveedor = new Proveedor();
+    ProveedorDao proveedorDao = new ProveedorDao();
     int codDevolucion;
     int codVideojuego;
     int codEmpleado;
@@ -59,6 +63,7 @@ public class Controlador extends HttpServlet {
     int codCliente;
     int codTienda;
     int codGenero;
+    int codProveedor;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -459,6 +464,8 @@ public class Controlador extends HttpServlet {
                 case "Listar":
                     List listaConsolas = consolaDao.listar();
                     request.setAttribute("consolas", listaConsolas);
+                    List<Proveedor> proveedoresCon = proveedorDao.listar();
+                    request.setAttribute("proveedores", proveedoresCon);
                     break;
                 case "Agregar":
                     String nombreConsola = request.getParameter("txtNombreConsola");
@@ -482,6 +489,8 @@ public class Controlador extends HttpServlet {
                     codConsola = Integer.parseInt(request.getParameter("codigoConsola"));
                     Consola c = consolaDao.listarCodigoConsola(codConsola);
                     request.setAttribute("consola", c);
+                    List<Proveedor> proveedoresEdiCon = proveedorDao.listar();
+                    request.setAttribute("proveedores", proveedoresEdiCon);
                     request.getRequestDispatcher("Controlador?menu=Consolas&accion=Listar").forward(request, response);
                     break;
                 case "Actualizar":
@@ -572,7 +581,66 @@ public class Controlador extends HttpServlet {
                     break;
             }
             request.getRequestDispatcher("Devoluciones.jsp").forward(request, response);
-        }
+        }else if ("Proveedor".equals(menu)) {
+          switch (accion) {
+        case "Listar":
+            List<Proveedor> listaProveedores = proveedorDao.listar();
+            request.setAttribute("proveedores", listaProveedores);
+            request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
+            return;
+        case "Agregar":
+            String nombres = request.getParameter("txtNombresProveedor");
+            String telefono = request.getParameter("txtTelefonoProveedor");
+            String correo = request.getParameter("txtCorreoProveedor");
+            String direccion = request.getParameter("txtDireccion");
+            String estado = request.getParameter("txtEstado");
+            proveedor.setNombresProveedor(nombres);
+            proveedor.setTelefonoProveedor(telefono);
+            proveedor.setCorreoProveedor(correo);
+            proveedor.setDireccion(direccion);
+            proveedor.setEstado(estado);
+            proveedorDao.agregar(proveedor);
+            List<Proveedor> listaProveedores2 = proveedorDao.listar();
+            request.setAttribute("proveedores", listaProveedores2);
+            request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
+            return;
+        case "Editar":
+            codProveedor = Integer.parseInt(request.getParameter("codigoProveedor"));
+            Proveedor p = proveedorDao.buscar(codProveedor);
+            request.setAttribute("proveedor", p);
+            List<Proveedor> listaProveedorEditar = proveedorDao.listar();
+            request.setAttribute("proveedores", listaProveedorEditar);
+            request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
+            return;
+        case "Actualizar":
+            String nombreProv = request.getParameter("txtNombresProveedor");
+            String telefonoProv = request.getParameter("txtTelefonoProveedor");
+            String correoProv = request.getParameter("txtCorreoProveedor");
+            String direccionProv = request.getParameter("txtDireccion");
+            String estadoProv = request.getParameter("txtEstado");
+            proveedor.setNombresProveedor(nombreProv);
+            proveedor.setTelefonoProveedor(telefonoProv);
+            proveedor.setCorreoProveedor(correoProv);
+            proveedor.setDireccion(direccionProv);
+            proveedor.setEstado(estadoProv);
+            proveedor.setCodigoProveedor(codProveedor);
+            proveedorDao.actualizar(proveedor);
+            List<Proveedor> listaProveedores3 = proveedorDao.listar();
+            request.setAttribute("proveedores", listaProveedores3);
+            request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
+            return;
+        case "Eliminar":
+            codProveedor = Integer.parseInt(request.getParameter("codigoProveedor"));
+            proveedorDao.eliminar(codProveedor);
+            List<Proveedor> listaProveedores4 = proveedorDao.listar();
+            request.setAttribute("proveedores", listaProveedores4);
+            request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
+            return;
+    }
+
+    request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
+    return;
+}
             
     }
 
