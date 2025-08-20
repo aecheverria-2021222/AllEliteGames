@@ -38,7 +38,7 @@
                     <li class="nav-item dropdown">
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Empleados</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Empleados</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Empleado&accion=Listar">Empleados</a></li>
                             <li><a class="dropdown-item" href="#">Tiendas</a></li>
                         </ul>
                     </li>
@@ -48,7 +48,7 @@
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Generos</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="Controlador?menu=genero&accion=Listar" target="myFrame">Generos</a></li>
-                            <li><a class="dropdown-item" href="#">Videojuegos</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Videojuego&accion=Listar">Videojuegos</a></li>
                         </ul>
                     </li>
 
@@ -57,9 +57,9 @@
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Proveedores</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="#">Videojuegos</a></li>
-                            <li><a class="dropdown-item" href="#">Consolas</a></li>
-                            <li><a class="dropdown-item" href="#">Suscripciones</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Videojuego&accion=Listar">Videojuegos</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Consolas&accion=Listar">Consolas</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Suscripcion&accion=Listar">Suscripciones</a></li>
                         </ul>
                     </li>
 
@@ -86,7 +86,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right text-center" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="#">
-                        <img src="${usuario.getRutaImagen()}" alt="60" width="60">
+                        <img src="img/ImagenUsuarios.png" alt="60" width="60">
                     </a>
                     <a class="dropdown-item">${usuario.getUsuario()}</a>
                     <a class="dropdown-item">${usuario.getCorreoEmpleado()}</a>
