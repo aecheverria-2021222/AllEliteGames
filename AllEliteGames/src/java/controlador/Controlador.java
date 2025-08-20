@@ -464,6 +464,8 @@ public class Controlador extends HttpServlet {
                 case "Listar":
                     List listaConsolas = consolaDao.listar();
                     request.setAttribute("consolas", listaConsolas);
+                    List<Proveedor> proveedoresCon = proveedorDao.listar();
+                    request.setAttribute("proveedores", proveedoresCon);
                     break;
                 case "Agregar":
                     String nombreConsola = request.getParameter("txtNombreConsola");
@@ -487,6 +489,8 @@ public class Controlador extends HttpServlet {
                     codConsola = Integer.parseInt(request.getParameter("codigoConsola"));
                     Consola c = consolaDao.listarCodigoConsola(codConsola);
                     request.setAttribute("consola", c);
+                    List<Proveedor> proveedoresEdiCon = proveedorDao.listar();
+                    request.setAttribute("proveedores", proveedoresEdiCon);
                     request.getRequestDispatcher("Controlador?menu=Consolas&accion=Listar").forward(request, response);
                     break;
                 case "Actualizar":
