@@ -13,11 +13,31 @@ public class ProveedorDao {
     Connection con;
     PreparedStatement ps;
     ResultSet rs;
-    int resp;
+
+    // ---- Validar correo básico ----
+    private boolean validarCorreo(String correo) {
+        return correo != null && correo.matches("^(.+)@(.+)\\.(.+)$");
+    }
+
+    // ---- Validar teléfono ----
+    private boolean validarTelefono(String telefono) {
+        return telefono != null && telefono.matches("\\d{1,8}");
+    }
 
     // ---- Agregar nuevo proveedor ----
-    public int agregar(Proveedor prov) {
-        String sql = "INSERT INTO Proveedores (nombresProveedor, telefonoProveedor, correoProveedor, direccion, estado) VALUES (?, ?, ?, ?, ?)";
+    public String agregar(Proveedor prov) {
+        if (prov.getNombresProveedor() == null || prov.getNombresProveedor().isEmpty())
+            return "El nombre del proveedor es obligatorio.";
+        if (!validarTelefono(prov.getTelefonoProveedor()))
+            return "El teléfono debe contener máximo 8 números.";
+        if (!validarCorreo(prov.getCorreoProveedor()))
+            return "El correo electrónico no es válido.";
+        if (prov.getDireccion() == null || prov.getDireccion().isEmpty())
+            return "La dirección es obligatoria.";
+        if (prov.getEstado() == null || prov.getEstado().isEmpty())
+            return "El estado es obligatorio.";
+
+        String sql = "insert into Proveedor (nombresProveedor, telefonoProveedor, correoProveedor, direccion, estado) VALUES (?, ?, ?, ?, ?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -26,17 +46,18 @@ public class ProveedorDao {
             ps.setString(3, prov.getCorreoProveedor());
             ps.setString(4, prov.getDireccion());
             ps.setString(5, prov.getEstado());
-            resp = ps.executeUpdate();
+            int resp = ps.executeUpdate();
+            return (resp > 0) ? "Proveedor agregado correctamente." : "No se pudo agregar el proveedor.";
         } catch (Exception e) {
             e.printStackTrace();
+            return "Error al agregar el proveedor: " + e.getMessage();
         }
-        return resp;
     }
 
     // ---- Buscar proveedor por código ----
     public Proveedor buscar(int cod) {
         Proveedor prov = null;
-        String sql = "SELECT * FROM Proveedores WHERE codigoProveedor = ?";
+        String sql = "select * from Proveedor WHERE codigoProveedor = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -59,7 +80,7 @@ public class ProveedorDao {
 
     // ---- Listar todos los proveedores ----
     public List<Proveedor> listar() {
-        String sql = "SELECT * FROM Proveedores";
+        String sql = "select * from Proveedor";
         List<Proveedor> listaProveedor = new ArrayList<>();
         try {
             con = cn.Conexion();
@@ -82,8 +103,20 @@ public class ProveedorDao {
     }
 
     // ---- Actualizar proveedor ----
-    public int actualizar(Proveedor prov) {
-        String sql = "UPDATE Proveedores SET nombresProveedor = ?, telefonoProveedor = ?, correoProveedor = ?, direccion = ?, estado = ? WHERE codigoProveedor = ?";
+    public String actualizar(Proveedor prov) {
+        if (prov.getCodigoProveedor() <= 0) return "Código de proveedor inválido.";
+        if (prov.getNombresProveedor() == null || prov.getNombresProveedor().isEmpty())
+            return "El nombre del proveedor es obligatorio.";
+        if (!validarTelefono(prov.getTelefonoProveedor()))
+            return "El teléfono debe contener máximo 8 números.";
+        if (!validarCorreo(prov.getCorreoProveedor()))
+            return "El correo electrónico no es válido.";
+        if (prov.getDireccion() == null || prov.getDireccion().isEmpty())
+            return "La dirección es obligatoria.";
+        if (prov.getEstado() == null || prov.getEstado().isEmpty())
+            return "El estado es obligatorio.";
+
+        String sql = "update Proveedor set nombresProveedor = ?, telefonoProveedor = ?, correoProveedor = ?, direccion = ?, estado = ? WHERE codigoProveedor = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -93,23 +126,27 @@ public class ProveedorDao {
             ps.setString(4, prov.getDireccion());
             ps.setString(5, prov.getEstado());
             ps.setInt(6, prov.getCodigoProveedor());
-            resp = ps.executeUpdate();
+            int resp = ps.executeUpdate();
+            return (resp > 0) ? "Proveedor actualizado correctamente." : "No se pudo actualizar el proveedor.";
         } catch (Exception e) {
             e.printStackTrace();
+            return "Error al actualizar el proveedor: " + e.getMessage();
         }
-        return resp;
     }
 
     // ---- Eliminar proveedor ----
-    public void eliminar(int id) {
-        String sql = "DELETE FROM Proveedores WHERE codigoProveedor = ?";
+    public String eliminar(int id) {
+        if (id <= 0) return "Código de proveedor inválido.";
+        String sql = "DELETE FROM Proveedor WHERE codigoProveedor = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
-            ps.executeUpdate();
+            int resp = ps.executeUpdate();
+            return (resp > 0) ? "Proveedor eliminado correctamente." : "No se pudo eliminar el proveedor.";
         } catch (Exception e) {
             e.printStackTrace();
+            return "Error al eliminar el proveedor: " + e.getMessage();
         }
     }
 }

@@ -1,6 +1,4 @@
-
 package modelo;
-
 
 public class Videojuego {
     private int codigoVideojuego;
@@ -12,8 +10,11 @@ public class Videojuego {
     private int codigoGenero;
     private int codigoProveedor;
 
+    public Videojuego() {
+    }
 
-    public Videojuego(int codigoVideojuego, String nombreVideojuego, double precioVideojuego, int stockVideojuego, String desarrollador, String estado, int codigoGenero, int codigoProveedor) {
+    public Videojuego(int codigoVideojuego, String nombreVideojuego, double precioVideojuego, int stockVideojuego,
+                      String desarrollador, String estado, int codigoGenero, int codigoProveedor) {
         this.codigoVideojuego = codigoVideojuego;
         this.nombreVideojuego = nombreVideojuego;
         this.precioVideojuego = precioVideojuego;
@@ -22,10 +23,6 @@ public class Videojuego {
         this.estado = estado;
         this.codigoGenero = codigoGenero;
         this.codigoProveedor = codigoProveedor;
-        
-    }
-
-    public Videojuego() {
     }
 
     public int getCodigoVideojuego() {
@@ -67,7 +64,7 @@ public class Videojuego {
     public void setDesarrollador(String desarrollador) {
         this.desarrollador = desarrollador;
     }
-    
+
     public String getEstado() {
         return estado;
     }
@@ -91,7 +88,4 @@ public class Videojuego {
     public void setCodigoProveedor(int codigoProveedor) {
         this.codigoProveedor = codigoProveedor;
     }
-    
-    
-    
 }
