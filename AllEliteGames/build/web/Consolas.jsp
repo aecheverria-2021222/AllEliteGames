@@ -46,7 +46,18 @@
                                 </div>
                                 <div class="form-group">
                                         <label><strong>Codigo Proveedor:</strong></label>
-                                        <input type="number" step="1" min="0" value="${consola.getCodigoProveedor()}" name="txtCodigoProveedor" class="form-control" ${consola.getCodigoConsola() != null ? "disabled" : ""} required>
+                                        <select name="txtCodigoEmpleado" class="form-control"
+                                                <c:if test="${consola != null && consola.codigoProveedor != 0}">disabled</c:if>>
+                                            <option value="" disabled <c:if test="${consola == null}">selected</c:if>>
+                                                    -- Seleccione un proveedor --
+                                                </option>
+                                            <c:forEach var="p" items="${proveedores}">
+                                                <option value="${p.codigoProveedor}"
+                                                        <c:if test="${consola != null && consola.codigoProveedor == p.codigoProveedor}">selected</c:if>>
+                                                    ${p.codigoProveedor} - ${p.nombre}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
                                 </div>
                                 <div class="d-flex gap-3">
                                     <input type="submit" name="accion" value="Agregar" class="btn btn-info btn-lg" ${consola.getCodigoConsola() != null ? "disabled" : ""}>
