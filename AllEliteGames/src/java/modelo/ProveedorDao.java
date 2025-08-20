@@ -37,7 +37,7 @@ public class ProveedorDao {
         if (prov.getEstado() == null || prov.getEstado().isEmpty())
             return "El estado es obligatorio.";
 
-        String sql = "insert into Proveedor (nombresProveedor, telefonoProveedor, correoProveedor, direccion, estado) VALUES (?, ?, ?, ?, ?)";
+        String sql = "insert into Proveedores (nombresProveedor, telefonoProveedor, correoProveedor, direccion, estado) VALUES (?, ?, ?, ?, ?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -57,7 +57,7 @@ public class ProveedorDao {
     // ---- Buscar proveedor por código ----
     public Proveedor buscar(int cod) {
         Proveedor prov = null;
-        String sql = "select * from Proveedor WHERE codigoProveedor = ?";
+        String sql = "select * from Proveedores where codigoProveedor = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -80,7 +80,7 @@ public class ProveedorDao {
 
     // ---- Listar todos los proveedores ----
     public List<Proveedor> listar() {
-        String sql = "select * from Proveedor";
+        String sql = "select * from Proveedores";
         List<Proveedor> listaProveedor = new ArrayList<>();
         try {
             con = cn.Conexion();
@@ -116,7 +116,7 @@ public class ProveedorDao {
         if (prov.getEstado() == null || prov.getEstado().isEmpty())
             return "El estado es obligatorio.";
 
-        String sql = "update Proveedor set nombresProveedor = ?, telefonoProveedor = ?, correoProveedor = ?, direccion = ?, estado = ? WHERE codigoProveedor = ?";
+        String sql = "update Proveedores set nombresProveedor = ?, telefonoProveedor = ?, correoProveedor = ?, direccion = ?, estado = ? WHERE codigoProveedor = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -137,7 +137,7 @@ public class ProveedorDao {
     // ---- Eliminar proveedor ----
     public String eliminar(int id) {
         if (id <= 0) return "Código de proveedor inválido.";
-        String sql = "DELETE FROM Proveedor WHERE codigoProveedor = ?";
+        String sql = "delete from Proveedores where codigoProveedor = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);

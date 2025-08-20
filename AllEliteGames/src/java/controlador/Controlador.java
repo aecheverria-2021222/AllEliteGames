@@ -577,7 +577,7 @@ public class Controlador extends HttpServlet {
                     break;
             }
             request.getRequestDispatcher("Devoluciones.jsp").forward(request, response);
-        }else if ("Proveedores".equals(menu)) {
+        }else if ("Proveedor".equals(menu)) {
           switch (accion) {
         case "Listar":
             List<Proveedor> listaProveedores = proveedorDao.listar();
@@ -634,7 +634,7 @@ public class Controlador extends HttpServlet {
             return;
     }
 
-    request.getRequestDispatcher("Proveedores.jsp").forward(request, response);
+    request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
     return;
 }
             

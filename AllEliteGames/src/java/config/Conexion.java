@@ -10,7 +10,7 @@ public class Conexion {
        try{
            Class.forName("com.mysql.jdbc.Driver");
 //         conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBAllEliteGames?useSSL=false","quintom","admin");
-           conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBAllEliteGames?useSSL=false","root","admin");
+           conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/DBAllEliteGames?useSSL=false","root","Puki2007");
        }catch(Exception e){
             e.printStackTrace();
        }
