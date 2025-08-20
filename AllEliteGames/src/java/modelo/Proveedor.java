@@ -14,16 +14,18 @@ public class Proveedor {
     private String telefonoProveedor;
     private String correoProveedor;
     private String direccion;
-
+    private String estado;
+    
     public Proveedor() {
     }
 
-    public Proveedor(int codigoProveedor, String nombresProveedor, String telefonoProveedor, String correoProveedor, String direccion) {
+    public Proveedor(int codigoProveedor, String nombresProveedor, String telefonoProveedor, String correoProveedor, String direccion, String estado) {
         this.codigoProveedor = codigoProveedor;
         this.nombresProveedor = nombresProveedor;
         this.telefonoProveedor = telefonoProveedor;
         this.correoProveedor = correoProveedor;
         this.direccion = direccion;
+        this.estado = estado;
     }
 
     public int getCodigoProveedor() {
@@ -65,6 +67,14 @@ public class Proveedor {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-    
-    
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+     
 }
