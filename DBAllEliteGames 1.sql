@@ -168,10 +168,11 @@ Delimiter $$
         in correoEmpleado varchar(150),
         in estado varchar(15),
         in usuario varchar (30),
-        in contrasena varchar(50))
+        in contrasena varchar(50),
+        rutaImagen varchar(255))
         Begin
-			Insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, correoEmpleado, estado, usuario, contrasena)
-            values (DPIEmpleado, nombresEmpleado, telefonoEmpleado, correoEmpleado, estado, usuario, contrasena);
+			Insert into Empleado (DPIEmpleado, nombresEmpleado, telefonoEmpleado, correoEmpleado, estado, usuario, contrasena, rutaImagen)
+            values (DPIEmpleado, nombresEmpleado, telefonoEmpleado, correoEmpleado, estado, usuario, contrasena, rutaImagen);
         End$$
 Delimiter ;
  
