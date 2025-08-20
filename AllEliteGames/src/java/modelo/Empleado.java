@@ -9,11 +9,12 @@ public class Empleado {
     private String estado;
     private String usuario;
     private String contrasena;
-
+    private String rutaImagen;
+    
     public Empleado() {
     }
 
-    public Empleado(int codigoEmpleado, String DPIEmpleado, String nombresEmpleado,String telefonoEmpleado, String correoEmpleado, String estado, String usuario, String contrasena) {
+    public Empleado(int codigoEmpleado, String DPIEmpleado, String nombresEmpleado, String telefonoEmpleado, String correoEmpleado, String estado, String usuario, String contrasena, String rutaImagen) {
         this.codigoEmpleado = codigoEmpleado;
         this.DPIEmpleado = DPIEmpleado;
         this.nombresEmpleado = nombresEmpleado;
@@ -22,6 +23,7 @@ public class Empleado {
         this.estado = estado;
         this.usuario = usuario;
         this.contrasena = contrasena;
+        this.rutaImagen = rutaImagen;
     }
 
     public int getCodigoEmpleado() {
@@ -87,10 +89,18 @@ public class Empleado {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-    
-    
 
-  
+    public String getRutaImagen() {
+        if (rutaImagen == null || rutaImagen.trim().isEmpty()) {
+            return "img/ImagenUsuarios.png";
+        }
+        return rutaImagen;
+    }
+
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
+    }
+
     
 }
 
