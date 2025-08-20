@@ -24,12 +24,13 @@ Create table Empleado(
     primary key PK_codigoEmpleado (codigoEmpleado) 
 );
 
-Create table Genero(
+Create table Generos(
 	codigoGenero int not null auto_increment,
     genero varchar(100) not null,
     edadRecomendable varchar(10) not null,
     popularidad varchar(100) not null,
     publicoObjetivo varchar(100) not null,
+    estado varchar(15) not null,
     primary key PK_codigoGenero (codigoGenero)
 );
 
@@ -38,7 +39,8 @@ Create table Proveedores(
     nombreProveedor varchar(120) not null,
     telefonoProveedor varchar(8) not null,
     correoProvedor varchar(100) not null,
-    dirección varchar(100) not null,
+    direccion varchar(100) not null,
+    estado varchar(15) not null,
     primary key PK_codigoProveedor (codigoProveedor)
 );
 
@@ -50,6 +52,7 @@ Create table Tiendas(
     correoTienda varchar(100) not null,
     horarioApertura varchar(10) not null,
     horarioCierre varchar(10) not null,
+    estado varchar(15) not null,
     codigoEmpleado int not null,
     primary key PK_codigoTienda(codigoTienda),
 	constraint FK_Tiendas_Empleado foreign key (codigoEmpleado)
@@ -62,10 +65,11 @@ Create table Videojuegos(
     precioVideojuego double not null,
     stockVideojuego int not null,
     desarrollador varchar(100) not null,
+    estado varchar(15) not null,
     codigoGenero int not null,
     codigoProveedor int not null,
     primary key PK_codigoVideojuego (codigoVideojuego),
-    constraint FK_Videojuegos_Genero foreign key (codigoGenero) references Genero(codigoGenero),
+    constraint FK_Videojuegos_Generos foreign key (codigoGenero) references Generos(codigoGenero),
     constraint FK_Videojuegos_Proveedores foreign key (codigoProveedor) references Proveedores(codigoProveedor)
 );
 
@@ -76,6 +80,7 @@ Create table Consolas(
     stockConsola int not null,
     marca varchar(50) not null,
     fechaLanzamiento date,
+    estado varchar(15) not null,
     codigoProveedor int not null,
     primary key PK_codigoConsola (codigoConsola),
 	constraint FK_Consolas_Proveedores foreign key (codigoProveedor)
@@ -103,6 +108,7 @@ create table Membresias(
     tipoMembresia varchar(50) not null,
     precioMembresia varchar(50) not null,
     beneficios varchar(50) not null,
+    estado varchar(15) not null,
     codigoCliente int not null,
     primary key PK_codigoMembresia (codigoMembresia),
 	constraint FK_Membresias_Clientes foreign key (codigoCliente)
@@ -169,10 +175,7 @@ Delimiter $$
 Delimiter ;
  
  describe Empleado;
- select * from Genero;
  
  call sp_agregarEmpleado('3216549871236','Jose Gonzalez','32165478','jgonzalez@gmail.com','activo','jgonzalez','123');
-Insert into Genero (genero, edadRecomendable, popularidad, publicoObjetivo)values('Acción','E','10%','niños');
 
-select * from Genero;
  select * from Empleado where usuario = "jgonzalez" and contrasena = "123";

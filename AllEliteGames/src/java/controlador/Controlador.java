@@ -47,23 +47,23 @@ public class Controlador extends HttpServlet {
         } else if (menu != null && menu.equals("Empleado")) {
             request.getRequestDispatcher("Empleado.jsp").forward(request, response);
         } else if (menu != null && menu.equals("genero")) {
-                switch (accion) {
-                    case "Listar":
-                        List listaGeneros = generoDao.listar();
-                        request.setAttribute("generos", listaGeneros);
-                        break;
-                    case "Agregar":
-                        String genero = request.getParameter("txtGenero");
-                        String edadRecomendable = request.getParameter("txtEdadRecomendable");
-                        String popularidad = request.getParameter("txtPopularidad");
-                        String publicoObjetivo = request.getParameter("txtPublicoObjetivo");
-                        
-                        break;
-                }
+            switch (accion) {
+                case "Listar":
+                    List listaGeneros = generoDao.listar();
+                    request.setAttribute("generos", listaGeneros);
+                    break;
+                case "Agregar":
+                    String genero = request.getParameter("txtGenero");
+                    String edadRecomendable = request.getParameter("txtEdadRecomendable");
+                    String popularidad = request.getParameter("txtPopularidad");
+                    String publicoObjetivo = request.getParameter("txtPublicoObjetivo");
+                    String Estado = request.getParameter("txtEstado");
+                    break;
+               
             }
-            request.getRequestDispatcher("Genero.jsp").forward(request, response);
         }
-    
+        request.getRequestDispatcher("Genero.jsp").forward(request, response);
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
