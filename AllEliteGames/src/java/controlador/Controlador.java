@@ -16,6 +16,8 @@ import modelo.Cliente;
 import modelo.ClienteDAO;
 import modelo.Consola;
 import modelo.ConsolaDAO;
+import modelo.Devoluciones;
+import modelo.DevolucionesDAO;
 import modelo.Empleado;
 import modelo.EmpleadoDAO;
 import modelo.Genero;
@@ -47,6 +49,9 @@ public class Controlador extends HttpServlet {
     ConsolaDAO consolaDao = new ConsolaDAO();
     Cliente cliente = new Cliente();
     ClienteDAO clienteDao = new ClienteDAO();
+    Devoluciones devolucion = new Devoluciones();
+    DevolucionesDAO devolucionDao = new DevolucionesDAO();
+    int codDevolucion;
     int codVideojuego;
     int codEmpleado;
     int codSuscripcion;
@@ -503,7 +508,71 @@ public class Controlador extends HttpServlet {
                     break;
             }//switch de acciones del CRUD de Consolas
             request.getRequestDispatcher("Consolas.jsp").forward(request, response);
-        }//else if Consolas
+        } else if (menu.equals("Devolucion")) {
+            switch (accion) {
+                case "Listar":
+                    List listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+
+                case "Agregar":
+                    String fechaSol = request.getParameter("dtFechaSolicitud");
+                    String fechaDev = request.getParameter("dtFechaDevolucion");
+                    String moti = request.getParameter("txtMotivo");
+                    String est = request.getParameter("txtEstado");
+                    String codVent = request.getParameter("txtCodigoVenta");
+
+                    if (fechaSol.isEmpty() || fechaDev.isEmpty() || moti.isEmpty() || est.isEmpty() || codVent.isEmpty()) {
+                        request.setAttribute("ERROR", "No se pueden dejar campos vacíos.");
+                    } else {
+                        devolucion.setFechaSolicitud(java.sql.Date.valueOf(fechaSol));
+                        devolucion.setFechaDevolucion(java.sql.Date.valueOf(fechaDev));
+                        devolucion.setMotivo(moti);
+                        devolucion.setEstado(est);
+                        devolucion.setCodigoVenta(Integer.parseInt(codVent));
+                        devolucionDao.agregar(devolucion);
+                    }
+                    listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+
+                case "Editar":
+                    codDevolucion = Integer.parseInt(request.getParameter("codigoDevolucion"));
+                    Devoluciones de = devolucionDao.buscar(codDevolucion);
+                    request.setAttribute("devolucion", de);
+                    listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+
+                case "Actualizar":
+                    String fechaSoli = request.getParameter("dtFechaSolicitud");
+                    String fecDevo = request.getParameter("dtFechaDevolucion");
+                    String motiv = request.getParameter("txtMotivo");
+                    String esta = request.getParameter("txtEstado");
+
+                    if (fechaSoli.isEmpty() || fecDevo.isEmpty() || motiv.isEmpty() || esta.isEmpty()) {
+                        request.setAttribute("ERROR", "No se pueden dejar campos vacíos.");
+                    } else {
+                        devolucion.setFechaSolicitud(java.sql.Date.valueOf(fechaSoli));
+                        devolucion.setFechaDevolucion(java.sql.Date.valueOf(fecDevo));
+                        devolucion.setMotivo(motiv);
+                        devolucion.setEstado(esta);
+                        devolucion.setCodigoDevolucion(codDevolucion);
+                        devolucionDao.actualizar(devolucion);
+                    }
+                    listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+
+                case "Eliminar":
+                    codDevolucion = Integer.parseInt(request.getParameter("codigoDevolucion"));
+                    devolucionDao.eliminar(codDevolucion);
+                    listaDevolucion = devolucionDao.listar();
+                    request.setAttribute("devoluciones", listaDevolucion);
+                    break;
+            }
+            request.getRequestDispatcher("Devoluciones.jsp").forward(request, response);
+        }
             
     }
 
