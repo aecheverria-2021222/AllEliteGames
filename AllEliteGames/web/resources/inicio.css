@@ -1,7 +1,7 @@
 body {
   background-color: #000000; /* negro absoluto */
   color: white; /* texto blanco para buen contraste */
-  width: 100%;
+  
 }
 
 main {
@@ -150,3 +150,27 @@ footer{
     margin-bottom: 20px;
 }
 
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px;               /* grosor de la barra */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;   /* fondo del track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2); /* thumb transparente */
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.5); /* más visible al pasar el mouse */
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+}

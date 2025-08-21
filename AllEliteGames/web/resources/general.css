@@ -1,116 +1,129 @@
-
 body {
     background-color: #000000;
-    font-family: 'Orbitron', sans-serif; 
+    font-family: 'Orbitron', sans-serif;
     color: #ffffff;
 }
 
-
+/* Contenedor */
 .container-fluid {
     padding: 20px;
 }
 
-
+/* Tarjetas con efecto neon */
 .card {
     background: #1f1f1f;
     border: 2px solid #c2baba;
     border-radius: 12px;
-    box-shadow: 0 0 25px #c2baba;
+    box-shadow: 0 0 15px #c2baba;
     color: #ffffff;
+    transition: all 0.3s ease-in-out;
 }
 
+.card:hover {
+    box-shadow: 0 0 25px #c2baba, 0 0 50px #ffffff;
+    transform: scale(1.02);
+}
 
+/* Labels */
 label {
     color: #c2baba;
     font-weight: bold;
+    text-shadow: 0 0 8px #c2baba;
 }
 
-
-.form-control-lg {
+/* Inputs */
+.form-control-sm {
     background-color: #1a1a1a;
     border: 2px solid #c2baba;
     color: #ffffff;
     font-size: 1.1rem;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 8px transparent;
 }
 
-.form-control-lg:focus {
+.form-control-sm:focus {
     background-color: #1f1f1f;
     border-color: #ffffff;
-    box-shadow: 0 0 15px #c2baba;
+    box-shadow: 0 0 12px #c2baba, 0 0 25px #ffffff;
     color: #ffffff;
 }
 
-
-.btn-lg {
+/* Botones */
+.btn-sm {
     border-radius: 8px;
     font-weight: bold;
     letter-spacing: 1px;
     transition: all 0.3s ease-in-out;
+    margin-right: 12px;
+    text-transform: uppercase;
 }
 
+/* Botón info */
 .btn-info {
     background: #c2baba;
     border: none;
     color: #1a1a1a;
+    box-shadow: 0 0 10px #c2baba;
 }
 
 .btn-info:hover {
     background: #ffffff;
     color: #1a1a1a;
-    box-shadow: 0 0 15px #c2baba;
+    box-shadow: 0 0 20px #c2baba, 0 0 40px #ffffff;
+    transform: scale(1.05);
 }
 
+/* Botón success */
 .btn-success {
     background: #ffffff;
     border: none;
     color: #1a1a1a;
+    box-shadow: 0 0 10px #ffffff;
 }
 
 .btn-success:hover {
     background: #c2baba;
     color: #1a1a1a;
-    box-shadow: 0 0 15px #c2baba;
+    box-shadow: 0 0 20px #c2baba, 0 0 40px #ffffff;
+    transform: scale(1.05);
 }
 
+/* Tablas */
 .table {
     color: #ffffff;
     border-collapse: separate;
     border-spacing: 0;
 }
 
-
-
 .table thead {
     background: #c2baba;
     color: #1a1a1a;
     text-transform: uppercase;
     letter-spacing: 1px;
-
+    text-shadow: 0 0 8px #ffffff;
+    transition: all 0.3s ease-in-out;
 }
 
 .table tbody tr {
     background: #1f1f1f;
-    transition: background 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .table tbody tr:hover {
     background: #c2baba;
     color: #1a1a1a;
+    box-shadow: inset 0 0 20px #ffffff;
+    transform: scale(1.01);
 }
 
-
+/* Grupo de botones */
 .btn-group {
     display: flex;
     gap: 10px;
 }
 
-
-.btn-lg {
-    margin-right: 12px;
-}
-
+/* Bordes redondeados de tabla */
 .table thead.bg-info th:first-child {
     border-top-left-radius: 12px;
 }
@@ -126,3 +139,34 @@ label {
 .table tbody td {
     border-top: none !important;
 }
+
+.fixed-card {
+    width: 400px;   /* ancho fijo */
+    height: 500px;  /* alto fijo */
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px;               /* grosor de la barra */
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;   /* fondo del track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2); /* thumb transparente */
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.5); /* más visible al pasar el mouse */
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+

@@ -66,24 +66,24 @@
                             <table class="table table-hover table-lg fs-5 mb-0">
                                 <thead class="bg-info text-white">
                                     <tr>
-                                        <th style="text-align: center; vertical-align: middle;">CÓDIGO</th>
-                                        <th style="text-align: center; vertical-align: middle;">DPI</th>
-                                        <th style="text-align: center; vertical-align: middle;">NOMBRES</th>
-                                        <th style="text-align: center; vertical-align: middle;">CORREO</th>
-                                        <th style="text-align: center; vertical-align: middle;">DIRECCION</th>
-                                        <th style="text-align: center; vertical-align: middle;">ESTADO</th>
-                                        <th style="text-align: center; vertical-align: middle;">ACCIONES</th>
+                                        <th>CÓDIGO</th>
+                                        <th>DPI</th>
+                                        <th>NOMBRES</th>
+                                        <th>CORREO</th>
+                                        <th>DIRECCION</th>
+                                        <th>ESTADO</th>
+                                        <th>ACCIONES</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach var="cliente" items="${clientes}">
                                         <tr>
-                                            <td style="text-align: center; vertical-align: middle;">${cliente.getCodigoCliente()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${cliente.getDPICliente()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${cliente.getNombresCliente()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${cliente.getCorreoCliente()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${cliente.getDireccionCliente()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${cliente.getEstado()}</td>
+                                            <td>${cliente.getCodigoCliente()}</td>
+                                            <td>${cliente.getDPICliente()}</td>
+                                            <td>${cliente.getNombresCliente()}</td>
+                                            <td>${cliente.getCorreoCliente()}</td>
+                                            <td>${cliente.getDireccionCliente()}</td>
+                                            <td>${cliente.getEstado()}</td>
                                             <td>
                                                 <div class="d-flex flex-column align-items-center gap-2">
                                                     <a class="btn btn-warning btn-lg mb-2" href="Controlador?menu=Cliente&accion=Editar&codigoCliente=${cliente.getCodigoCliente()}">Editar</a>   

@@ -51,8 +51,8 @@
                                     <input type="text" value="${suscripcion.getCodigoVideojuego()}" name="txtCodigoVideojuego" class="form-control form-control-lg" >
                                 </div>
                                 <div class="d-flex gap-3">
-                                    <input type="submit" name="accion" value="Agregar" class="btn btn-info btn-lg">
-                                    <input type="submit" name="accion" value="Actualizar" class="btn btn-success btn-lg">
+                                <input type="submit" name="accion" value="Agregar" class="btn btn-info btn-lg">
+                                <input type="submit" name="accion" value="Actualizar" class="btn btn-success btn-lg">
                                 </div>
                             </form>
                         </div>
@@ -65,30 +65,31 @@
                             <table class="table table-hover table-lg fs-5 mb-0">
                                 <thead class="bg-info text-white">
                                     <tr>
-                                        <th style="text-align: center; vertical-align: middle;">CODIGO</th>
-                                        <th style="text-align: center; vertical-align: middle;">FECHA SUSCRIPCION</th>
-                                        <th style="text-align: center; vertical-align: middle;">FECHA FIN</th>
-                                        <th style="text-align: center; vertical-align: middle;">TIPO SUSCRIPCION</th>
-                                        <th style="text-align: center; vertical-align: middle;">ESTADO</th>
-                                        <th style="text-align: center; vertical-align: middle;">CODIGO CLIENTE</th>
-                                        <th style="text-align: center; vertical-align: middle;">CODIGO VIDEOJUEGO</th>
-                                        <th style="text-align: center; vertical-align: middle;">ACCIONES</th>
+                                        <th>CODIGO</th>
+                                        <th>FECHA SUSCRIPCION</th>
+                                        <th>FECHA FIN</th>
+                                        <th>TIPO SUSCRIPCION</th>
+                                        <th>ESTADO</th>
+                                        <th>CODIGO CLIENTE</th>
+                                        <th>CODIGO VIDEOJUEGO</th>
+                                        <th>ACCIONES</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <c:forEach var="suscripcion" items="${suscripciones}">
                                         <tr>
-                                            <td style="text-align: center; vertical-align: middle;">${suscripcion.getCodigoSuscripcion()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${suscripcion.getFechaSuscripcion()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${suscripcion.getFechaFin()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${suscripcion.getTipoSuscripcion()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${suscripcion.getEstado()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${suscripcion.getCodigoCliente()}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${suscripcion.getCodigoVideojuego()}</td>
+                                            <td>${suscripcion.getCodigoSuscripcion()}</td>
+                                            <td>${suscripcion.getFechaSuscripcion()}</td>
+                                            <td>${suscripcion.getFechaFin()}</td>
+                                            <td>${suscripcion.getTipoSuscripcion()}</td>
+                                            <td>${suscripcion.getEstado()}</td>
+                                            <td>${suscripcion.getCodigoCliente()}</td>
+                                            <td>${suscripcion.getCodigoVideojuego()}</td>
                                             <td>
                                                 <div class="d-flex flex-column align-items-center gap-2">
-                                                    <a class="btn btn-warning btn-lg mb-2"href="Controlador?menu=Suscripcion&accion=Editar&codigoSuscripcion=${suscripcion.getCodigoSuscripcion()}">Editar</a>   
+                                                    <a class="btn btn-warning btn-lg mb-2"href="Controlador?menu=Suscripcion&accion=Editar&codigoSuscripcion=${suscripcion.getCodigoSuscripcion()}">Editar</a> 
+                                                    <a class="btn btn-danger btn-lg mb-2" href="Controlador?menu=Suscripcion&accion=Eliminar&codigoSuscripcion=${suscripcion.getCodigoSuscripcion()}" onclick="return confirm('¿Está seguro de eliminar esta suscripción?');">Eliminar</a>
                                                 </div>
                                             </td>
                                         </tr>

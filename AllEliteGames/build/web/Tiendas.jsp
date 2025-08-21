@@ -10,48 +10,48 @@
         <link rel="stylesheet" href="<c:url value='/resources/general.css' />">
     </head>
     <body>
-        <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 105vh; margin-top: 0;">
+        <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh; margin-top: 0;">
             <div class="row w-100 align-items-stretch" style="max-width: 1600px;"> 
                 <!-- Columna izquierda: formulario -->
                 <div class="col-md-3">
                     <div class="card shadow-lg h-100">
                         <div class="card-body">
                             <form action="ControladorTiendas?menu=Tiendas" method="POST">
-                                <div class="form-group mb-2">
-                                    <label class="fs-3"><strong>Número de Tienda:</strong></label>
-                                    <input type="text" value="${tienda.getNumeroTienda()}" name="txtNumeroTienda" class="form-control form-control-lg">
+                                <div class="form-group mb-4">
+                                    <label class="fs-5"><strong>Número de Tienda:</strong></label>
+                                    <input type="text" value="${tienda.getNumeroTienda()}" name="txtNumeroTienda" class="form-control">
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label class="fs-3"><strong>Dirección:</strong></label>
-                                    <input type="text" value="${tienda.getDireccion()}" name="txtDireccion" class="form-control form-control-lg">
+                                <div class="form-group mb-4">
+                                    <label class="fs-5"><strong>Dirección:</strong></label>
+                                    <input type="text" value="${tienda.getDireccion()}" name="txtDireccion" class="form-control">
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label class="fs-3"><strong>Teléfono:</strong></label>
-                                    <input type="text" value="${tienda.getTelefonoTienda()}"name="txtTelefonoTienda" class="form-control  form-control-lg">
+                                <div class="form-group mb-4">
+                                    <label class="fs-5"><strong>Teléfono:</strong></label>
+                                    <input type="text" value="${tienda.getTelefonoTienda()}"name="txtTelefonoTienda" class="form-control">
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label class="fs-3"><strong>Correo:</strong></label>
+                                <div class="form-group mb-4">
+                                    <label class="fs-5"><strong>Correo:</strong></label>
                                     <input type="text" value="${tienda.getCorreoTienda()}" name="txtCorreoTienda" class="form-control form-control-lg">
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label class="fs-3"><strong>Horario Apertura:</strong></label>
+                                <div class="form-group mb-4">
+                                    <label class="fs-5"><strong>Horario Apertura:</strong></label>
                                     <input type="text" value="${tienda.getHorarioApertura()}" name="txtHorarioApertura" class="form-control form-control-lg">
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label class="fs-3"><strong>Horario Cierre:</strong></label>
+                                <div class="form-group mb-4">
+                                    <label class="fs-5"><strong>Horario Cierre:</strong></label>
                                     <input type="text" value="${tienda.getHorarioCierre()}" name="txtHorarioCierre" class="form-control form-control-lg">
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label class="fs-3"><strong>Estado:</strong></label>
+                                <div class="form-group mb-4">
+                                    <label class="fs-5"><strong>Estado:</strong></label>
                                     <input type="text" value="${tienda.getEstado()}" name="txtEstado" class="form-control form-control-lg">
                                 </div>
-                                <div class="form-group mb-3">
-                                    <label class="fs-3"><strong>Código Empleado:</strong></label>
+                                <div class="form-group mb-4">
+                                    <label class="fs-5"><strong>Código Empleado:</strong></label>
                                     <input type="text" value="${tienda.getCodigoEmpleado()}" name="txtCodigoEmpleado" class="form-control form-control-lg">
                                 </div>
-                                <div class="d-flex gap-2">
+                                <div class="d-flex gap-3">
                                     <input type="submit" name="accion" value="Agregar" class="btn btn-info  btn-lg">
-                                    <input type="submit" name="accion" value="Actualizar" class="btn btn-success">
+                                    <input type="submit" name="accion" value="Actualizar" class="btn btn-success  btn-lg">
                                 </div>
                             </form>
                         </div>
@@ -61,32 +61,32 @@
                 <div class="col-md-9">
                     <div class="card shadow-lg h-100">
                         <div class="card-body p-0"> 
-                            <table class="table table-hover table-lg fs-4 mb-0">
+                            <table class="table table-hover table-lg fs-5 mb-0">
                                 <thead class="bg-info text-white">
                                     <tr>
-                                        <th style="text-align: center; vertical-align: middle;">CÓDIGO</th>
-                                        <th style="text-align: center; vertical-align: middle;">NÚMERO</th>
-                                        <th style="text-align: center; vertical-align: middle;">DIRECCIÓN</th>
-                                        <th style="text-align: center; vertical-align: middle;">TELÉFONO</th>
-                                        <th style="text-align: center; vertical-align: middle;">CORREO</th>
-                                        <th style="text-align: center; vertical-align: middle;">HORARIO APERTURA</th>
-                                        <th style="text-align: center; vertical-align: middle;">HORARIO CIERRE</th>
-                                        <th style="text-align: center; vertical-align: middle;">ESTADO</th>
-                                        <th style="text-align: center; vertical-align: middle;">CÓDIGO EMPLEADO</th>
+                                        <th>CÓDIGO</th>
+                                        <th>NÚMERO</th>
+                                        <th>DIRECCIÓN</th>
+                                        <th>TELÉFONO</th>
+                                        <th>CORREO</th>
+                                        <th>HORARIO APERTURA</th>
+                                        <th>HORARIO CIERRE</th>
+                                        <th>ESTADO</th>
+                                        <th>CÓDIGO EMPLEADO</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach var="tienda" items="${tiendas}">
                                         <tr>
-                                            <td style="text-align: center; vertical-align: middle;">${tienda.codigoTienda}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${tienda.numeroTienda}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${tienda.direccion}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${tienda.telefonoTienda}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${tienda.correoTienda}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${tienda.horarioApertura}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${tienda.horarioCierre}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${tienda.estado}</td>
-                                            <td style="text-align: center; vertical-align: middle;">${tienda.codigoEmpleado}</td>
+                                            <td>${tienda.codigoTienda}</td>
+                                            <td>${tienda.numeroTienda}</td>
+                                            <td>${tienda.direccion}</td>
+                                            <td>${tienda.telefonoTienda}</td>
+                                            <td>${tienda.correoTienda}</td>
+                                            <td>${tienda.horarioApertura}</td>
+                                            <td>${tienda.horarioCierre}</td>
+                                            <td>${tienda.estado}</td>
+                                            <td>${tienda.codigoEmpleado}</td>
                                             <td>
                                                 <div class="d-flex flex-column align-items-center gap-2">
                                                     <a class="btn btn-warning btn-lg mb-2"href="ControladorTiendas?menu=Tiendas&accion=Editar&codigoTienda=${tienda.codigoTienda}">Editar</a>   

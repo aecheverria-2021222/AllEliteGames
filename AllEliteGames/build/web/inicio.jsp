@@ -19,7 +19,7 @@
             <section class="conteiner titulo">
                 <h1 class="titulo mt-5" >AlleliteGames</h1>
                 <div class="conteiner principal" style="text-align: center">
-                    <img src="img/AllEliteGames.png" alt="70" width="300" style="margin-right:  350px;" />
+                    <img src="img/AllEliteGames.png" alt="70" width="300" style="margin-right: 350px;" />
 
 
                     <div class="principal-conteiner" >
