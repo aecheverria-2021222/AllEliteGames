@@ -67,7 +67,7 @@
                                     <tr>
                                         <th>CODIGO</th>
                                         <th>FECHA SUSCRIPCION</th>
-                                        <th style="width: 350px;">FECHA FIN</th>
+                                        <th>FECHA FIN</th>
                                         <th>TIPO SUSCRIPCION</th>
                                         <th>ESTADO</th>
                                         <th>CODIGO CLIENTE</th>
