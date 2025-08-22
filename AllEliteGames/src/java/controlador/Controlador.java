@@ -846,6 +846,82 @@ public class Controlador extends HttpServlet {
 
             request.getRequestDispatcher("Ventas.jsp").forward(request, response);
         } else if(menu.equals("MetodoPago")){
+            switch (accion) {
+                case "Listar":
+                    List listaMetodosPago = metodoPagoDao.listar();
+                    request.setAttribute("metodosPago", listaMetodosPago);
+
+                    break;
+                case "Agregar":
+                    String nombre = request.getParameter("txtNombreMetodo");
+                    String descripcion = request.getParameter("txtDescripcionMetodo");
+                    String comiStr = request.getParameter("txtComision");
+                    String est = request.getParameter("txtEstado");
+                    
+                    if(nombre.isEmpty()|| descripcion.isEmpty()  || comiStr.isEmpty() ||est.isEmpty()){
+                            
+                        request.setAttribute("vacio", "No se pueden dejar campos vacíos. Inténtelo de nuevo.");
+                        request.setAttribute("metodospago", metodoPagoDao.listar());
+                        request.getRequestDispatcher("Controlador?menu=MetodoPago&accion=Listar").forward(request, response);
+                        return;
+                    }else if(nombre.trim().length()>5 || descripcion.trim().length()>200 || est.trim().length()>150){
+                        request.setAttribute("lleno", "Número de caracteres superado en un campo. Inténtelo de nuevo.");
+                        request.setAttribute("metodospago", metodoPagoDao.listar());
+                        request.getRequestDispatcher("Controlador?menu=MetodoPago&accion=Listar").forward(request, response);
+                        return;
+                    }
+                    
+                    Double comi = Double.parseDouble(comiStr);
+                    metodoPago.setNombreMetodo(nombre);
+                    metodoPago.setDescripcionMetodo(descripcion);
+                    metodoPago.setComision(comi);
+                    metodoPago.setEstado(est);
+                    metodoPagoDao.agregar(metodoPago);
+                    request.getRequestDispatcher("Controlador?menu=MetodoPago&accion=Listar").forward(request, response);
+                    break;
+                case "Editar":
+                    codMetodo = Integer.parseInt(request.getParameter("codigoMetodoPago"));
+                    MetodoPago m = metodoPagoDao.listarCodigoMetodoPago(codMetodo);
+                    request.setAttribute("metodoPago", m);
+                    request.getRequestDispatcher("Controlador?menu=MetodoPago&accion=Listar").forward(request, response);
+                    break;
+                case "Actualizar":
+                    String nombreMe = request.getParameter("txtNombreMetodo");
+                    String desMe = request.getParameter("txtDescripcionMetodo");
+                    String comiMeStr = request.getParameter("txtComision");
+                    String estMe = request.getParameter("txtEstado");
+                    
+                    if(nombreMe.isEmpty()|| desMe.isEmpty()  || comiMeStr.isEmpty() ||estMe.isEmpty()){
+                            
+                        request.setAttribute("vacio", "No se pueden dejar campos vacíos. Inténtelo de nuevo.");
+                        request.setAttribute("metodospago", metodoPagoDao.listar());
+                        request.getRequestDispatcher("Controlador?menu=MetodoPago&accion=Listar").forward(request, response);
+                        return;
+                    }else if(nombreMe.trim().length()>5 || desMe.trim().length()>200 || comiMeStr.trim().length()>150){
+                        request.setAttribute("lleno", "Número de caracteres superado en un campo. Inténtelo de nuevo.");
+                        request.setAttribute("metodospago", metodoPagoDao.listar());
+                        request.getRequestDispatcher("Controlador?menu=MetodoPago&accion=Listar").forward(request, response);
+                        return;
+                    }
+                    
+                    Double comiMe = Double.parseDouble(comiMeStr);
+                    
+                    metodoPago.setNombreMetodo(nombreMe);
+                    metodoPago.setDescripcionMetodo(desMe);
+                    metodoPago.setComision(comiMe);
+                    metodoPago.setEstado(estMe);
+                    metodoPago.setCodigoMetodoPago(codMetodo);
+                    metodoPagoDao.actualizar(metodoPago);
+                    
+                    request.getRequestDispatcher("Controlador?menu=MetodoPago&accion=Listar").forward(request, response);
+                    break;
+                case "Eliminar":
+                    codMetodo = Integer.parseInt(request.getParameter("codigoMetodoPago"));
+                    metodoPagoDao.eliminar(codMetodo);
+                    request.getRequestDispatcher("Controlador?menu=MetodoPago&accion=Listar").forward(request, response);
+                    break;
+            }
+            request.getRequestDispatcher("MetodoPago.jsp").forward(request, response);
         
         }
         
