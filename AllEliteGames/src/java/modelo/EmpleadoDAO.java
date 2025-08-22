@@ -30,6 +30,7 @@ public class EmpleadoDAO {
             empleado.setContrasena(rs.getString("contrasena")); 
             empleado.setNombresEmpleado(rs.getString("nombresEmpleado"));
             empleado.setCorreoEmpleado(rs.getString("correoEmpleado"));
+            empleado.setRutaImagen(rs.getString("rutaImagen"));
         }
     } catch (Exception e) {
         e.printStackTrace();
