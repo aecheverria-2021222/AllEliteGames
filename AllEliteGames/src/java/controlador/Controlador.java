@@ -389,42 +389,59 @@ public class Controlador extends HttpServlet {
             request.getRequestDispatcher("Tiendas.jsp").forward(request, response);
         
         }else if (menu.equals("Videojuego")) {
-switch (accion) {
-                case "Listar":
-                    List listaVideojuego = videojuegoDao.listar();
-                    request.setAttribute("videojuegos", listaVideojuego); // en plural
-                    break;
+try {
+                switch (accion) {
+                    case "Listar":
+                        List<Videojuego> listaVideojuego = videojuegoDao.listar();
+                        request.setAttribute("videojuegos", listaVideojuego);
+                        request.setAttribute("videojuegoSeleccionado", null);
+                        break;
 
-                case "Agregar":
-                    String nombres = request.getParameter("txtNombreVideojuego");
-                    Double precio = Double.valueOf(request.getParameter("txtPrecioVideojuego"));
-                    int stock = Integer.parseInt(request.getParameter("txtStockVideojuego"));
-                    String des = request.getParameter("txtDesarrollador");
-                    String est = request.getParameter("txtEstado");
+                    case "Agregar":
+                        String nombres = request.getParameter("txtNombreVideojuego");
+                        Double precio = Double.valueOf(request.getParameter("txtPrecioVideojuego"));
+                        int stock = Integer.parseInt(request.getParameter("txtStockVideojuego"));
+                        String des = request.getParameter("txtDesarrollador");
+                        String est = request.getParameter("txtEstado");
 
-                    videojuego.setNombreVideojuego(nombres);
-                    videojuego.setPrecioVideojuego(precio);
-                    videojuego.setStockVideojuego(stock);
-                    videojuego.setDesarrollador(des);
-                    videojuego.setEstado(est);
+                        // Validar códigos
+                        String strGenero = request.getParameter("txtCodigoGenero");
+                        String strProveedor = request.getParameter("txtCodigoProveedor");
+                        int idGenero = (strGenero != null && !strGenero.isEmpty()) ? Integer.parseInt(strGenero) : 0;
+                        int idProveedor = (strProveedor != null && !strProveedor.isEmpty()) ? Integer.parseInt(strProveedor) : 0;
 
-                    videojuegoDao.agregar(videojuego);
-                    request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);
-                    return;
+                        videojuego.setNombreVideojuego(nombres);
+                        videojuego.setPrecioVideojuego(precio);
+                        videojuego.setStockVideojuego(stock);
+                        videojuego.setDesarrollador(des);
+                        videojuego.setEstado(est);
+                        videojuego.setCodigoGenero(idGenero);
+                        videojuego.setCodigoProveedor(idProveedor);
+
+                        videojuegoDao.agregar(videojuego);
+                        request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);
+                        return;
 
                 case "Editar":
-                    codVideojuego = Integer.parseInt(request.getParameter("codigoVideojuego"));
-                    Videojuego v = videojuegoDao.listarCodigoVideojuego(codVideojuego);
-                    request.setAttribute("videojuego", v);
-                    request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);
-                    return;
+                    String strCodVideojuego = request.getParameter("codigoVideojuego");
+                    if (strCodVideojuego != null && !strCodVideojuego.isEmpty()) {
+                        codVideojuego = Integer.parseInt(strCodVideojuego);
+                        Videojuego v = videojuegoDao.listarCodigoVideojuego(codVideojuego);
+                        request.setAttribute("videojuego", v);
+                    }
 
-                case "Actualizar":
+                    request.getRequestDispatcher("Videojuego.jsp").forward(request, response);
+                    return;
+                   case "Actualizar":
                     String nombreVid = request.getParameter("txtNombreVideojuego");
                     Double precioVid = Double.valueOf(request.getParameter("txtPrecioVideojuego"));
                     int stockVid = Integer.parseInt(request.getParameter("txtStockVideojuego"));
                     String desaVid = request.getParameter("txtDesarrollador");
                     String estaVid = request.getParameter("txtEstado");
+                    String strGeneroVid = request.getParameter("txtCodigoGenero");
+                    String strProveedorVid = request.getParameter("txtCodigoProveedor");
+                    int idGeneroVid = (strGeneroVid != null && !strGeneroVid.isEmpty()) ? Integer.parseInt(strGeneroVid) : 0;
+                    int idProveedorVid = (strProveedorVid != null && !strProveedorVid.isEmpty()) ? Integer.parseInt(strProveedorVid) : 0;
 
                     videojuego.setCodigoVideojuego(codVideojuego); 
                     videojuego.setNombreVideojuego(nombreVid);
@@ -432,16 +449,22 @@ switch (accion) {
                     videojuego.setStockVideojuego(stockVid);
                     videojuego.setDesarrollador(desaVid);
                     videojuego.setEstado(estaVid);
+                    videojuego.setCodigoGenero(idGeneroVid);
+                    videojuego.setCodigoProveedor(idProveedorVid);
 
-                    videojuegoDao.actualizar(videojuego); 
+                    videojuegoDao.actualizar(videojuego);
+
                     request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);
                     return;
 
-                case "Eliminar":
-                    codVideojuego = Integer.parseInt(request.getParameter("codigoVideojuego"));
-                    videojuegoDao.eliminar(codVideojuego);
-                    request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);
-                    return;
+                    case "Eliminar":
+                        codVideojuego = Integer.parseInt(request.getParameter("codigoVideojuego"));
+                        videojuegoDao.eliminar(codVideojuego);
+                        request.getRequestDispatcher("Controlador?menu=Videojuego&accion=Listar").forward(request, response);
+                        return;
+                }
+            } catch (NumberFormatException e) {
+                request.setAttribute("vacio", "Error: debe ingresar valores válidos en los campos numéricos.");
             }
 
             request.getRequestDispatcher("Videojuego.jsp").forward(request, response);
