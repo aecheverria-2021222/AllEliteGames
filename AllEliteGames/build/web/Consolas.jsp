@@ -15,22 +15,22 @@
                 <div class="col-md-4">
                     <div class="card shadow-lg h-100">
                         <div class="card-body">
-                            <form action="Controlador?menu=Consolas" method="POST">
+                            <form id="formConsola" action="Controlador?menu=Consolas" method="POST">
                                 <div class="form-group">
                                     <label><strong>Nombre Consola:</strong></label>
-                                    <input type="text" value="${consola.getNombreConsola()}" name="txtNombreConsola" class="form-control" required>
+                                    <input type="text" value="${consola != null && consola.getCodigoConsola() != null ? consola.getNombreConsola() : ''}" name="txtNombreConsola" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label><strong>Precio Consola:</strong></label>
-                                    <input type="number" step="0.01" min="0" value="${consola.getPrecioConsola()}" name="txtPrecioConsola" class="form-control" required>
+                                    <input type="number" step="0.01" min="0" value="${consola != null && consola.getCodigoConsola() != null ? consola.getPrecioConsola() : ''}" name="txtPrecioConsola" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label><strong>Stock Consola:</strong></label>
-                                    <input type="number" step="1" min="0" value="${consola.getStockConsola()}" name="txtStockConsola" class="form-control" required>
+                                    <input type="number" step="1" min="0" value="${consola != null && consola.getCodigoConsola() != null ? consola.getStockConsola() : ''}" name="txtStockConsola" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label><strong>Marca:</strong></label>
-                                    <input type="text" value="${consola.getMarca()}" name="txtMarca" class="form-control" required>
+                                    <input type="text" value="${consola != null && consola.getCodigoConsola() != null ? consola.getMarca() : ''}" name="txtMarca" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label><strong>Fecha Lanzamiento:</strong></label>
@@ -38,19 +38,34 @@
                                 </div>
                                 <div class="form-group">
                                         <label><strong>Estado:</strong></label>
-                                        <select name="cmbEstado" class="form-control" required>
-                                            <option value="">Seleccione</option>
-                                            <option value="Activo" ${consola.getEstado() == "Activo" ? "selected" : ""}>Activo</option>
-                                            <option value="Inactivo" ${consola.getEstado() == "Inactivo" ? "selected" : ""}>Inactivo</option>
+                                        <select name="cmbEstado" class="form-control" value="${consola != null && consola.getCodigoConsola() != null ? consola.getFechaLanzamiento() : ''}" required>
+                                            <option value="" ${consola == null ? "selected" : ""}>Seleccione</option>
+                                            <option value="Activo" ${consola != null && consola.getEstado() == "Activo" ? "selected" : ""}>Activo</option>
+                                            <option value="Inactivo" ${consola != null && consola.getEstado() == "Inactivo" ? "selected" : ""}>Inactivo</option>
                                         </select>
                                 </div>
                                 <div class="form-group">
                                         <label><strong>Codigo Proveedor:</strong></label>
-                                        <input type="number" step="1" min="0" value="${consola.getCodigoProveedor()}" name="txtCodigoProveedor" class="form-control" ${consola.getCodigoConsola() != null ? "disabled" : ""} required>
+                                        <select name="txtCodigoProveedor" class="form-control" required
+                                                <c:if test="${consola != null && consola.codigoProveedor != 0}">disabled</c:if>>
+                                            <option value="" disabled <c:if test="${consola == null || consola.getCodigoConsola() == null}">selected</c:if>>
+                                                    Seleccione un proveedor
+                                                </option>
+                                            <c:forEach var="p" items="${proveedores}">
+                                                <option value="${p.codigoProveedor}"
+                                                        <c:if test="${consola != null && consola.codigoProveedor == p.codigoProveedor}">selected</c:if>>
+                                                    ${p.codigoProveedor} - ${p.nombresProveedor}
+                                                </option>
+                                            </c:forEach>
+                                        </select>
                                 </div>
                                 <div class="d-flex gap-3">
-                                    <input type="submit" name="accion" value="Agregar" class="btn btn-info btn-lg" ${consola.getCodigoConsola() != null ? "disabled" : ""}>
-                                    <input type="submit" name="accion" value="Actualizar" class="btn btn-success btn-lg" ${consola.getCodigoConsola() == null ? "disabled" : ""}>
+                                    <input type="submit" id="btnAgregar" name="accion" value="Agregar" class="btn btn-info btn-lg" ${consola != null && consola.getCodigoConsola() != null ? "disabled" : ""}>
+                                    <input type="submit" id="btnActualizar" name="accion" value="Actualizar" class="btn btn-success btn-lg" ${consola == null || consola.getCodigoConsola() == null ? "disabled" : ""}>
+
+                                    <c:if test="${consola != null && consola.getCodigoConsola() != null}">
+                                        <a href="#" id="btnCancelar" class="btn btn-secondary btn-lg">Cancelar</a>
+                                    </c:if>
                                 </div>
                             </form>
                         </div>
@@ -103,4 +118,29 @@
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const btnCancelar = document.getElementById("btnCancelar");
+            const form = document.getElementById("formConsola");
+            const btnAgregar = document.getElementById("btnAgregar");
+            const btnActualizar = document.getElementById("btnActualizar");
+
+            if(btnCancelar) {
+                btnCancelar.addEventListener("click", function(e) {
+                    e.preventDefault();
+
+                    // Limpiar todos los campos
+                    Array.from(form.elements).forEach(el => {
+                        if(el.tagName === "INPUT" && el.type !== "submit") el.value = "";
+                        if(el.tagName === "SELECT") { el.selectedIndex = 0; el.disabled = false; }
+                    });
+
+                    // Ajustar botones
+                    btnAgregar.disabled = false;
+                    btnActualizar.disabled = true;
+                    btnCancelar.style.display = "none";
+                });
+            }
+        });
+    </script>
 </html>
