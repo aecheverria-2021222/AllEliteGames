@@ -98,6 +98,7 @@ public class GeneroDAO {
             ps.setString(3, ge.getPopularidad());
             ps.setString(4, ge.getPublicoObjetivo());
             ps.setString(5, ge.getEstado());
+            ps.setInt(6, ge.getCodigoGenero());
             ps.executeUpdate(); 
         }catch(Exception e){    
             e.printStackTrace();
