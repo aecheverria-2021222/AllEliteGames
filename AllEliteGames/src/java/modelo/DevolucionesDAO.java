@@ -16,7 +16,7 @@ public class DevolucionesDAO {
     int resp;
 
     public List listar() {
-        String sql = "select * from Devolucion";
+        String sql = "select * from Devoluciones";
         List<Devoluciones> listaDevolucion = new ArrayList<>();
         try {
             con = cn.Conexion();
@@ -40,8 +40,7 @@ public class DevolucionesDAO {
     }
 
     public int agregar(Devoluciones de) {
-        String sql = "insert into Devolucion(fechaSolicitud, fechaDevolucion, motivo, estado, codigoVenta) values(?,?,?,?,?)";
-        try {
+String sql = "insert into Devoluciones(fechaSolicitud, fechaDevolucion, motivo, estado, codigoVenta) values(?,?,?,?,?)";        try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             ps.setDate(1, new java.sql.Date(de.getFechaSolicitud().getTime()));
@@ -58,7 +57,7 @@ public class DevolucionesDAO {
 
     public Devoluciones buscar(int id) {
         Devoluciones dev = new Devoluciones();
-        String sql = "select * from Devolucion where codigoDevolucion =" + id;
+        String sql = "select * from Devoluciones where codigoDevolucion =" + id;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -79,7 +78,7 @@ public class DevolucionesDAO {
     }
 
     public int actualizar(Devoluciones dev) {
-        String sql = "update Devolucion set fechaSolicitud = ?, fechaDevolucion = ?, motivo = ?, estado = ? where codigoDevolucion = ?";
+        String sql = "update Devoluciones set fechaSolicitud = ?, fechaDevolucion = ?, motivo = ?, estado = ? where codigoDevolucion = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -97,7 +96,7 @@ public class DevolucionesDAO {
     }
 
     public void eliminar(int id) {
-        String sql = "delete from Devolucion where codigoDevolucion =" + id;
+        String sql = "delete from Devoluciones where codigoDevolucion =" + id;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);

@@ -27,33 +27,34 @@
                 <div class="col-md-4">
                     <div class="card shadow-lg h-100">
                         <div class="card-body">
-                            <c:if test="${not empty vacio}">
-                                <div class="alert alert-danger" role="alert">${vacio}</div>
-                            </c:if>
-                            
-                            <form action="Controlador?menu=Devolucion" method="POST">
+
+                            <form action="Controlador?menu=Devoluciones" method="POST" name="addForm">
+                                <div id="alerta"></div>
+
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Fecha Solicitud:</strong></label>
-                                    <input type="date" value="${devolucion.getFechaSolicitud()}" name="dtFechaSolicitud" class="form-control form-control-lg">
+                                    <input type="date" value="${devolucion.getFechaSolicitud()}" name="dtFechaSolicitud" id="dtFechaSolicitud" class="form-control form-control-lg">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Fecha Devolución:</strong></label>
-                                    <input type="date" value="${devolucion.getFechaDevolucion()}" name="dtFechaDevolucion" class="form-control form-control-lg">
+                                    <input type="date" value="${devolucion.getFechaDevolucion()}" name="dtFechaDevolucion" id="dtFechaDevolucion" class="form-control form-control-lg">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Motivo de Devolución:</strong></label>
-                                    <input type="text" value="${devolucion.getMotivo()}" name="txtMotivo" class="form-control form-control-lg">
+                                    <input type="text" value="${devolucion.getMotivo()}" name="txtMotivo" id="txtMotivo" class="form-control form-control-lg">
+                                    <div id="errorMotivo" style="color:red; font-size:14px;"></div>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Estado:</strong></label>
-                                    <input type="text" value="${devolucion.getEstado()}" name="txtEstado" class="form-control form-control-lg">
+                                    <input type="text" value="${devolucion.getEstado()}" name="txtEstado" id="txtEstado" class="form-control form-control-lg">
+                                    <div id="errorEstado" style="color:red; font-size:14px;"></div>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Código Venta:</strong></label>
-                                    <input type="text" value="${devolucion.getCodigoVenta()}" name="txtCodigoVenta" class="form-control form-control-lg">
+                                    <input type="text" value="${devolucion.getCodigoVenta()}" name="txtCodigoVenta" id="txtCodigoVenta" class="form-control form-control-lg">
                                 </div>
                                 <div class="d-flex gap-3">
-                                    <input type="submit" name="accion" value="Agregar" class="btn btn-info btn-lg">
+                                    <input type="submit" name="accion" value="Agregar" onclick="return validarFormu();" class="btn btn-info btn-lg">
                                     <input type="submit" name="accion" value="Actualizar" class="btn btn-success btn-lg">
                                 </div>
                             </form>
@@ -87,8 +88,7 @@
                                             <td>${devolucion.getCodigoVenta()}</td>
                                             <td>
                                                 <div class="d-flex flex-column align-items-center gap-2">
-                                                    <a class="btn btn-warning btn-lg mb-2" href="Controlador?menu=Devolucion&accion=Editar&codigoDevolucion=${devolucion.getCodigoDevolucion()}">Editar</a>
-                                                    <a class="btn btn-danger btn-lg" href="Controlador?menu=Devolucion&accion=Eliminar&codigoDevolucion=${devolucion.getCodigoDevolucion()}">Eliminar</a>
+                                                    <a class="btn btn-warning btn-lg mb-2" href="Controlador?menu=Devoluciones&accion=Editar&codigoDevolucion=${devolucion.getCodigoDevolucion()}">Editar</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -103,5 +103,80 @@
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+        <script>
+            var form = document.querySelector("form");
+            var motivo = document.querySelector("input[name='txtMotivo']");
+            var estado = document.querySelector("input[name='txtEstado']");
+            var errorMotivo = document.getElementById("errorMotivo");
+            var errorEstado = document.getElementById("errorEstado");
+            form.addEventListener("submit", function (e) {
+                if (motivo.value.length > 15) {
+                    e.preventDefault();
+                    errorMotivo.innerText = "El motivo debe ser de 15 caracteres o menos";
+                } else {
+                    errorMotivo.innerText = "";
+                }
+                if (estado.value.length > 15) {
+                    e.preventDefault();
+                    errorEstado.innerText = "El estado debe ser de 15 caracteres o menos";
+                } else {
+                    errorEstado.innerText = "";
+                }
+           });
+        </script>
+        <script>
+            function validarFormu() {
+                var formu = document.addForm;
+                var fechaSolicitud = formu.dtFechaSolicitud.value;
+                var fechaDevolucion = formu.dtFechaDevolucion.value;
+                var motivo = formu.txtMotivo.value;
+                var estado = formu.txtEstado.value;
+                var codigoVenta = formu.txtCodigoVenta.value;
+                var alertaDiv = document.getElementById("alerta");
+
+                alertaDiv.innerHTML = "";
+
+                if (fechaSolicitud === "") {
+                    alertaDiv.innerHTML = '<div class="alert alert-danger" role="alert">La fecha de solicitud no puede estar vacía.</div>';
+                    return false;
+                }
+
+                if (fechaDevolucion === "") {
+                    alertaDiv.innerHTML = '<div class="alert alert-danger" role="alert">La fecha de devolución no puede estar vacía.</div>';
+                    return false;
+                }
+
+                if (motivo === "") {
+                    alertaDiv.innerHTML = '<div class="alert alert-danger" role="alert">El motivo de devolución no puede estar vacío.</div>';
+                    return false;
+                }
+
+                if (estado === "") {
+                    alertaDiv.innerHTML = '<div class="alert alert-danger" role="alert">El estado no puede estar vacío.</div>';
+                    return false;
+                }
+                
+                if (codigoVenta === "") {
+                    alertaDiv.innerHTML = '<div class="alert alert-danger" role="alert">El código de venta no puede estar vacío.</div>';
+                return false;
+                }
+                
+                if (!validarInt(codigoVenta, alertaDiv)){
+                    return false;
+                }
+                
+                return true;
+            }
+        </script>
+        <script>
+            function validarInt(parametro, alertaDiv) {
+                if (!/^([0-9])*$/.test(parametro)) {
+                    alertaDiv.innerHTML = '<div class="alert alert-danger" role="alert">El codigo de venta debe contener solo números.</div>';
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+        </script>
     </body>
 </html>

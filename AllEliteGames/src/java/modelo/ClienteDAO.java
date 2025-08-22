@@ -17,7 +17,7 @@ Conexion cn = new Conexion();
     
     public Cliente buscar(String dpi){
         Cliente cl = new Cliente();
-        String sql = "Select * from Cliente where DPICliente ="+dpi;
+        String sql = "Select * from Clientes where DPICliente ="+dpi;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -40,7 +40,7 @@ Conexion cn = new Conexion();
     //METODOS DEL CRUD
     //LISTAR
     public List listar(){
-        String sql ="select*from cliente";
+        String sql ="select*from clientes";
         List<Cliente> listaCliente = new ArrayList<>();
         try {
             con = cn.Conexion();
@@ -64,7 +64,7 @@ Conexion cn = new Conexion();
     
     //AGREGAR
     public int agregar(Cliente cl){
-        String sql = "insert into Cliente (DPICliente, nombresCliente, correoCliente ,direccionCliente,estado) values (?,?,?,?,?)";
+        String sql = "insert into Clientes (DPICliente, nombresCliente, correoCliente ,direccionCliente,estado) values (?,?,?,?,?)";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -85,7 +85,7 @@ Conexion cn = new Conexion();
     public Cliente listarCodigoCliente(int id){
         //Instanciar un objeto de tipo Cliente
         Cliente cl = new Cliente();
-        String sql = "Select * from Cliente where codigoCliente ="+id;
+        String sql = "Select * from Clientes where codigoCliente ="+id;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -107,7 +107,7 @@ Conexion cn = new Conexion();
     
     //ACTUALIZAR
     public int actualizar(Cliente cl){
-        String sql = "Update Cliente set DPICliente = ?, nombresCliente = ?, correoCliente = ?, direccionCliente = ?, estado = ? where codigoCliente = ?";
+        String sql = "Update Clientes set DPICliente = ?, nombresCliente = ?, correoCliente = ?, direccionCliente = ?, estado = ? where codigoCliente = ?";
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -128,7 +128,7 @@ Conexion cn = new Conexion();
     
     //ELIMINAR
     public void eliminar(int id){
-        String sql = "delete from cliente where codigoCliente = "+id;
+        String sql = "delete from clientes where codigoCliente = "+id;
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
