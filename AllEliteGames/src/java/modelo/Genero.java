@@ -6,16 +6,18 @@ public class Genero {
     private String edadRecomendable;
     private String popularidad;
     private String publicoObjetivo;
+    private String estado;
 
     public Genero() {
     }
 
-    public Genero(int codigoGenero, String genero, String edadRecomendable, String popularidad, String publicoObjetivo) {
+    public Genero(int codigoGenero, String genero, String edadRecomendable, String popularidad, String publicoObjetivo, String estado) {
         this.codigoGenero = codigoGenero;
         this.genero = genero;
         this.edadRecomendable = edadRecomendable;
         this.popularidad = popularidad;
         this.publicoObjetivo = publicoObjetivo;
+        this.estado = estado;
     }
 
     public int getCodigoGenero() {
@@ -56,6 +58,14 @@ public class Genero {
 
     public void setPublicoObjetivo(String publicoObjetivo) {
         this.publicoObjetivo = publicoObjetivo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     
