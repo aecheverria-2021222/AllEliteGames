@@ -52,8 +52,25 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label><strong> Código Cliente: </strong></label>
-                                    <input type="text" value="${suscripcion.getCodigoCliente()}" name="txtCodigoCliente" class="form-control form-control-ls"
-                                           <c:if test="${deshabilitar}">readonly</c:if> >
+                                    <select name="txtCodigoCliente" class="form-control form-control-ls"
+     
+                                            
+                                            
+                                    <c:if test="${suscripcion != null && suscripcion.codigoCliente != 0}">disabled</c:if>>
+                                <option value="" disabled <c:if test="${entidad == null}">selected</c:if>>
+                                        -- Seleccione una suscripcion --
+                                    </option>
+                                <c:forEach var="c" items="${clientes}">
+                                    <option value="${c.codigoCliente}"
+                                            <c:if test="${suscripcion != null && suscripcion.codigoCliente == c.codigoCliente}">selected</c:if>>
+                                        ${c.codigoCliente} - ${c.nombresCliente}
+                                    </option>
+                                </c:forEach>
+                                    
+                                    
+                                    </select>
+                                    
+                                           <c:if test="${deshabilitar}"></c:if> 
                                            <!--Alert de Validación -->
                                     <c:if test="${not empty codigoC}">
                                         <div class="alert alert-danger" role="alert">${codigoC}</div>
@@ -61,8 +78,22 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label><strong> Código Videojuego: </strong></label>
-                                    <input type="text" value="${suscripcion.getCodigoVideojuego()}" name="txtCodigoVideojuego" class="form-control form-control-ls"
-                                           <c:if test="${deshabilitar}">readonly</c:if> >
+                                    <select name="txtCodigoVideojuego" class="form-control form-control-ls"
+                                       
+                                       
+                                       
+                                       <c:if test="${suscripcion != null && suscripcion.codigoVideojuego != 0}">disabled</c:if>>
+                                <option value="" disabled <c:if test="${entidad == null}">selected</c:if>>
+                                        -- Seleccione una suscripcion --
+                                    </option>
+                                <c:forEach var="vi" items="${videojuegos}">
+                                    <option value="${vi.codigoVideojuego}"
+                                            <c:if test="${videojuego != null && suscripcion.codigoVideojuego == vi.codigoVideojuego}">selected</c:if>>
+                                        ${vi.codigoVideojuego} - ${vi.nombreVideojuego}
+                                    </option>
+                                </c:forEach>
+                                       </select>
+                                           <c:if test="${deshabilitar}"></c:if> 
                                            <!--Alert de Validación -->
                                     <c:if test="${not empty codigoV}">
                                         <div class="alert alert-danger" role="alert">${codigoV}</div>

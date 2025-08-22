@@ -113,7 +113,7 @@ public class Controlador extends HttpServlet {
                         request.setAttribute("clientes", clienteDao.listar());
                         request.getRequestDispatcher("Cliente.jsp").forward(request, response);
                         return;
-                    } else if (DPI.trim().length() > 5 || nombres.trim().length() > 200 || correo.trim().length() > 150 || direccion.trim().length() > 150 || est.trim().length() > 15) {
+                    } else if (DPI.trim().length() > 13 || nombres.trim().length() > 200 || correo.trim().length() > 150 || direccion.trim().length() > 150 || est.trim().length() > 15) {
                         request.setAttribute("lleno", "Número de caracteres superado en un campo. Inténtelo de nuevo.");
                         request.setAttribute("clientes", clienteDao.listar());
                         request.getRequestDispatcher("Cliente.jsp").forward(request, response);
@@ -147,7 +147,7 @@ public class Controlador extends HttpServlet {
                         request.setAttribute("clientes", clienteDao.listar());
                         request.getRequestDispatcher("Cliente.jsp").forward(request, response);
                         return;
-                    } else if (DPICli.trim().length() > 5 || nombreCli.trim().length() > 200 || correoCli.trim().length() > 150 || direccionCli.trim().length() > 150 || estCli.trim().length() > 15) {
+                    } else if (DPICli.trim().length() > 13 || nombreCli.trim().length() > 200 || correoCli.trim().length() > 150 || direccionCli.trim().length() > 150 || estCli.trim().length() > 15) {
                         request.setAttribute("lleno", "Número de caracteres superado en un campo. Inténtelo de nuevo.");
                         request.setAttribute("clientes", clienteDao.listar());
                         request.getRequestDispatcher("Cliente.jsp").forward(request, response);
@@ -412,6 +412,10 @@ switch (accion) {
                 case "Listar":
                     List listaSuscripciones = suscripcionDao.listarSuscripcion();
                     request.setAttribute("suscripciones", listaSuscripciones);
+                    List<Cliente> clientes = clienteDao.listar();
+                    request.setAttribute("clientes", clientes);
+                    List<Videojuego> videojuegos = videojuegoDao.listar();
+                    request.setAttribute("videojuegos", videojuegos);
                     break;
 
                 case "Agregar":
