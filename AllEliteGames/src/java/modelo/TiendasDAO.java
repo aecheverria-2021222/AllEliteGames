@@ -102,7 +102,7 @@ public class TiendasDAO {
 
     
     public int actualizar(Tiendas tnd){
-        String sql= "Update Tiendas set numeroTienda = ?, direccion = ?, telefonoTienda = ?, correoTienda = ?, horarioApertura = ?, horarioCierre = ?, estado= ?, codigoEmpleado = ? where codigoTienda = ?";
+        String sql= "Update Tiendas set numeroTienda = ?, direccion = ?, telefonoTienda = ?, correoTienda = ?, horarioApertura = ?, horarioCierre = ?, estado = ? where codigoTienda = ?";
         try{
          con = cn.Conexion();
           ps = con.prepareStatement(sql);
@@ -113,8 +113,7 @@ public class TiendasDAO {
           ps.setString(5, tnd.getHorarioApertura());
           ps.setString(6, tnd.getHorarioCierre());
           ps.setString(7, tnd.getEstado());
-          ps.setInt(8, tnd.getCodigoEmpleado());
-          ps.setInt(9, tnd.getCodigoTienda());
+          ps.setInt(8, tnd.getCodigoTienda());
           resp = ps.executeUpdate();
           
       }catch(Exception e){

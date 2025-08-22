@@ -70,7 +70,7 @@
 
                         <div class="form-group mb-2">
                             <label class="fs-6"><strong>Estado:</strong></label>
-                            <select name="cmbEstado" class="form-control form-control-ls">
+                            <select name="txtEstado" class="form-control form-control-ls">
                                         <option value="Activo">Activo</option>
                                         <option value="Inactivo">Inactivo</option>
                                     </select>

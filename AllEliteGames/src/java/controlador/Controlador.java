@@ -362,7 +362,7 @@ public class Controlador extends HttpServlet {
                     String horaAper = request.getParameter("txtHorarioApertura");
                     String horaCerr = request.getParameter("txtHorarioCierre");
                     String estad = request.getParameter("txtEstado");
-                    int codEmplea = Integer.parseInt(request.getParameter("txtCodigoEmpleado"));
+
 
 
                     tienda.setNumeroTienda(numeTienda);
@@ -372,7 +372,7 @@ public class Controlador extends HttpServlet {
                     tienda.setHorarioApertura(horaAper);
                     tienda.setHorarioCierre(horaCerr);
                     tienda.setEstado(estad);
-                    tienda.setCodigoEmpleado(codEmplea);
+
                     tienda.setCodigoTienda(codTienda);
                     tiendasDAO.actualizar(tienda);
                     request.getRequestDispatcher("Controlador?menu=Tiendas&accion=Listar").forward(request, response);
