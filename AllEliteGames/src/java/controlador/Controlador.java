@@ -22,6 +22,8 @@ import modelo.Empleado;
 import modelo.EmpleadoDAO;
 import modelo.Genero;
 import modelo.GeneroDAO;
+import modelo.Membresia;
+import modelo.MembresiasDAO;
 import modelo.Proveedor;
 import modelo.ProveedorDao;
 import modelo.Suscripcion;
@@ -55,6 +57,7 @@ public class Controlador extends HttpServlet {
     DevolucionesDAO devolucionDao = new DevolucionesDAO();
     Proveedor proveedor = new Proveedor();
     ProveedorDao proveedorDao = new ProveedorDao();
+    MembresiasDAO membresiasDao = new MembresiasDAO();
     int codDevolucion;
     int codVideojuego;
     int codEmpleado;
@@ -64,6 +67,7 @@ public class Controlador extends HttpServlet {
     int codTienda;
     int codGenero;
     int codProveedor;
+    int codMembresias;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -679,7 +683,101 @@ public class Controlador extends HttpServlet {
 
             request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
             return;
-        }
+        } else if (menu.equals("Membresias")) {   
+    switch (accion) {
+
+        case "Listar":
+            List<Membresia> listaMembresias = membresiasDao.listar();
+            request.setAttribute("listaMembresias", listaMembresias);
+            break;
+
+        case "Agregar":
+            try {
+                String numero = request.getParameter("txtNumeroMembresia");
+                String tipo = request.getParameter("txtTipoMembresia");
+                String precio = request.getParameter("txtPrecioMembresia");
+                String bene = request.getParameter("txtBeneficios");
+                String est = request.getParameter("txtEstado");
+                String codClient = request.getParameter("txtCodigoCliente");
+                if (numero == null || numero.trim().isEmpty() ||
+                    tipo == null || tipo.trim().isEmpty() ||
+                    precio == null || precio.trim().isEmpty() ||
+                    codClient == null || codClient.trim().isEmpty()) {
+                    request.setAttribute("mensaje", " Todos los campos obligatorios deben completarse ");
+                } else {
+                    Membresia nueva = new Membresia();
+                    nueva.setNumeroMembresia(numero);
+                    nueva.setTipoMembresia(tipo);
+                    nueva.setPrecioMembresia(precio);
+                    nueva.setBeneficios(bene);
+                    nueva.setEstado(est);
+                    nueva.setCodigoCliente(Integer.parseInt(codClient));
+                    int resp = membresiasDao.agregar(nueva);
+                    if (resp > 0) {
+                        request.setAttribute("mensaje", " Membresía agregada correctamente.");
+                    } else {
+                        request.setAttribute("mensaje", " No se pudo agregar la membresía.");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                request.setAttribute("mensaje", "Error al agregar la membresía");
+            }
+            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);
+            break;
+
+        case "Editar":
+            try {
+                codMembresias = Integer.parseInt(request.getParameter("codigoMembresia"));
+                Membresia e = membresiasDao.listarCodigoMembresia(codMembresias);
+                request.setAttribute("membresia", e); 
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                request.setAttribute("mensaje", "Error al cargar la membresía para editar.");
+            }
+            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);
+            break;
+
+        case "Actualizar":
+            try {
+                String NumMem = request.getParameter("txtNumeroMembresia");
+                String TipoMem = request.getParameter("txtTipoMembresia");
+                String PrecMem = request.getParameter("txtPrecioMembresia");
+                String BeneMem = request.getParameter("txtBeneficios");
+                String EstMem = request.getParameter("txtEstado");
+                Membresia actualizado = new Membresia();
+                actualizado.setCodigoMembresia(codMembresias);
+                actualizado.setNumeroMembresia(NumMem);
+                actualizado.setTipoMembresia(TipoMem);
+                actualizado.setPrecioMembresia(PrecMem);
+                actualizado.setBeneficios(BeneMem);
+                actualizado.setEstado(EstMem);
+                int resp = membresiasDao.actualizar(actualizado);
+                if (resp > 0) {
+                    request.setAttribute("mensaje", "Membresía actualizada correctamente.");
+                } else {
+                    request.setAttribute("mensaje", "No se pudo actualizar la membresía.");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                request.setAttribute("mensaje", "Error al actualizar la membresía.");
+            }
+            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);                   
+            break;
+        case "Eliminar":
+            try {
+                codMembresias = Integer.parseInt(request.getParameter("codigoMembresia"));
+                membresiasDao.eliminar(codMembresias);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);
+            break;
+
+            }
+    request.getRequestDispatcher("Membresias.jsp").forward(request, response);
+}
+        
 
     }
 
