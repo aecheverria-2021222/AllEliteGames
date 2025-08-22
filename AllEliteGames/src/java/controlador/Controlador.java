@@ -247,6 +247,20 @@ public class Controlador extends HttpServlet {
                     String popularidad = request.getParameter("txtPopularidad");
                     String publico = request.getParameter("txtPublicoObjetivo");
                     String estado = request.getParameter("txtEstado");
+                    
+                    if(nombreGenero.isEmpty()|| edad.isEmpty() || popularidad.isEmpty() || publico.isEmpty() || estado.isEmpty()){
+                            
+                        request.setAttribute("vacio", "No se pueden dejar campos vacíos. Inténtelo de nuevo.");
+                        request.setAttribute("generos", generoDao.listar());
+                        request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+                        return;
+                    }else if(nombreGenero.trim().length()>100 || edad.trim().length()>10 || popularidad.trim().length()>100 || publico.trim().length()>100 || estado.trim().length()>15){
+                        request.setAttribute("lleno", "Número de caracteres superado en un campo. Inténtelo de nuevo.");
+                        request.setAttribute("clientes", clienteDao.listar());
+                        request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+                        return;
+                    }
+                    
                     genero.setGenero(nombreGenero);
                     genero.setEdadRecomendable(edad);
                     genero.setPopularidad(popularidad);
@@ -274,6 +288,7 @@ public class Controlador extends HttpServlet {
                     genero.setPopularidad(popu);
                     genero.setPublicoObjetivo(publicoObj);
                     genero.setEstado(estadoGen);
+                    genero.setCodigoGenero(codGenero);
                     generoDao.actualizar(genero);
                     request.getRequestDispatcher("Controlador?menu=genero&accion=Listar").forward(request, response);
                     break;
