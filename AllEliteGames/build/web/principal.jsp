@@ -66,7 +66,7 @@
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Ventas</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Ventas</a></li>
-                            <li><a class="dropdown-item" href="Controlador?menu=MetodoPago&accion=Listar">Metodos de Pago</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=MetodoPago&accion=Listar" target="myFrame">Metodos de Pago</a></li>
                             <li><a class="dropdown-item" href="Controlador?menu=Devoluciones&accion=Listar" target="myFrame">Devoluciones</a></li>
                         </ul>
                     </li> 
