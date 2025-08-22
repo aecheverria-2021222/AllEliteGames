@@ -30,7 +30,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="Controlador?menu=Cliente&accion=Listar"target="myFrame">Clientes</a></li>
                             <li><a class="dropdown-item" href="Controlador?menu=Suscripcion&accion=Listar" target="myFrame">Suscripciones</a></li>
-                            <li><a class="dropdown-item" href="#">Membresias</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Membresias=Listar" target="myFrame">Membresias</a></li>
                         </ul>
                     </li>
 
