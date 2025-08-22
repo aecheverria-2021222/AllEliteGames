@@ -35,12 +35,23 @@
                                     <input type="text" value="${empleado.getTelefonoEmpleado()}" name="txtTelefonoEmpleado" class="form-control form-control-ls">
                                 </div>
                                 <div class="form-group mb-3">
+                                    <label><strong>Correo</strong></label>
+                                    <input type="text" value="${empleado.getCorreoEmpleado()}" name="txtCorreoEmpleado" class="form-control form-control-ls">
+                                </div>
+                                <div class="form-group mb-3">
                                     <label><strong>Estado:</strong></label>
-                                    <input type="text" value="${empleado.getEstado()}" name="txtEstado" class="form-control form-control-ls">
+                                    <select name="txtEstado" class="form-control  form-control-lg">
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
+                                    </select>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label><strong>Usuario:</strong></label>
                                     <input type="text" value="${empleado.getUsuario()}" name="txtUsuario" class="form-control form-control-ls">
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label><strong>Contraseña</strong></label>
+                                    <input type="text" value="${empleado.getContrasena()}" name="txtContrasena" class="form-control form-control-ls">
                                 </div>
                                 <div>
                                     <input type="submit" name="accion" value="Agregar" class="btn btn-info btn-sm">
@@ -63,8 +74,10 @@
                                             <th>DPI</th>
                                             <th>NOMBRES</th>
                                             <th>TELEFONO</th>
+                                            <th>CORREO</th>
                                             <th>ESTADO</th>
                                             <th>USUARIO</th>
+                                            <th>CONTRASEÑA</th>
                                             <th>ACCIONES</th>
                                         </tr>
                                     </thead>
@@ -75,8 +88,10 @@
                                                 <td>${empleado.getDPIEmpleado()}</td>
                                                 <td>${empleado.getNombresEmpleado()}</td>
                                                 <td>${empleado.getTelefonoEmpleado()}</td>
+                                                <td>${empleado.getCorreoEmpleado()}</td>
                                                 <td>${empleado.getEstado()}</td>
                                                 <td>${empleado.getUsuario()}</td>
+                                                <td>${empleado.getContrasena()}</td>
                                                 <td>
                                                     <div class="d-flex flex-column align-items-center gap-1">
                                                         <a class="btn btn-warning btn-sm mb-1" href="Controlador?menu=Empleado&accion=Editar&codigoEmpleado=${empleado.getCodigoEmpleado()}">Editar</a>   

@@ -184,12 +184,14 @@ public class Controlador extends HttpServlet {
                     String DPI = request.getParameter("txtDPIEmpleado");
                     String nombres = request.getParameter("txtNombresEmpleado");
                     String telefono = request.getParameter("txtTelefonoEmpleado");
+                    String correo = request.getParameter("txtCorreoEmpleado");
                     String est = request.getParameter("txtEstado");
                     String user = request.getParameter("txtUsuario");
                     String con = request.getParameter("txtContrasena");
                     empleado.setDPIEmpleado(DPI);
                     empleado.setNombresEmpleado(nombres);
                     empleado.setTelefonoEmpleado(telefono);
+                    empleado.setCorreoEmpleado(correo);
                     empleado.setEstado(est);
                     empleado.setUsuario(user);
                     empleado.setContrasena(con);
@@ -205,20 +207,21 @@ public class Controlador extends HttpServlet {
                     break;
 
                 case "Actualizar":
-                    int codEmp = Integer.parseInt(request.getParameter("txtCodigoEmpleado"));
                     String DPIEmp = request.getParameter("txtDPIEmpleado");
                     String nombreEmp = request.getParameter("txtNombresEmpleado");
                     String telefonoEmp = request.getParameter("txtTelefonoEmpleado");
+                    String correoEmp = request.getParameter("txtCorreoEmpleado");
                     String estEmp = request.getParameter("txtEstado");
                     String userEmp = request.getParameter("txtUsuario");
                     String conEmp = request.getParameter("txtContrasena");
-                    empleado.setCodigoEmpleado(codEmp);
                     empleado.setDPIEmpleado(DPIEmp);
                     empleado.setNombresEmpleado(nombreEmp);
                     empleado.setTelefonoEmpleado(telefonoEmp);
+                    empleado.setCorreoEmpleado(correoEmp);
                     empleado.setEstado(estEmp);
                     empleado.setUsuario(userEmp);
                     empleado.setContrasena(conEmp);
+                    empleado.setCodigoEmpleado(codEmpleado);
                     empleadoDao.actualizar(empleado);
                     request.getRequestDispatcher("Controlador?menu=Empleado&accion=Listar").forward(request, response);
                     break;
@@ -321,7 +324,6 @@ public class Controlador extends HttpServlet {
                     break;
 
                 case "Actualizar":
-                    int codTienda = Integer.parseInt(request.getParameter("txtCodigoTienda"));
                     int numeTienda = Integer.parseInt(request.getParameter("txtNumeroTienda"));
                     String direcci = request.getParameter("txtDireccion");
                     String telefTienda = request.getParameter("txtTelefonoTienda");
@@ -331,7 +333,7 @@ public class Controlador extends HttpServlet {
                     String estad = request.getParameter("txtEstado");
                     int codEmplea = Integer.parseInt(request.getParameter("txtCodigoEmpleado"));
 
-                    tienda.setCodigoTienda(codTienda);
+
                     tienda.setNumeroTienda(numeTienda);
                     tienda.setDireccion(direcci);
                     tienda.setTelefonoTienda(telefTienda);
