@@ -83,6 +83,7 @@
                                             <th>FECHA LANZAMIENTO</th>
                                             <th>ESTADO</th>
                                             <th>CODIGO PROVEEDOR</th>
+                                            <th>ACCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody>
