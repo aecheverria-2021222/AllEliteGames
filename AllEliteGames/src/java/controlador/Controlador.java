@@ -252,12 +252,12 @@ public class Controlador extends HttpServlet {
                             
                         request.setAttribute("vacio", "No se pueden dejar campos vacíos. Inténtelo de nuevo.");
                         request.setAttribute("generos", generoDao.listar());
-                        request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+                        request.getRequestDispatcher("Genero.jsp").forward(request, response);
                         return;
                     }else if(nombreGenero.trim().length()>100 || edad.trim().length()>10 || popularidad.trim().length()>100 || publico.trim().length()>100 || estado.trim().length()>15){
                         request.setAttribute("lleno", "Número de caracteres superado en un campo. Inténtelo de nuevo.");
-                        request.setAttribute("clientes", clienteDao.listar());
-                        request.getRequestDispatcher("Cliente.jsp").forward(request, response);
+                        request.setAttribute("generos", clienteDao.listar());
+                        request.getRequestDispatcher("Genero.jsp").forward(request, response);
                         return;
                     }
                     
@@ -283,6 +283,20 @@ public class Controlador extends HttpServlet {
                     String popu = request.getParameter("txtPopularidad");
                     String publicoObj = request.getParameter("txtPublicoObjetivo");
                     String estadoGen = request.getParameter("txtEstado");
+                    
+                    if(nombreGen.isEmpty()|| edadRec.isEmpty() || popu.isEmpty() || publicoObj.isEmpty() || estadoGen.isEmpty()){
+                            
+                        request.setAttribute("vacio", "No se pueden dejar campos vacíos. Inténtelo de nuevo.");
+                        request.setAttribute("generos", generoDao.listar());
+                        request.getRequestDispatcher("Genero.jsp").forward(request, response);
+                        return;
+                    }else if(nombreGen.trim().length()>100 || edadRec.trim().length()>10 || popu.trim().length()>100 || publicoObj.trim().length()>100 || estadoGen.trim().length()>15){
+                        request.setAttribute("lleno", "Número de caracteres superado en un campo. Inténtelo de nuevo.");
+                        request.setAttribute("generos", clienteDao.listar());
+                        request.getRequestDispatcher("Genero.jsp").forward(request, response);
+                        return;
+                    }
+                    
                     genero.setGenero(nombreGen);
                     genero.setEdadRecomendable(edadRec);
                     genero.setPopularidad(popu);
