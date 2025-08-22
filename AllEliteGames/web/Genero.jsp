@@ -19,8 +19,14 @@
     <div class="row w-100 align-items-stretch" style="max-width: 1600px;"> 
         <!-- Columna izquierda: formulario -->
         <div class="col-md-4">
-            <div class="card shadow-lg" style="height: 500px">
+            <div class="card shadow-lg" style="height: 600px">
                 <div class="card-body p-3">
+                    <c:if test="${not empty vacio}">
+                        <div class="alert alert-danger" role="alert">${vacio}</div>
+                    </c:if>
+                    <c:if test="${not empty lleno}">
+                        <div class="alert alert-danger" role="alert">${lleno}</div>
+                    </c:if>
                     <form action="Controlador?menu=genero" method="POST">
                         <div class="form-group mb-3">
                             <label class="fs-6"><strong>Género:</strong></label>
