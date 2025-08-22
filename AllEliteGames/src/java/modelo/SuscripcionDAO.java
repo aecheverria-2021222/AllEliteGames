@@ -20,7 +20,7 @@ public class SuscripcionDAO {
     
     //LISTAR
     public List listarSuscripcion(){
-        String sql = "select * from Suscripciones";
+        String sql = "select * from Suscripcion";
         List<Suscripcion> listaSuscripcion = new ArrayList<>();
         try{
             con = cn.Conexion();
@@ -49,7 +49,7 @@ public class SuscripcionDAO {
     
     //AGREGAR
     public int agregar(Suscripcion sus){
-        String sql = "insert into Suscripciones(fechaSuscripcion, fechaFin, tipoSuscripcion, estado, codigoCliente, codigoVideojuego) values(?,?,?,?,?,?)";
+        String sql = "insert into Suscripcion(fechaSuscripcion, fechaFin, tipoSuscripcion, estado, codigoCliente, codigoVideojuego) values(?,?,?,?,?,?)";
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -70,7 +70,7 @@ public class SuscripcionDAO {
     //BUSCAR
     public Suscripcion buscar(int id){
         Suscripcion sus = new Suscripcion();
-        String sql = "select * from Suscripciones where codigoSuscripcion ="+id;
+        String sql = "select * from Suscripcion where codigoSuscripcion ="+id;
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -94,7 +94,7 @@ public class SuscripcionDAO {
     
     //ACTUALIZAR
     public int actualizar(Suscripcion sus){
-        String sql = "update Suscripciones set fechaSuscripcion = ?, fechaFin = ?, tipoSuscripcion = ?, estado = ? where codigoSuscripcion = ?";
+        String sql = "update Suscripcion set fechaSuscripcion = ?, fechaFin = ?, tipoSuscripcion = ?, estado = ? where codigoSuscripcion = ?";
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -113,7 +113,7 @@ public class SuscripcionDAO {
     
     //ELIMINAR
     public void eliminar(int id){
-        String sql = "delete from Suscripciones where codigoSuscripcion ="+id;
+        String sql = "delete from Suscripcion where codigoSuscripcion ="+id;
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
