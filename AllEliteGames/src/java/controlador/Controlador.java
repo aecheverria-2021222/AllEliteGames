@@ -826,7 +826,7 @@ switch (accion) {
                     return;
 
                 case "Editar":
-                    //codVentas = parseIntSafe(request.getParameter("codigoVenta"));
+//                    codVentas = parseIntSafe(request.getParameter("codigoVenta"));
                     Ventas v = ventasDao.listaCodigoVenta(codVentas);
                     request.setAttribute("ventaEdit", v); 
                     break;

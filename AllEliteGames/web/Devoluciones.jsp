@@ -28,7 +28,7 @@
                     <div class="card shadow-lg h-100">
                         <div class="card-body">
 
-                            <form action="Controlador?menu=Devolucion" method="POST" name="addForm">
+                            <form action="Controlador?menu=Devoluciones" method="POST" name="addForm">
                                 <div id="alerta"></div>
 
                                 <div class="form-group mb-4">
@@ -88,8 +88,7 @@
                                             <td>${devolucion.getCodigoVenta()}</td>
                                             <td>
                                                 <div class="d-flex flex-column align-items-center gap-2">
-                                                    <a class="btn btn-warning btn-lg mb-2" href="Controlador?menu=Devolucion&accion=Editar&codigoDevolucion=${devolucion.getCodigoDevolucion()}">Editar</a>
-                                                    <a class="btn btn-danger btn-lg" href="Controlador?menu=Devolucion&accion=Eliminar&codigoDevolucion=${devolucion.getCodigoDevolucion()}">Eliminar</a>
+                                                    <a class="btn btn-warning btn-lg mb-2" href="Controlador?menu=Devoluciones&accion=Editar&codigoDevolucion=${devolucion.getCodigoDevolucion()}">Editar</a>
                                                 </div>
                                             </td>
                                         </tr>
