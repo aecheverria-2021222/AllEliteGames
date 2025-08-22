@@ -23,7 +23,7 @@ import modelo.EmpleadoDAO;
 import modelo.Genero;
 import modelo.GeneroDAO;
 import modelo.Membresia;
-import modelo.MembresiasDAO;
+import modelo.MembresiaDAO;
 import modelo.MetodoPago;
 import modelo.MetodoPagoDAO;
 import modelo.Proveedor;
@@ -61,7 +61,8 @@ public class Controlador extends HttpServlet {
     DevolucionesDAO devolucionDao = new DevolucionesDAO();
     Proveedor proveedor = new Proveedor();
     ProveedorDao proveedorDao = new ProveedorDao();
-    MembresiasDAO membresiasDao = new MembresiasDAO();
+    MembresiaDAO membresiaDao = new MembresiaDAO();
+    Membresia membresia = new Membresia();
     VentasDAO ventasDao = new VentasDAO();
     MetodoPago metodoPago = new MetodoPago();
     MetodoPagoDAO metodoPagoDao = new MetodoPagoDAO();
@@ -708,12 +709,12 @@ switch (accion) {
 
             request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
             return;
-        } else if (menu.equals("Membresias")) {   
+        } else if (menu.equals("Membresia")) {   
     switch (accion) {
 
         case "Listar":
-            List<Membresia> listaMembresias = membresiasDao.listar();
-            request.setAttribute("listaMembresias", listaMembresias);
+            List<Membresia> listaMembresias = membresiaDao.listar();
+            request.setAttribute("Membresias", listaMembresias);
             break;
 
         case "Agregar":
@@ -737,7 +738,7 @@ switch (accion) {
                     nueva.setBeneficios(bene);
                     nueva.setEstado(est);
                     nueva.setCodigoCliente(Integer.parseInt(codClient));
-                    int resp = membresiasDao.agregar(nueva);
+                    int resp = membresiaDao.agregar(nueva);
                     if (resp > 0) {
                         request.setAttribute("mensaje", " Membresía agregada correctamente.");
                     } else {
@@ -748,19 +749,19 @@ switch (accion) {
                 e.printStackTrace();
                 request.setAttribute("mensaje", "Error al agregar la membresía");
             }
-            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);
+            request.getRequestDispatcher("Controlador?menu=Membresia&accion=Listar").forward(request, response);
             break;
 
         case "Editar":
             try {
                 codMembresias = Integer.parseInt(request.getParameter("codigoMembresia"));
-                Membresia e = membresiasDao.listarCodigoMembresia(codMembresias);
+                Membresia e = membresiaDao.listarCodigoMembresia(codMembresias);
                 request.setAttribute("membresia", e); 
             } catch (Exception ex) {
                 ex.printStackTrace();
                 request.setAttribute("mensaje", "Error al cargar la membresía para editar.");
             }
-            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);
+            request.getRequestDispatcher("Controlador?menu=Membresia&accion=Listar").forward(request, response);
             break;
 
         case "Actualizar":
@@ -777,7 +778,7 @@ switch (accion) {
                 actualizado.setPrecioMembresia(PrecMem);
                 actualizado.setBeneficios(BeneMem);
                 actualizado.setEstado(EstMem);
-                int resp = membresiasDao.actualizar(actualizado);
+                int resp = membresiaDao.actualizar(actualizado);
                 if (resp > 0) {
                     request.setAttribute("mensaje", "Membresía actualizada correctamente.");
                 } else {
@@ -787,20 +788,20 @@ switch (accion) {
                 e.printStackTrace();
                 request.setAttribute("mensaje", "Error al actualizar la membresía.");
             }
-            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);                   
+            request.getRequestDispatcher("Controlador?menu=Membresia&accion=Listar").forward(request, response);                   
             break;
         case "Eliminar":
             try {
                 codMembresias = Integer.parseInt(request.getParameter("codigoMembresia"));
-                membresiasDao.eliminar(codMembresias);
+                membresiaDao.eliminar(codMembresias);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);
+            request.getRequestDispatcher("Controlador?menu=Membresia&accion=Listar").forward(request, response);
             break;
 
             }
-    request.getRequestDispatcher("Membresias.jsp").forward(request, response);
+    request.getRequestDispatcher("Membresia.jsp").forward(request, response);
           }else if (menu.equals("Ventas")) {
             switch (accion) {
                 case "Listar":

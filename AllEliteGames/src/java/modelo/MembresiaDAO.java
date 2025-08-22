@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MembresiasDAO {
+public class MembresiaDAO {
     Conexion cn = new Conexion();
     Connection con;
     PreparedStatement ps;
