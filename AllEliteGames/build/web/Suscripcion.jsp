@@ -57,8 +57,8 @@
                                             
                                             
                                     <c:if test="${suscripcion != null && suscripcion.codigoCliente != 0}">disabled</c:if>>
-                                <option value="" disabled <c:if test="${entidad == null}">selected</c:if>>
-                                        -- Seleccione una suscripcion --
+                                <option value="" disabled <c:if test="${suscripcion == null}">selected</c:if>>
+                                        -- Seleccione un cliente --
                                     </option>
                                 <c:forEach var="c" items="${clientes}">
                                     <option value="${c.codigoCliente}"
@@ -84,7 +84,7 @@
                                        
                                        <c:if test="${suscripcion != null && suscripcion.codigoVideojuego != 0}">disabled</c:if>>
                                 <option value="" disabled <c:if test="${entidad == null}">selected</c:if>>
-                                        -- Seleccione una suscripcion --
+                                        -- Seleccione un videojuego --
                                     </option>
                                 <c:forEach var="vi" items="${videojuegos}">
                                     <option value="${vi.codigoVideojuego}"

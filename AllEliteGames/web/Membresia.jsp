@@ -21,30 +21,46 @@
                 <div class="col-md-4">
                     <div class="card shadow-lg h-100">
                         <div class="card-body">
-                            <form action="Controlador?menu=Membresias" method="POST">
+                            <form action="Controlador?menu=Membresia" method="POST">
                                 <div class="form-group mb-4">
-                                    <label class="fs-5"><strong>Membresias:</strong></label>
-                                    <input type="text" value="${membresia.numeroMembresia()}" name="txtNumeroMembresia" class="form-control form-control-lg">
+                                    <label class="fs-5"><strong>Numero Membresia:</strong></label>
+                                    <input type="text" value="${membresia.getNumeroMembresia()}" name="txtNumeroMembresia" class="form-control form-control-lg">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Tipo:</strong></label>
-                                    <input type="text" value="${membresia.tipoMembresia()}" name="txtTipoMembresia" class="form-control form-control-lg">
+                                    <input type="text" value="${membresia.getTipoMembresia()}" name="txtTipoMembresia" class="form-control form-control-lg">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Precio:</strong></label>
-                                    <input type="text" value="${membresia.precioMembresia()}" name="txtPrecioMembresia" class="form-control form-control-lg">
+                                    <input type="text" value="${membresia.getPrecioMembresia()}" name="txtPrecioMembresia" class="form-control form-control-lg">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Beneficios:</strong></label>
-                                    <input type="text" value="${membresia.beneficios()}" name="txtBeneficios" class="form-control form-control-lg">
+                                    <input type="text" value="${membresia.getBeneficios()}" name="txtBeneficios" class="form-control form-control-lg">
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Estado:</strong></label>
-                                    <input type="text" value="${membresia.estado()}" name="txtEstado" class="form-control form-control-lg">
+                                    <select name="txtEstado" class="form-control form-control-lg">
+                               
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong>Codigo Cliente:</strong></label>
-                                    <input type="text" value="${membresia.codigoCliente()}" name="txtCodigoCliente" class="form-control form-control-lg">
+                                    <select name="txtCodigoCliente" class="form-control form-control-ls"
+                                    <c:if test="${membresia != null && membresia.codigoCliente != 0}">disabled</c:if>>
+                                <option value="" disabled <c:if test="${membresia == null}">selected</c:if>>
+                                        -- Seleccione un cliente --
+                                    </option>
+                                <c:forEach var="c" items="${clientes}">
+                                    <option value="${c.codigoCliente}"
+                                            <c:if test="${membresia != null && membresia.codigoCliente == c.codigoCliente}">selected</c:if>>
+                                        ${c.codigoCliente} - ${c.nombresCliente}
+                                    </option>
+                                </c:forEach>
+                                 </select>   
+                                    
                                 </div>
                                 <div class="d-flex gap-3">
                                     <input type="submit" name="accion" value="Agregar" class="btn btn-info btn-lg">
@@ -72,27 +88,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="membresia" items="${membresia}">
+                                    <c:forEach var="membresia" items="${membresias}">
                                         <tr>
-                                            <td>${m.codigoMembresia}</td>
-                                            <td>${m.numeroMembresia}</td>
-                                            <td>${m.tipoMembresia}</td>
-                                            <td>${m.precioMembresia}</td>
-                                            <td>${m.beneficios}</td>
-                                            <td>${m.estado}</td>
-                                            <td>${m.codigoCliente}</td>
+                                            <td>${membresia.getCodigoMembresia()}</td>
+                                            <td>${membresia.getNumeroMembresia()}</td>
+                                            <td>${membresia.getTipoMembresia()}</td>
+                                            <td>${membresia.getPrecioMembresia()}</td>
+                                            <td>${membresia.getBeneficios()}</td>
+                                            <td>${membresia.getEstado()}</td>
+                                            <td>${membresia.getCodigoCliente()}</td>
                                             <td>
                                                 <div class="d-flex flex-column align-items-center gap-2">
-                                                    <a class="btn btn-warning btn-lg mb-2" href="Controlador?menu=Membresias&accion=Editar&codigoMembresia=${membresia.codigoMembresia}">Editar</a>   
-                                                    <a class="btn btn-warning btn-sm" 
-                                                   href="Controlador?menu=Membresias&accion=Editar&codigoMembresia=${m.codigoMembresia}">
-                                                    Editar
-                                                </a>
-                                                <a class="btn btn-danger btn-sm" 
-                                                   href="Controlador?menu=Membresias&accion=Eliminar&codigoMembresia=${m.getCodigoMembresia()}" 
-                                                   onclick="return confirm('¿Estas seguro de que quieres eliminar esta membresia?');">
-                                                    Eliminar
-                                                </a>
+                                                    <a class="btn btn-warning btn-lg mb-2" href="Controlador?menu=Membresia&accion=Editar&codigoMembresia=${membresia.codigoMembresia}">Editar</a>
+               
                                                 </div>
                                             </td>
                                         </tr>

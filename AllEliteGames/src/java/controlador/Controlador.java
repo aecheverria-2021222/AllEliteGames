@@ -713,8 +713,10 @@ switch (accion) {
     switch (accion) {
 
         case "Listar":
-            List<Membresia> listaMembresias = membresiaDao.listar();
-            request.setAttribute("Membresias", listaMembresias);
+            List listaMembresias = membresiaDao.listar();
+            request.setAttribute("membresias", listaMembresias);
+            List<Cliente> clientes = clienteDao.listar();
+            request.setAttribute("clientes", clientes);
             break;
 
         case "Agregar":
@@ -765,29 +767,20 @@ switch (accion) {
             break;
 
         case "Actualizar":
-            try {
                 String NumMem = request.getParameter("txtNumeroMembresia");
                 String TipoMem = request.getParameter("txtTipoMembresia");
                 String PrecMem = request.getParameter("txtPrecioMembresia");
                 String BeneMem = request.getParameter("txtBeneficios");
                 String EstMem = request.getParameter("txtEstado");
-                Membresia actualizado = new Membresia();
-                actualizado.setCodigoMembresia(codMembresias);
-                actualizado.setNumeroMembresia(NumMem);
-                actualizado.setTipoMembresia(TipoMem);
-                actualizado.setPrecioMembresia(PrecMem);
-                actualizado.setBeneficios(BeneMem);
-                actualizado.setEstado(EstMem);
-                int resp = membresiaDao.actualizar(actualizado);
-                if (resp > 0) {
-                    request.setAttribute("mensaje", "Membresía actualizada correctamente.");
-                } else {
-                    request.setAttribute("mensaje", "No se pudo actualizar la membresía.");
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                request.setAttribute("mensaje", "Error al actualizar la membresía.");
-            }
+
+                membresia.setCodigoMembresia(codMembresias);
+                membresia.setNumeroMembresia(NumMem);
+                membresia.setTipoMembresia(TipoMem);
+                membresia.setPrecioMembresia(PrecMem);
+                membresia.setBeneficios(BeneMem);
+                membresia.setEstado(EstMem);
+                membresiaDao.actualizar(membresia);
+            
             request.getRequestDispatcher("Controlador?menu=Membresia&accion=Listar").forward(request, response);                   
             break;
         case "Eliminar":

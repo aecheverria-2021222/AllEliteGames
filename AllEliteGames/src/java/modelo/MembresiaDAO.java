@@ -17,7 +17,7 @@ public class MembresiaDAO {
     // LISTAR TODAS
     public List<Membresia> listar() {
         String sql = "select * from Membresias";
-        List<Membresia> listaMembresias = new ArrayList<>();
+        List<Membresia> listaMembresia = new ArrayList<>();
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -31,12 +31,12 @@ public class MembresiaDAO {
                 mem.setBeneficios(rs.getString("beneficios"));
                 mem.setEstado(rs.getString("estado"));
                 mem.setCodigoCliente(rs.getInt("codigoCliente"));
-                listaMembresias.add(mem);
+                listaMembresia.add(mem);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listaMembresias;
+        return listaMembresia;
     }
 
     // AGREGAR NUEVA
@@ -89,7 +89,7 @@ public class MembresiaDAO {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            if (rs.next()) {
+            while(rs.next()){
                 mem.setCodigoMembresia(rs.getInt("codigoMembresia"));
                 mem.setNumeroMembresia(rs.getString("numeroMembresia"));
                 mem.setTipoMembresia(rs.getString("tipoMembresia"));
