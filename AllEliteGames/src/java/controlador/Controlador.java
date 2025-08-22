@@ -30,6 +30,8 @@ import modelo.Suscripcion;
 import modelo.SuscripcionDAO;
 import modelo.Tiendas;
 import modelo.TiendasDAO;
+import modelo.Ventas;
+import modelo.VentasDAO;
 import modelo.Videojuego;
 import modelo.VideojuegoDAO;
 
@@ -58,6 +60,7 @@ public class Controlador extends HttpServlet {
     Proveedor proveedor = new Proveedor();
     ProveedorDao proveedorDao = new ProveedorDao();
     MembresiasDAO membresiasDao = new MembresiasDAO();
+    VentasDAO ventasDao = new VentasDAO();
     int codDevolucion;
     int codVideojuego;
     int codEmpleado;
@@ -68,6 +71,7 @@ public class Controlador extends HttpServlet {
     int codGenero;
     int codProveedor;
     int codMembresias;
+    int codVentas;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -776,7 +780,64 @@ public class Controlador extends HttpServlet {
 
             }
     request.getRequestDispatcher("Membresias.jsp").forward(request, response);
-}
+          }else if (menu.equals("Ventas")) {
+            switch (accion) {
+                case "Listar":
+                    List<Ventas> listaVentas = ventasDao.listar();
+                    request.setAttribute("ventasList", listaVentas); 
+                    break;
+                case "Agregar":
+                    try {
+                        Ventas nuevaVenta = new Ventas();
+                        nuevaVenta.setTipoProducto(request.getParameter("txtTipoProducto"));
+                        nuevaVenta.setNumeroSerie(request.getParameter("txtNumeroSerie"));
+                        nuevaVenta.setFechaVenta(Date.valueOf(request.getParameter("dtFechaVenta")));
+                        nuevaVenta.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
+                        nuevaVenta.setEstado(request.getParameter("txtEstado"));
+//                        nuevaVenta.setCodigoCliente(parseIntSafe(request.getParameter("txtCodigoCliente")));
+//                        nuevaVenta.setCodigoEmpleado(parseIntSafe(request.getParameter("txtCodigoEmpleado")));
+//                        nuevaVenta.setCodigoMetodoPago(parseIntSafe(request.getParameter("txtCodigoMetodoPago")));
+                        ventasDao.agregar(nuevaVenta);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    response.sendRedirect("Controlador?menu=Ventas&accion=Listar");
+                    return;
+
+                case "Editar":
+                    //codVentas = parseIntSafe(request.getParameter("codigoVenta"));
+                    Ventas v = ventasDao.listaCodigoVenta(codVentas);
+                    request.setAttribute("ventaEdit", v); 
+                    break;
+
+                case "Actualizar":
+                    try {
+                        Ventas actualizarVenta = new Ventas();
+                        actualizarVenta.setCodigoVenta(codVentas);
+                        actualizarVenta.setTipoProducto(request.getParameter("txtTipoProducto"));
+                        actualizarVenta.setNumeroSerie(request.getParameter("txtNumeroSerie"));
+                        actualizarVenta.setFechaVenta(Date.valueOf(request.getParameter("dtFechaVenta")));
+                        actualizarVenta.setMonto(Double.parseDouble(request.getParameter("txtMonto")));
+                        actualizarVenta.setEstado(request.getParameter("txtEstado"));
+//                        actualizarVenta.setCodigoCliente(parseIntsafe(request.getParameter("txtCodigoCliente")));
+//                        actualizarVenta.setCodigoEmpleado(parseIntSafe(request.getParameter("txtCodigoEmpleado")));
+//                        actualizarVenta.setCodigoMetodoPago(parseIntSafe(request.getParameter("txtCodigoMetodoPago")));
+                        ventasDao.actualizar(actualizarVenta);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    response.sendRedirect("Controlador?menu=Ventas&accion=Listar");
+                    return;
+
+                case "Eliminar":
+                   //codVentas = parseIntSafe(request.getParameter("codigoVenta"));
+                    ventasDao.eliminar(codVentas);
+                    response.sendRedirect("Controlador?menu=Ventas&accion=Listar");
+                    return;
+            }
+
+            request.getRequestDispatcher("Ventas.jsp").forward(request, response);
+        }
         
 
     }
