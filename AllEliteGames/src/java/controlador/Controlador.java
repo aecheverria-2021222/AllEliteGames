@@ -578,18 +578,16 @@ public class Controlador extends HttpServlet {
                     String est = request.getParameter("txtEstado");
                     String codVent = request.getParameter("txtCodigoVenta");
 
-                    if (fechaSol.isEmpty() || fechaDev.isEmpty() || moti.isEmpty() || est.isEmpty() || codVent.isEmpty()) {
-                        request.setAttribute("ERROR", "No se pueden dejar campos vacíos.");
-                    } else {
-                        devolucion.setFechaSolicitud(java.sql.Date.valueOf(fechaSol));
-                        devolucion.setFechaDevolucion(java.sql.Date.valueOf(fechaDev));
-                        devolucion.setMotivo(moti);
-                        devolucion.setEstado(est);
-                        devolucion.setCodigoVenta(Integer.parseInt(codVent));
-                        devolucionDao.agregar(devolucion);
-                    }
+                    devolucion.setFechaSolicitud(java.sql.Date.valueOf(fechaSol));
+                    devolucion.setFechaDevolucion(java.sql.Date.valueOf(fechaDev));
+                    devolucion.setMotivo(moti);
+                    devolucion.setEstado(est);
+                    devolucion.setCodigoVenta(Integer.parseInt(codVent));
+                    devolucionDao.agregar(devolucion);
+
                     listaDevolucion = devolucionDao.listar();
                     request.setAttribute("devoluciones", listaDevolucion);
+                    request.getRequestDispatcher("Controlador?menu=Devoluciones&accion=Listar").forward(request, response);
                     break;
 
                 case "Editar":
@@ -606,16 +604,13 @@ public class Controlador extends HttpServlet {
                     String motiv = request.getParameter("txtMotivo");
                     String esta = request.getParameter("txtEstado");
 
-                    if (fechaSoli.isEmpty() || fecDevo.isEmpty() || motiv.isEmpty() || esta.isEmpty()) {
-                        request.setAttribute("ERROR", "No se pueden dejar campos vacíos.");
-                    } else {
-                        devolucion.setFechaSolicitud(java.sql.Date.valueOf(fechaSoli));
-                        devolucion.setFechaDevolucion(java.sql.Date.valueOf(fecDevo));
-                        devolucion.setMotivo(motiv);
-                        devolucion.setEstado(esta);
-                        devolucion.setCodigoDevolucion(codDevolucion);
-                        devolucionDao.actualizar(devolucion);
-                    }
+                    devolucion.setFechaSolicitud(java.sql.Date.valueOf(fechaSoli));
+                    devolucion.setFechaDevolucion(java.sql.Date.valueOf(fecDevo));
+                    devolucion.setMotivo(motiv);
+                    devolucion.setEstado(esta);
+                    devolucion.setCodigoDevolucion(codDevolucion);
+                    devolucionDao.actualizar(devolucion);
+
                     listaDevolucion = devolucionDao.listar();
                     request.setAttribute("devoluciones", listaDevolucion);
                     break;
