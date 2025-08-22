@@ -26,6 +26,10 @@
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong> Fecha Suscripción: </strong></label>
                                     <input type="date" value="${suscripcion.getFechaSuscripcion()}" name="dtFechaSuscripcion" class="form-control form-control-lg">
+                                    <!--Alert de Validación -->
+                                    <c:if test="${not empty mayor}">
+                                        <div class="alert alert-danger" role="alert">${mayor}</div>
+                                    </c:if>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong> Fecha Fin: </strong></label>
@@ -34,6 +38,10 @@
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong> Tipo de Suscripción: </strong></label>
                                     <input type="text" value="${suscripcion.getTipoSuscripcion()}" name="txtTipoSuscripcion" class="form-control form-control-lg">
+                                    <!--Alert de Validación -->
+                                    <c:if test="${not empty texto}">
+                                        <div class="alert alert-danger" role="alert">${texto}</div>
+                                    </c:if>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong> Estado: </strong></label>
@@ -44,15 +52,25 @@
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong> Código Cliente: </strong></label>
-                                    <input type="text" value="${suscripcion.getCodigoCliente()}" name="txtCodigoCliente" class="form-control form-control-lg" >
+                                    <input type="text" value="${suscripcion.getCodigoCliente()}" name="txtCodigoCliente" class="form-control form-control-lg"
+                                           <c:if test="${deshabilitar}">readonly</c:if> >
+                                           <!--Alert de Validación -->
+                                    <c:if test="${not empty codigoC}">
+                                        <div class="alert alert-danger" role="alert">${codigoC}</div>
+                                    </c:if>
                                 </div>
                                 <div class="form-group mb-4">
                                     <label class="fs-5"><strong> Código Videojuego: </strong></label>
-                                    <input type="text" value="${suscripcion.getCodigoVideojuego()}" name="txtCodigoVideojuego" class="form-control form-control-lg" >
+                                    <input type="text" value="${suscripcion.getCodigoVideojuego()}" name="txtCodigoVideojuego" class="form-control form-control-lg" 
+                                           <c:if test="${deshabilitar}">readonly</c:if> >
+                                           <!--Alert de Validación -->
+                                    <c:if test="${not empty codigoV}">
+                                        <div class="alert alert-danger" role="alert">${codigoV}</div>
+                                    </c:if>
                                 </div>
                                 <div class="d-flex gap-3">
-                                <input type="submit" name="accion" value="Agregar" class="btn btn-info btn-lg">
-                                <input type="submit" name="accion" value="Actualizar" class="btn btn-success btn-lg">
+                                    <input type="submit" name="accion" value="Agregar" class="btn btn-info btn-lg">
+                                    <input type="submit" name="accion" value="Actualizar" class="btn btn-success btn-lg">
                                 </div>
                             </form>
                         </div>
@@ -67,7 +85,7 @@
                                     <tr>
                                         <th>CODIGO</th>
                                         <th>FECHA SUSCRIPCION</th>
-                                        <th style="width: 350px;">FECHA FIN</th>
+                                        <th style="width: 150px; text-align: center; white-space: nowrap;">FECHA FIN</th>
                                         <th>TIPO SUSCRIPCION</th>
                                         <th>ESTADO</th>
                                         <th>CODIGO CLIENTE</th>
@@ -81,7 +99,7 @@
                                         <tr>
                                             <td>${suscripcion.getCodigoSuscripcion()}</td>
                                             <td>${suscripcion.getFechaSuscripcion()}</td>
-                                            <td>${suscripcion.getFechaFin()}</td>
+                                            <td style="text-align: center; white-space:nowrap;">${suscripcion.getFechaFin()}</td>
                                             <td>${suscripcion.getTipoSuscripcion()}</td>
                                             <td>${suscripcion.getEstado()}</td>
                                             <td>${suscripcion.getCodigoCliente()}</td>
