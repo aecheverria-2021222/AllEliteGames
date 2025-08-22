@@ -23,7 +23,7 @@ public class TiendasDAO {
   
   //-------LISTAR----------
   public List listar(){
-      String sql = "select * from tiendas";
+      String sql = "select * from Tiendas";
       List<Tiendas> listaTiendas = new ArrayList<>();
       try{
           con = cn.Conexion();
@@ -41,6 +41,7 @@ public class TiendasDAO {
               tnd.setHorarioCierre(rs.getString(7));
               tnd.setEstado(rs.getString(8));
               tnd.setCodigoEmpleado(rs.getInt(9));
+              listaTiendas.add(tnd);
          }
       }catch(Exception e){
           e.printStackTrace();}
@@ -74,31 +75,34 @@ public class TiendasDAO {
   }
   
   //----------------BUSCAR POR CÓDIGO------------------
-    public Tiendas listarCodigoTienda(int id){
-        Tiendas tnd = new Tiendas();
-        String sql = "select * from Tiendas where codigoTienda ="+id;
+    public Tiendas listarCodigoTienda(int id) {
+            Tiendas tnd = new Tiendas();
+            String sql = "SELECT * FROM Tiendas WHERE codigoTienda = " + id;
 
-        try{
-            con = cn.Conexion();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                  tnd.setNumeroTienda(rs.getInt(1));
-                  tnd.setDireccion(rs.getString(2));
-                  tnd.setTelefonoTienda(rs.getString(3));
-                  tnd.setCorreoTienda(rs.getString(4));
-                  tnd.setHorarioApertura(rs.getString(5));
-                  tnd.setHorarioCierre(rs.getString(6));
-                  tnd.setEstado(rs.getString(7));
-                  tnd.setCodigoEmpleado(rs.getInt(8));
+            try {
+                con = cn.Conexion();
+                ps = con.prepareStatement(sql);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    tnd.setCodigoTienda(rs.getInt(1));          
+                    tnd.setNumeroTienda(rs.getInt(2));
+                    tnd.setDireccion(rs.getString(3));
+                    tnd.setTelefonoTienda(rs.getString(4));
+                    tnd.setCorreoTienda(rs.getString(5));
+                    tnd.setHorarioApertura(rs.getString(6));
+                    tnd.setHorarioCierre(rs.getString(7));
+                    tnd.setEstado(rs.getString(8));
+                    tnd.setCodigoEmpleado(rs.getInt(9));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        }catch(Exception e){
-            e.printStackTrace();}
-        return tnd;
-    }
+            return tnd;
+        }
+
     
     public int actualizar(Tiendas tnd){
-        String sql= "Update Tiendas set numeroTienda = ?, direccion = ?, telefonoTienda = ?, correoTienda = ?, horarioApertura = ?, horarioCierre = ?, codigoEmpleado = ? where codigoTienda = ?";
+        String sql= "Update Tiendas set numeroTienda = ?, direccion = ?, telefonoTienda = ?, correoTienda = ?, horarioApertura = ?, horarioCierre = ?, estado= ?, codigoEmpleado = ? where codigoTienda = ?";
         try{
          con = cn.Conexion();
           ps = con.prepareStatement(sql);
@@ -112,6 +116,7 @@ public class TiendasDAO {
           ps.setInt(8, tnd.getCodigoEmpleado());
           ps.setInt(9, tnd.getCodigoTienda());
           resp = ps.executeUpdate();
+          
       }catch(Exception e){
           e.printStackTrace();
       }

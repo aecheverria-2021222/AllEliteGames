@@ -26,6 +26,15 @@ label {
 }
 
 
+.form-control-ls {
+    background-color: #1a1a1a;
+    border: 2px solid #c2baba;
+    color: #ffffff;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
 .form-control-lg {
     background-color: #1a1a1a;
     border: 2px solid #c2baba;
@@ -41,6 +50,14 @@ label {
     box-shadow: 0 0 15px #c2baba;
     color: #ffffff;
 }
+
+.form-control-ls:focus {
+    background-color: #1f1f1f;
+    border-color: #ffffff;
+    box-shadow: 0 0 15px #c2baba;
+    color: #ffffff;
+}
+
 
 
 .btn-lg {
