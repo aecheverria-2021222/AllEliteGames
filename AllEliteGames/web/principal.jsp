@@ -95,7 +95,7 @@
                 </div>  
             </div>
         </nav>
-       <div class="m-4" style="margin-top: 80px; height: 725px;">
+       <div class="m-4" style="margin-top: 80px; height: 650px;">
     <iframe name="myFrame" src="inicio.jsp" style="height: 100%; width: 100%; border: none;"></iframe>
 </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

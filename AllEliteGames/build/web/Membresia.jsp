@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="<c:url value='/resources/general.css' />">
     </head>
     <body>
-        <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh; margin-top: 0;">
+        <div class="container-fluid d-flex justify-content-center align-items-center" style="margin-top: 75px;">
             <div class="row w-100 align-items-stretch" style="max-width: 1600px;"> 
                 <!-- Columna izquierda: formulario -->
                 <div class="col-md-4">
