@@ -29,8 +29,8 @@
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Clientes</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="Controlador?menu=Cliente&accion=Listar"target="myFrame">Clientes</a></li>
-                            <li><a class="dropdown-item" href="#">Suscripciones</a></li>
-                            <li><a class="dropdown-item" href="#">Membresias</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Suscripcion&accion=Listar" target="myFrame">Suscripciones</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Membresias=Listar" target="myFrame">Membresias</a></li>
                         </ul>
                     </li>
 
@@ -38,8 +38,8 @@
                     <li class="nav-item dropdown">
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Empleados</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="Controlador?menu=Empleado&accion=Listar">Empleados</a></li>
-                            <li><a class="dropdown-item" href="#">Tiendas</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Empleado&accion=Listar" target="myFrame">Empleados</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Tiendas&accion=Listar" target="myFrame">Tiendas</a></li>
                         </ul>
                     </li>
 
@@ -48,7 +48,7 @@
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Generos</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="Controlador?menu=genero&accion=Listar" target="myFrame">Generos</a></li>
-                            <li><a class="dropdown-item" href="Controlador?menu=Videojuego&accion=Listar">Videojuegos</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Videojuego&accion=Listar" target="myFrame">Videojuegos</a></li>
                         </ul>
                     </li>
 
@@ -56,10 +56,8 @@
                     <li class="nav-item dropdown">
                         <a style="margin-left: 10px;  border: none" class="btn btn-outline-light dropdown-toggle" href="#" type="button" data-toggle="dropdown" aria-expanded="true">Proveedores</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Proveedores</a></li>
-                            <li><a class="dropdown-item" href="Controlador?menu=Videojuego&accion=Listar">Videojuegos</a></li>
-                            <li><a class="dropdown-item" href="Controlador?menu=Consolas&accion=Listar">Consolas</a></li>
-                            <li><a class="dropdown-item" href="Controlador?menu=Suscripcion&accion=Listar">Suscripciones</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Proveedor&accion=Listar" target="myFrame">Proveedores</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Consolas&accion=Listar" target="myFrame">Consolas</a></li>
                         </ul>
                     </li>
 
@@ -69,7 +67,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Ventas</a></li>
                             <li><a class="dropdown-item" href="#">Metodos de Pago</a></li>
-                            <li><a class="dropdown-item" href="#">Devoluciones</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Devoluciones&accion=Listar" target="myFrame">Devoluciones</a></li>
                         </ul>
                     </li> 
                 </ul>
@@ -97,7 +95,7 @@
                 </div>  
             </div>
         </nav>
-       <div class="m-4" style="margin-top: 80px; height: 900px;">
+       <div class="m-4" style="margin-top: 80px; height: 725px;">
     <iframe name="myFrame" src="inicio.jsp" style="height: 100%; width: 100%; border: none;"></iframe>
 </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
