@@ -24,6 +24,8 @@ import modelo.Genero;
 import modelo.GeneroDAO;
 import modelo.Membresia;
 import modelo.MembresiasDAO;
+import modelo.MetodoPago;
+import modelo.MetodoPagoDAO;
 import modelo.Proveedor;
 import modelo.ProveedorDao;
 import modelo.Suscripcion;
@@ -61,6 +63,8 @@ public class Controlador extends HttpServlet {
     ProveedorDao proveedorDao = new ProveedorDao();
     MembresiasDAO membresiasDao = new MembresiasDAO();
     VentasDAO ventasDao = new VentasDAO();
+    MetodoPago metodoPago = new MetodoPago();
+    MetodoPagoDAO metodoPagoDao = new MetodoPagoDAO();
     int codDevolucion;
     int codVideojuego;
     int codEmpleado;
@@ -72,7 +76,8 @@ public class Controlador extends HttpServlet {
     int codProveedor;
     int codMembresias;
     int codVentas;
-
+    int codMetodo;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -840,6 +845,8 @@ public class Controlador extends HttpServlet {
             }
 
             request.getRequestDispatcher("Ventas.jsp").forward(request, response);
+        } else if(menu.equals("MetodoPago")){
+        
         }
         
 
