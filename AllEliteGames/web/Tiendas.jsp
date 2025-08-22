@@ -70,12 +70,27 @@
 
                         <div class="form-group mb-2">
                             <label class="fs-6"><strong>Estado:</strong></label>
-                            <input type="text" value="${tienda.estado}" name="txtEstado" class="form-control form-control-ls" required>
+                            <select name="cmbEstado" class="form-control form-control-ls">
+                                        <option value="Activo">Activo</option>
+                                        <option value="Inactivo">Inactivo</option>
+                                    </select>
                         </div>
 
                         <div class="form-group mb-3">
                             <label class="fs-6"><strong>Código Empleado:</strong></label>
-                            <input type="number" value="${tienda.codigoEmpleado}" name="txtCodigoEmpleado" class="form-control form-control-ls" required>
+                            <select name="txtCodigoEmpleado" class="form-control form-control-ls"
+                                    <c:if test="${tienda != null && tienda.codigoEmpleado != 0}">disabled</c:if>>
+                                <option value="" disabled <c:if test="${tiendas == null}">selected</c:if>>
+                                        -- Seleccione un empleado --
+                                    </option>
+                                <c:forEach var="e" items="${empleados}">
+                                    <option value="${e.codigoEmpleado}"
+                                            <c:if test="${tienda != null && tienda.codigoEmpleado == e.codigoEmpleado}">selected</c:if>>
+                                        ${e.codigoEmpleado} - ${e.nombresEmpleado}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                            
                         </div>
 
                         <div class="d-flex gap-2">
@@ -125,11 +140,7 @@
                                                href="Controlador?menu=Tiendas&accion=Editar&codigoTienda=${tienda.codigoTienda}">
                                                 Editar
                                             </a>
-                                            <a class="btn btn-danger btn-sm"
-                                               href="Controlador?menu=Tiendas&accion=Eliminar&codigoTienda=${tienda.codigoTienda}"
-                                               onclick="return confirm('¿Estás seguro de que deseas eliminar esta tienda?');">
-                                                Eliminar
-                                            </a>
+                                            
                                         </div>
                                     </td>
                                 </tr>

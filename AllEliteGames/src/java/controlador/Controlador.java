@@ -320,6 +320,8 @@ public class Controlador extends HttpServlet {
                 case "Listar":
                     List listaTiendas = tiendasDAO.listar();
                     request.setAttribute("tiendas", listaTiendas);
+                    List<Empleado> empleados = empleadoDao.listar();
+                    request.setAttribute("empleados", empleados);
                     break;
 
                 case "Agregar":
