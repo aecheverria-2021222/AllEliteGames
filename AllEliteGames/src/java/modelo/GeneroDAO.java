@@ -25,8 +25,8 @@ public class GeneroDAO {
 
     //Listar
     public List listar() {
-        String sql = "select * from Genero";
-        List<Genero> listaGenero = new ArrayList<>();
+        String sql = "select * from Generos";
+        List<Genero> listarGenero = new ArrayList<>();
         try {
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
@@ -34,27 +34,30 @@ public class GeneroDAO {
             while (rs.next()) {
                 Genero gen = new Genero();
                 gen.setCodigoGenero(rs.getInt(1));
-                gen.setEdadRecomendable(rs.getString(2));
-                gen.setPopularidad(rs.getString(3));
-                gen.setPublicoObjetivo(rs.getString(4));
-                listaGenero.add(gen);
+                gen.setGenero(rs.getString(2));
+                gen.setEdadRecomendable(rs.getString(3));
+                gen.setPopularidad(rs.getString(4));
+                gen.setPublicoObjetivo(rs.getString(5));
+                gen.setEstado(rs.getString(6));
+                listarGenero.add(gen);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return listaGenero;
+        return listarGenero;
     }
     
     //Agregar
-    public int agregar(Genero gen){
-        String sql = "insert into Genero (genero, edadRecomendable, popularidad, publicoObjetivo)values(?,?,?,?)";
+    public int agregar(Genero ge){
+        String sql = "insert into Generos (genero, edadRecomendable, popularidad, publicoObjetivo, estado)values(?,?,?,?,?)";
         try{
             con =cn.Conexion();
-            ps = con.prepareStatement(sql);
-            ps.setString(1, gen.getGenero());
-            ps.setString(2, gen.getEdadRecomendable());
-            ps.setString(3, gen.getPopularidad());
-            ps.setString(4, gen.getPublicoObjetivo());
+            ps = con.prepareCall(sql);
+            ps.setString(1, ge.getGenero());
+            ps.setString(2, ge.getEdadRecomendable());
+            ps.setString(3, ge.getPopularidad());
+            ps.setString(4, ge.getPublicoObjetivo());
+            ps.setString(5, ge.getEstado());
             ps.executeUpdate();
         }catch(Exception e){    
             e.printStackTrace();
@@ -65,35 +68,37 @@ public class GeneroDAO {
     //Buscar
      public Genero listarCodigoGenero(int id){
         //instanciar un objeto de tipo genero
-        Genero gen = new Genero();
-        String sql = "Select * from Genero where codigoGenero ="+id;
+        Genero ge = new Genero();
+        String sql = "Select * from Generos where codigoGenero ="+id;
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                gen.setGenero(rs.getString(2));
-                gen.setEdadRecomendable(rs.getString(3));
-                gen.setPopularidad(rs.getString(4));
-                gen.setPublicoObjetivo(rs.getString(5));
+                ge.setGenero(rs.getString(2));
+                ge.setEdadRecomendable(rs.getString(3));
+                ge.setPopularidad(rs.getString(4));
+                ge.setPublicoObjetivo(rs.getString(5));
+                ge.setEstado(rs.getString(6));
                 }
         }catch(Exception e){
             e.printStackTrace();
         }
-        return gen;
+        return ge;
     }
      
      //Actualizar
-      public int actualizar(Genero gen){
-        String sql = "Update Genero set codigoGenero = ?, genero = ?, edadRecomendable = ?, popularidad = ?, publicObjetivo = ? where codigoGenero = ?";
+      public int actualizar(Genero ge){
+        String sql = "update Generos set genero = ?, edadRecomendable = ?, popularidad = ?, publicoObjetivo = ?, estado = ? where codigoGenero = ?;";
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);
-            ps.setString(1, gen.getGenero());
-            ps.setString(2, gen.getEdadRecomendable());
-            ps.setString(3, gen.getPopularidad());
-            ps.setString(4, gen.getPublicoObjetivo());
-            ps.executeUpdate();
+            ps.setString(1, ge.getGenero());
+            ps.setString(2, ge.getEdadRecomendable());
+            ps.setString(3, ge.getPopularidad());
+            ps.setString(4, ge.getPublicoObjetivo());
+            ps.setString(5, ge.getEstado());
+            ps.executeUpdate(); 
         }catch(Exception e){    
             e.printStackTrace();
         }
@@ -102,7 +107,7 @@ public class GeneroDAO {
     
       //Eliminar
         public void eliminar(int id){
-        String sql = "Delete from genero where codigoGenero ="+id;
+        String sql = "Delete from generos where codigoGenero ="+id;
         try{
             con = cn.Conexion();
             ps = con.prepareStatement(sql);

@@ -2,7 +2,7 @@ package modelo;
 
 import java.sql.Date;
 
-public class Venta {
+public class Ventas {
     private int codigoVenta;
     private String tipoProducto;
     private String numeroSerie;
@@ -13,10 +13,10 @@ public class Venta {
     private int codigoEmpleado;
     private int codigoMetodoPago;
 
-    public Venta() {
+    public Ventas() {
     }
 
-    public Venta(int codigoVenta, String tipoProducto, String numeroSerie, Date fechaVenta, double monto, String estado, int codigoCliente, int codigoEmpleado, int codigoMetodoPago) {
+    public Ventas(int codigoVenta, String tipoProducto, String numeroSerie, Date fechaVenta, double monto, String estado, int codigoCliente, int codigoEmpleado, int codigoMetodoPago) {
         this.codigoVenta = codigoVenta;
         this.tipoProducto = tipoProducto;
         this.numeroSerie = numeroSerie;
@@ -102,4 +102,3 @@ public class Venta {
     
     
 }
-
