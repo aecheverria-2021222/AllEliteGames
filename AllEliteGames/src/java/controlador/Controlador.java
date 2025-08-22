@@ -22,6 +22,8 @@ import modelo.Empleado;
 import modelo.EmpleadoDAO;
 import modelo.Genero;
 import modelo.GeneroDAO;
+import modelo.Membresia;
+import modelo.MembresiasDAO;
 import modelo.Proveedor;
 import modelo.ProveedorDao;
 import modelo.Suscripcion;
@@ -55,6 +57,7 @@ public class Controlador extends HttpServlet {
     DevolucionesDAO devolucionDao = new DevolucionesDAO();
     Proveedor proveedor = new Proveedor();
     ProveedorDao proveedorDao = new ProveedorDao();
+    MembresiasDAO membresiasDao = new MembresiasDAO();
     int codDevolucion;
     int codVideojuego;
     int codEmpleado;
@@ -64,6 +67,7 @@ public class Controlador extends HttpServlet {
     int codTienda;
     int codGenero;
     int codProveedor;
+    int codMembresias;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -390,6 +394,7 @@ public class Controlador extends HttpServlet {
                     break;
 
                 case "Agregar":
+                    request.setAttribute("deshabilitar", false);
                     String fechaSus = request.getParameter("dtFechaSuscripcion");
                     String fechaFi = request.getParameter("dtFechaFin");
                     String tipoSus = request.getParameter("txtTipoSuscripcion");
@@ -407,6 +412,34 @@ public class Controlador extends HttpServlet {
                         return;
                     }//if de campos vacíos
 
+                    if (java.sql.Date.valueOf(fechaSus).after(java.sql.Date.valueOf(fechaFi))) {
+                        request.setAttribute("mayor", "La Fecha Suscripción no puede ser mayor que la Fecha Fin. Por favor inténtelo de nuevo.");
+                        request.setAttribute("suscripciones", suscripcionDao.listarSuscripcion());
+                        request.getRequestDispatcher("Suscripcion.jsp").forward(request, response);
+                        return;
+                    }//if de que la fecha suscripcion no puede ser mayor a la fecha fin
+
+                    if (!tipoSus.matches("^[A-Za-z0-9 ]+$")) {
+                        request.setAttribute("texto", "El Tipo de Suscripción solo puede contener letras, números o espacios. Por favor inténtelo de nuevo.");
+                        request.setAttribute("suscripciones", suscripcionDao.listarSuscripcion());
+                        request.getRequestDispatcher("Suscripcion.jsp").forward(request, response);
+                        return;
+                    }//if de validar que solo se puedan ingresar números o letras en tipo Suscripcion.
+
+                    if (!codClient.matches("^[0-9]+$") || Integer.parseInt(codClient) <= 0) {
+                        request.setAttribute("codigoC", "Código Cliente inválido. Por favor inténtelo de nuevo.");
+                        request.setAttribute("suscripciones", suscripcionDao.listarSuscripcion());
+                        request.getRequestDispatcher("Suscripcion.jsp").forward(request, response);
+                        return;
+                    }//If de que el código de cliente sea un número entero mayor que 0
+
+                    if (!codVideoj.matches("^[0-9]+$") || Integer.parseInt(codVideoj) <= 0) {
+                        request.setAttribute("codigoV", "Código Videojuego inválido. Por favor inténtelo de nuevo.");
+                        request.setAttribute("suscripciones", suscripcionDao.listarSuscripcion());
+                        request.getRequestDispatcher("Suscripcion.jsp").forward(request, response);
+                        return;
+                    }//if de que el codigo de videojuego sea un numero entero mayor que 0
+
                     suscripcion.setFechaSuscripcion(java.sql.Date.valueOf(fechaSus));
                     suscripcion.setFechaFin(java.sql.Date.valueOf(fechaFi));
                     suscripcion.setTipoSuscripcion(tipoSus);
@@ -418,6 +451,7 @@ public class Controlador extends HttpServlet {
                     break;
 
                 case "Editar":
+                    request.setAttribute("deshabilitar", true);
                     codSuscripcion = Integer.parseInt(request.getParameter("codigoSuscripcion"));
                     Suscripcion s = suscripcionDao.buscar(codSuscripcion);
                     request.setAttribute("suscripcion", s);
@@ -437,6 +471,20 @@ public class Controlador extends HttpServlet {
                         request.getRequestDispatcher("Suscripcion.jsp").forward(request, response);
                         return;
                     }//if de campos vacíos
+                    if (java.sql.Date.valueOf(fechaSuscri).after(java.sql.Date.valueOf(fecFin))) {
+                        request.setAttribute("mayor", "La Fecha Suscripción no puede ser mayor que la Fecha Fin. Por favor inténtelo de nuevo.");
+                        request.setAttribute("suscripciones", suscripcionDao.listarSuscripcion());
+                        request.getRequestDispatcher("Suscripcion.jsp").forward(request, response);
+                        return;
+                    }//if de que la fecha suscripcion no puede ser mayor a la fecha fin
+
+                    if (!tipSuscri.matches("^[A-Za-z0-9 ]+$")) {
+                        request.setAttribute("texto", "El Tipo de Suscripción solo puede contener letras, números o espacios. Por favor inténtelo de nuevo.");
+                        request.setAttribute("suscripciones", suscripcionDao.listarSuscripcion());
+                        request.getRequestDispatcher("Suscripcion.jsp").forward(request, response);
+                        return;
+                    }//if de validar que solo se puedan ingresar números o letras en tipo Suscripcion.
+                    
                     suscripcion.setFechaSuscripcion(java.sql.Date.valueOf(fechaSuscri));
                     suscripcion.setFechaFin(java.sql.Date.valueOf(fecFin));
                     suscripcion.setTipoSuscripcion(tipSuscri);
@@ -459,6 +507,8 @@ public class Controlador extends HttpServlet {
                 case "Listar":
                     List listaConsolas = consolaDao.listar();
                     request.setAttribute("consolas", listaConsolas);
+                    List proveedoresCon = proveedorDao.listar();
+                    request.setAttribute("proveedores", proveedoresCon);
                     break;
                 case "Agregar":
                     String nombreConsola = request.getParameter("txtNombreConsola");
@@ -482,6 +532,8 @@ public class Controlador extends HttpServlet {
                     codConsola = Integer.parseInt(request.getParameter("codigoConsola"));
                     Consola c = consolaDao.listarCodigoConsola(codConsola);
                     request.setAttribute("consola", c);
+                    List proveedoresEdiCon = proveedorDao.listar();
+                    request.setAttribute("proveedores", proveedoresEdiCon);
                     request.getRequestDispatcher("Controlador?menu=Consolas&accion=Listar").forward(request, response);
                     break;
                 case "Actualizar":
@@ -631,7 +683,101 @@ public class Controlador extends HttpServlet {
 
             request.getRequestDispatcher("Proveedor.jsp").forward(request, response);
             return;
-        }
+        } else if (menu.equals("Membresias")) {   
+    switch (accion) {
+
+        case "Listar":
+            List<Membresia> listaMembresias = membresiasDao.listar();
+            request.setAttribute("listaMembresias", listaMembresias);
+            break;
+
+        case "Agregar":
+            try {
+                String numero = request.getParameter("txtNumeroMembresia");
+                String tipo = request.getParameter("txtTipoMembresia");
+                String precio = request.getParameter("txtPrecioMembresia");
+                String bene = request.getParameter("txtBeneficios");
+                String est = request.getParameter("txtEstado");
+                String codClient = request.getParameter("txtCodigoCliente");
+                if (numero == null || numero.trim().isEmpty() ||
+                    tipo == null || tipo.trim().isEmpty() ||
+                    precio == null || precio.trim().isEmpty() ||
+                    codClient == null || codClient.trim().isEmpty()) {
+                    request.setAttribute("mensaje", " Todos los campos obligatorios deben completarse ");
+                } else {
+                    Membresia nueva = new Membresia();
+                    nueva.setNumeroMembresia(numero);
+                    nueva.setTipoMembresia(tipo);
+                    nueva.setPrecioMembresia(precio);
+                    nueva.setBeneficios(bene);
+                    nueva.setEstado(est);
+                    nueva.setCodigoCliente(Integer.parseInt(codClient));
+                    int resp = membresiasDao.agregar(nueva);
+                    if (resp > 0) {
+                        request.setAttribute("mensaje", " Membresía agregada correctamente.");
+                    } else {
+                        request.setAttribute("mensaje", " No se pudo agregar la membresía.");
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                request.setAttribute("mensaje", "Error al agregar la membresía");
+            }
+            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);
+            break;
+
+        case "Editar":
+            try {
+                codMembresias = Integer.parseInt(request.getParameter("codigoMembresia"));
+                Membresia e = membresiasDao.listarCodigoMembresia(codMembresias);
+                request.setAttribute("membresia", e); 
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                request.setAttribute("mensaje", "Error al cargar la membresía para editar.");
+            }
+            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);
+            break;
+
+        case "Actualizar":
+            try {
+                String NumMem = request.getParameter("txtNumeroMembresia");
+                String TipoMem = request.getParameter("txtTipoMembresia");
+                String PrecMem = request.getParameter("txtPrecioMembresia");
+                String BeneMem = request.getParameter("txtBeneficios");
+                String EstMem = request.getParameter("txtEstado");
+                Membresia actualizado = new Membresia();
+                actualizado.setCodigoMembresia(codMembresias);
+                actualizado.setNumeroMembresia(NumMem);
+                actualizado.setTipoMembresia(TipoMem);
+                actualizado.setPrecioMembresia(PrecMem);
+                actualizado.setBeneficios(BeneMem);
+                actualizado.setEstado(EstMem);
+                int resp = membresiasDao.actualizar(actualizado);
+                if (resp > 0) {
+                    request.setAttribute("mensaje", "Membresía actualizada correctamente.");
+                } else {
+                    request.setAttribute("mensaje", "No se pudo actualizar la membresía.");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                request.setAttribute("mensaje", "Error al actualizar la membresía.");
+            }
+            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);                   
+            break;
+        case "Eliminar":
+            try {
+                codMembresias = Integer.parseInt(request.getParameter("codigoMembresia"));
+                membresiasDao.eliminar(codMembresias);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            request.getRequestDispatcher("Controlador?menu=Membresias&accion=Listar").forward(request, response);
+            break;
+
+            }
+    request.getRequestDispatcher("Membresias.jsp").forward(request, response);
+}
+        
 
     }
 

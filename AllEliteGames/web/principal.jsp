@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">         
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="inicio.jsp" target="myFrame">Inicio</a>
+                        <a style="margin-left: 10px;  border: none" class="btn btn-outline-light" href="#">Inicio</a>
                     </li>
 
                     <!-- CLIENTES -->
@@ -30,7 +30,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="Controlador?menu=Cliente&accion=Listar"target="myFrame">Clientes</a></li>
                             <li><a class="dropdown-item" href="Controlador?menu=Suscripcion&accion=Listar" target="myFrame">Suscripciones</a></li>
-                            <li><a class="dropdown-item" href="#">Membresias</a></li>
+                            <li><a class="dropdown-item" href="Controlador?menu=Membresias=Listar" target="myFrame">Membresias</a></li>
                         </ul>
                     </li>
 
@@ -95,7 +95,7 @@
                 </div>  
             </div>
         </nav>
-       <div class="m-4" style="margin-top: 80px; height: 900px;">
+       <div class="m-4" style="margin-top: 80px; height: 725px;">
     <iframe name="myFrame" src="inicio.jsp" style="height: 100%; width: 100%; border: none;"></iframe>
 </div>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

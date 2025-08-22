@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="<c:url value='/resources/general.css' />">
     </head>
     <body>
-        <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 90vh; margin-top: 0;">
+        <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 100vh; margin-top: 0;">
             <div class="row w-100 align-items-stretch" style="max-width: 1600px;"> 
                 <div class="col-md-4">
                     <div class="card shadow-lg h-100">
